@@ -169,9 +169,9 @@ public class AuthController {
 	}
 	
 
-	/*@PostMapping("/signup")
+	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+		if (compteRepository.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity
 					.badRequest()
 					.body(new MessageResponse("Error: Username is already taken!"));
@@ -180,14 +180,19 @@ public class AuthController {
 		
 
 		// Create new user's account
-		User user = new User(signUpRequest.getUsername(), 
+		Compte user = new Compte(signUpRequest.getUsername(), 
 							 encoder.encode(signUpRequest.getPassword()),null);
 
-		String strRoles = signUpRequest.getUsername();
+		Set<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
 
-			
-				switch (strRoles) {
+		if (strRoles == null) {
+			Role userRole = roleRepository.findByName(ERole.ROLE_PERSONNEL)
+					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+			roles.add(userRole);
+		} else {
+			strRoles.forEach(role -> {
+				switch (role) {
 				case "chefService":
 					Role chefRole = roleRepository.findByName(ERole.ROLE_CHEFSERVCE)
 							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
@@ -212,11 +217,17 @@ public class AuthController {
 					roles.add(userRole);
 				}
 			
+			
+			});
 		
 
 		user.setRoles(roles);
-		userRepository.save(user);
+		compteRepository.save(user);
 
+		
+	}
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
-	}*/
+	}
+		
 }
+

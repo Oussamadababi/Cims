@@ -75,6 +75,10 @@ public  class Personnel {
     private List<AffectationPartielle> affectationp ;
 	
 	
+	@OneToMany(mappedBy="p", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Conge> Conges ;
+	
+	
 	public Personnel() {
 		
 	}

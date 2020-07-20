@@ -158,5 +158,9 @@ public class PersonnelController {
 
 		return ResponseEntity.ok(new MessageResponse("Personnel ajouté avec succés"));
 	}
-	
+	@PutMapping("/updateSoldeexceptionnel/{matricule}/{soldeExceptionnel}")
+	public void updateSoldeexceptionnel(@PathVariable(name="matricule")int matricule,@PathVariable(name="soldeExceptionnel") int soldeExceptionnel)
+	{
+		personnelService.updateSoldeexceptionnel(matricule, soldeExceptionnel);
+	}
 	}

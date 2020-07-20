@@ -22,6 +22,8 @@ public class PersonnelService {
 	}
 	
 	public Personnel save(Personnel p) {
+		p.setSoldeRepos(0);
+		p.setSoldeExceptionnel(0);
 		return personnelRepository.save(p);
 	}
 
@@ -42,6 +44,12 @@ public class PersonnelService {
 		}
 			return false;
 		
+	}
+	public void updateSoldeexceptionnel(int matricule,int soldeExceptionnel)
+	{
+		Personnel p=personnelRepository.findByMatricule(matricule);
+		p.setSoldeExceptionnel(soldeExceptionnel);
+		personnelRepository.save(p);
 	}
 }
 

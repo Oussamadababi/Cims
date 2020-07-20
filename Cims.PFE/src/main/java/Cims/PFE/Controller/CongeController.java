@@ -47,4 +47,10 @@ public class CongeController {
 		congeService.ajouterConge(c, matricule);
 		return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("demande ajouter"));
 	}
+	
+	@GetMapping(value = "/listcongeparMatricule/{matricule}")
+	public List<Conge> congeparMatricule(@PathVariable int matricule)
+	{
+		return congeService.congeparMatricule(matricule);
+	}
 }

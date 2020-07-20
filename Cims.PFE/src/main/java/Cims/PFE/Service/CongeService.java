@@ -38,8 +38,8 @@ public class CongeService {
 	public Conge demanderConge(Conge c, long personnel_id) {
 		Personnel p = personnelRepository.getOne(personnel_id);
 		c.setP(p);
-////		Date d=new Date().
-//		c.setDatedemande();
+		//// Date d=new Date().
+		// c.setDatedemande();
 		return congeRepository.save(c);
 	}
 
@@ -48,6 +48,10 @@ public class CongeService {
 		c.setP(p);
 
 		return congeRepository.save(c);
+	}
+
+	public List<Conge> congeparMatricule(int matricule) {
+		return congeRepository.congeparMatricule(matricule);
 	}
 
 }

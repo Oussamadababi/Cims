@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -86,6 +87,8 @@ public  class Personnel {
 	
 	@OneToMany(mappedBy="p", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Conge> Conges ;
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<AppelDeJour> appels ;
 	
 	
 	public Personnel() {
@@ -232,6 +235,14 @@ public  class Personnel {
 	}
 	public void setSoldeExceptionnel(double soldeExceptionnel) {
 		this.soldeExceptionnel = soldeExceptionnel;
+	}
+	
+	
+	public List<AppelDeJour> getAppels() {
+		return appels;
+	}
+	public void setAppels(List<AppelDeJour> appels) {
+		this.appels = appels;
 	}
 	public Personnel(Long id_personnel, int matricule, String nom, String prenom, String sexe, int telephone,
 			int soldeRepos, int soldeExceptionnel, LocalDate date_recrutement, @NotBlank String email) {

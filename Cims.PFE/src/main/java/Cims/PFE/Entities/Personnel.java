@@ -54,10 +54,10 @@ public  class Personnel {
 	private int telephone;
 	
 	@Column(name="solderepos")
-	private int soldeRepos;
+	private double soldeRepos;
 	
 	@Column(name="soldeexceptionnel")
-	private int soldeExceptionnel;
+	private double soldeExceptionnel;
 	
 	@Column(name="date_recrutement")
 	private LocalDate date_recrutement;
@@ -219,16 +219,18 @@ public  class Personnel {
 	public void setMatricule(int matricule) {
 		this.matricule = matricule;
 	}
-	public int getSoldeRepos() {
+	
+	
+	public double getSoldeRepos() {
 		return soldeRepos;
 	}
-	public void setSoldeRepos(int soldeRepos) {
+	public void setSoldeRepos(double soldeRepos) {
 		this.soldeRepos = soldeRepos;
 	}
-	public int getSoldeExceptionnel() {
+	public double getSoldeExceptionnel() {
 		return soldeExceptionnel;
 	}
-	public void setSoldeExceptionnel(int soldeExceptionnel) {
+	public void setSoldeExceptionnel(double soldeExceptionnel) {
 		this.soldeExceptionnel = soldeExceptionnel;
 	}
 	public Personnel(Long id_personnel, int matricule, String nom, String prenom, String sexe, int telephone,

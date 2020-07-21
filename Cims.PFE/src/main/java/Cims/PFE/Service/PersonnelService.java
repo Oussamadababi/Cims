@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import Cims.PFE.Dao.PersonnelRepository;
 import Cims.PFE.Entities.Personnel;
 
+
 @Service
 public class PersonnelService {
 	
@@ -51,5 +52,22 @@ public class PersonnelService {
 		p.setSoldeExceptionnel(soldeExceptionnel);
 		personnelRepository.save(p);
 	}
+	/*Ajouter au solde repos chaque 6 jrs 0.5*/
+//	@Scheduled(cron = "1 0 0 1 * ?")
+//	@Scheduled(fixedRate = 5000L) 518 400
+	public void updateAutoSoldeRepos()
+	{
+		List<Personnel> Listepersonnel = personnelRepository.findAll();
+		for(Personnel Personnel1 : Listepersonnel)
+		{
+			double soldeRepos1 =Personnel1.getSoldeRepos()+0.5;
+			Personnel1.setSoldeRepos(soldeRepos1);
+			personnelRepository.save(Personnel1);
+			
+			
+		}
+		
+	}
+	
 }
 

@@ -27,7 +27,7 @@ public class AppelDeJourService {
 		{
 			a.setDatedujour(java.sql.Date.valueOf(LocalDate.now()));
 			a.setEtat("P");
-//			a.setPersonnels(Personnel1.);
+		//	a.setPersonnels(Personnel1.getId_personnel());
 			
 		}
 	     AppelDeJourRepository.save(a);

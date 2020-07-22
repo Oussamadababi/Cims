@@ -87,7 +87,9 @@ public  class Personnel {
 	
 	@OneToMany(mappedBy="p", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Conge> Conges ;
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	
+	@ManyToMany(mappedBy="Personnels",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
     private List<AppelDeJour> appels ;
 	
 	

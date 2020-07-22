@@ -28,7 +28,7 @@ public class AppelDeJour {
 	@Temporal(TemporalType.DATE)
 	private Date datedujour;
 
-	@ManyToMany( mappedBy="appels")
+	@ManyToMany
 	private List<Personnel> Personnels;
 
 	private String Etat;

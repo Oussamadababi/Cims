@@ -18,9 +18,16 @@ import Cims.PFE.Service.AppelDeJourService;
 public class AppelDeJourController {
 	@Autowired
 	AppelDeJourService appelDeJourService;
-@PutMapping(value = "ListeAbsence/{personnel_id}/{date}")
-	public void ajouteAuListeAbsence(@PathVariable("personnel_id")long personnel_id,@PathVariable("date")@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)Date date) {
-		appelDeJourService.ajouteAuListeAbsence(personnel_id,date);
+
+	@PutMapping(value = "ListeAbsence/{personnel_id}/{date}")
+	public void ajouteAuListeAbsence(@PathVariable("personnel_id") long personnel_id,
+			@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
+		appelDeJourService.ajouteAuListeAbsence(personnel_id, date);
+	}
+	@PutMapping(value = "supprimerPersonnelDeLaListe/{personnel_id}/{date}")
+	public void supprimerPersonnelDeLaListe(@PathVariable("personnel_id")long personnel_id,@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date)
+	{
+		appelDeJourService.supprimerPersonnelDeLaListe(personnel_id, date);
 	}
 
 }

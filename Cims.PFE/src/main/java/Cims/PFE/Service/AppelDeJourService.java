@@ -14,6 +14,7 @@ import Cims.PFE.Dao.PersonnelRepository;
 import Cims.PFE.Entities.AppelDeJour;
 import Cims.PFE.Entities.Personnel;
 
+
 @Service
 public class AppelDeJourService {
 
@@ -71,6 +72,22 @@ public class AppelDeJourService {
 		}
 
 		// return a.getPersonnels();
+	}
+	
+	public void supprimerPersonnelDeLaListe(long personnel_id, Date date)
+	{
+		AppelDeJour a = AppelDeJourRepository.findByDatedujour(date);
+		int nbPersonnel=a.getPersonnels().size();	
+		for(int i = 0; i < nbPersonnel; i++)
+		{
+			if(a.getPersonnels().get(i).getId_personnel() == personnel_id)
+			{
+				a.getPersonnels().remove(i);
+				AppelDeJourRepository.save(a);
+				break;
+			}
+			
+		}
 	}
 
 }

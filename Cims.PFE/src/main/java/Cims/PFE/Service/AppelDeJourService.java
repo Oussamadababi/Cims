@@ -14,7 +14,6 @@ import Cims.PFE.Dao.PersonnelRepository;
 import Cims.PFE.Entities.AppelDeJour;
 import Cims.PFE.Entities.Personnel;
 
-
 @Service
 public class AppelDeJourService {
 
@@ -37,40 +36,41 @@ public class AppelDeJourService {
 	// AppelDeJourRepository.save(a);
 	//
 	// }
-//	public void affecterEmployeADepartement(int employeId, int depId) {
-//		Departement depManagedEntity = deptRepoistory.findById(depId).get();
-//		Employe employeManagedEntity = employeRepository.findById(employeId).get();
-//
-//		if(depManagedEntity.getEmployes() == null){
-//
-//			List<Employe> employes = new ArrayList<>();
-//			employes.add(employeManagedEntity);
-//			depManagedEntity.setEmployes(employes);
-//		}else{
-//
-//			depManagedEntity.getEmployes().add(employeManagedEntity);
-//
-//		}
-//
-//	}
 
-	public void ajouteAuListeAbsence(long personnel_id,Date date) {
-		Personnel p = personnelRepository.getOne(personnel_id);
-		AppelDeJour a = new AppelDeJour();
-		a.setDatedujour(date);
-		AppelDeJourRepository.save(a);
-		if (p.getAppels() == null) {
+	public void ajouteAuListeAbsence(long personnel_id, Date date) {
+		Personnel p = personnelRepository.findById(personnel_id).get();
+		AppelDeJour a = AppelDeJourRepository.findByDatedujour(date);
+		if (a == null) {
+			AppelDeJour newAppel = new AppelDeJour();
+			newAppel.setDatedujour(date);
 
-			List<AppelDeJour> AppelDeJour = new ArrayList<>();
-			AppelDeJour.add(a);
-			p.setAppels(AppelDeJour);
-		
+			if (newAppel.getPersonnels() == null) {
+				List<Personnel> personnels = new ArrayList<>();
+				personnels.add(p);
+				newAppel.setPersonnels(personnels);
+				AppelDeJourRepository.save(newAppel);
+			}
+			// else {
+			// newAppel.getPersonnels().add(p);
+			//
+			//
+			// }
 		} else {
-			p.getAppels().add(a);
-			
+			if (a.getPersonnels() == null) {
+
+				List<Personnel> personnels = new ArrayList<>();
+				personnels.add(p);
+				a.setPersonnels(personnels);
+				AppelDeJourRepository.save(a);
+
+			} else {
+				a.getPersonnels().add(p);
+				AppelDeJourRepository.save(a);
+
+			}
 		}
-		
-//		return a.getPersonnels();
+
+		// return a.getPersonnels();
 	}
 
 }

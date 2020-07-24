@@ -23,7 +23,7 @@ public class Conge {
 	private Long id;
 	@Column(name = "Typedeconge")
 	@Enumerated(EnumType.STRING)
-	private Type_conge Typedeconge;
+	private Type_conge typedeconge;
 	
 	@Column(name = "datedemande")
 	@Temporal(TemporalType.DATE)
@@ -38,7 +38,7 @@ public class Conge {
 	private Date datefin;
 	
 	@Column(name = "Etat")
-	private String Etat;
+	private String etat;
 	
 	
 	@ManyToOne
@@ -57,12 +57,12 @@ public class Conge {
 
 
 	public Type_conge getTypedeconge() {
-		return Typedeconge;
+		return typedeconge;
 	}
 
 
 	public void setTypedeconge(Type_conge typedeconge) {
-		Typedeconge = typedeconge;
+		this.typedeconge = typedeconge;
 	}
 
 
@@ -97,12 +97,12 @@ public class Conge {
 
 
 	public String getEtat() {
-		return Etat;
+		return etat;
 	}
 
 
 	public void setEtat(String etat) {
-		Etat = etat;
+		this.etat = etat;
 	}
 
 
@@ -126,11 +126,11 @@ public class Conge {
 			Personnel p) {
 		super();
 		this.id = id;
-		Typedeconge = typedeconge;
+		this.typedeconge = typedeconge;
 		this.datedemande = datedemande;
 		this.datedebut = datedebut;
 		this.datefin = datefin;
-		Etat = etat;
+		this.etat = etat;
 		this.p = p;
 	}
 	

@@ -43,8 +43,8 @@ public class CongeService {
 		return congeRepository.save(c);
 	}
 
-	public Conge ajouterConge(Conge c, int matricule) {
-		Personnel p = personnelRepository.findByMatricule(matricule);
+	public Conge ajouterConge(Conge c, long id) {
+		Personnel p = personnelRepository.findById(id).get();
 		c.setP(p);
 
 		return congeRepository.save(c);

@@ -53,5 +53,7 @@ public class CongeService {
 	public List<Conge> congeparMatricule(int matricule) {
 		return congeRepository.congeparMatricule(matricule);
 	}
-
+	public void deleteConge(long id) {
+		congeRepository.deleteById(id);
+	}
 }

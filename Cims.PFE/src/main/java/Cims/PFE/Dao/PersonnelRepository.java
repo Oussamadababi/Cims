@@ -24,5 +24,6 @@ public interface PersonnelRepository extends JpaRepository<Personnel, Long> {
 	List<Personnel> getDept(Long id);
 
 	Personnel findByMatricule(int matricule);
+	
 
 }

@@ -1,11 +1,13 @@
 package Cims.PFE.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import Cims.PFE.Dao.AppelDeJourRepository;
 import Cims.PFE.Dao.PersonnelRepository;
 import Cims.PFE.Entities.Personnel;
 
@@ -15,6 +17,10 @@ public class PersonnelService {
 	
 	@Autowired
 	private PersonnelRepository personnelRepository;
+	
+	
+	@Autowired
+	private AppelDeJourRepository appelDeJourRepository;
 	
 	public List<Personnel> listAll(){
 		List<Personnel> personnels = new ArrayList<>();
@@ -54,13 +60,14 @@ public class PersonnelService {
 	}
 	/*Ajouter au solde repos chaque 6 jrs 0.5*/
 //	@Scheduled(cron = "1 0 0 1 * ?")
-//	@Scheduled(fixedRate = 5000L) 518 400
+//	@Scheduled(fixedRate = 5000L) 518 400
 	public void updateAutoSoldeRepos()
 	{
 		List<Personnel> Listepersonnel = personnelRepository.findAll();
 		for(Personnel Personnel1 : Listepersonnel)
 		{
-			double soldeRepos1 =Personnel1.getSoldeRepos()+0.5;
+			int Nbjrstrav = Nbjourtrvail(Personnel1.getId_personnel());
+			double soldeRepos1 =(Nbjrstrav/7)*0.5;
 			Personnel1.setSoldeRepos(soldeRepos1);
 			personnelRepository.save(Personnel1);
 			
@@ -69,5 +76,25 @@ public class PersonnelService {
 		
 	}
 	
+	
+	//Nombre de jour de travail les deux dernière annees
+	public int Nbjourtrvail(Long id){
+		int Nbjrstravail;
+		int NbAbscenceT=appelDeJourRepository.NbAbscenceparId(id);
+		Personnel p= new Personnel();
+		p=getById(id);
+		int anneeRecrutement = p.getDate_recrutement().getYear();
+		int anneeAujourdhui = LocalDate.now().getYear();
+			if(anneeAujourdhui-anneeRecrutement==0){
+				 Nbjrstravail=LocalDate.now().getDayOfYear()-p.getDate_recrutement().getDayOfYear()-NbAbscenceT;
+			}
+			else if (anneeAujourdhui-anneeRecrutement==1){
+				 Nbjrstravail=LocalDate.now().getDayOfYear()-p.getDate_recrutement().getDayOfYear()-NbAbscenceT+356;
+			}
+			else Nbjrstravail=LocalDate.now().getDayOfYear()-p.getDate_recrutement().getDayOfYear()-NbAbscenceT+712;	
+		
+		return Nbjrstravail;
+		
+	}
+	
 }
-

@@ -75,4 +75,8 @@ co.setDatefin(c.getDatefin());
 		final Conge updatedConge=congeService.save(co);
 		return ResponseEntity.ok(new MessageResponse("Modifier"));
 	}
+	@GetMapping(value = "/listcongeparPersonnel/{id}")
+	public List<Conge> listGone(@PathVariable(name="id")long id) {
+		return congeService.congeparPersonnel(id);
+	}
 }

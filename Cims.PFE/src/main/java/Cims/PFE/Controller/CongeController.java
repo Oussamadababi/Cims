@@ -1,5 +1,6 @@
 package Cims.PFE.Controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +11,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import Cims.PFE.Entities.Conge;
 import Cims.PFE.Entities.Grade;
+import Cims.PFE.Entities.Personnel;
 import Cims.PFE.Service.CongeService;
 import Cims.PFE.payload.response.MessageResponse;
 @CrossOrigin(origins = "http://localhost:4200")
@@ -59,5 +62,17 @@ public class CongeController {
 	public ResponseEntity<?> delete(@PathVariable(name="id") Long id){
 		congeService.deleteConge(id);
 		return ResponseEntity.ok(new MessageResponse("demande supprimer"));
+	}
+	@PutMapping(value="/updateConge/{id}")
+	public ResponseEntity<?> update(@PathVariable(name="id") Long id,@RequestBody Conge c){
+		
+		Conge co = congeService.getById(id);
+		co.setDatedebut(c.getDatedebut());
+co.setDatefin(c.getDatefin());		
+		co.setP(c.getP());
+		co.setTypedeconge(c.getTypedeconge());
+		 co.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
+		final Conge updatedConge=congeService.save(co);
+		return ResponseEntity.ok(new MessageResponse("Modifier"));
 	}
 }

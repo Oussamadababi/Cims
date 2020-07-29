@@ -1,6 +1,7 @@
 package Cims.PFE.Service;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -38,15 +39,14 @@ public class CongeService {
 	public Conge demanderConge(Conge c, long personnel_id) {
 		Personnel p = personnelRepository.getOne(personnel_id);
 		c.setP(p);
-		//// Date d=new Date().
-		// c.setDatedemande();
+		 c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
 		return congeRepository.save(c);
 	}
 
 	public Conge ajouterConge(Conge c, long id) {
 		Personnel p = personnelRepository.findById(id).get();
 		c.setP(p);
-
+		 c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
 		return congeRepository.save(c);
 	}
 
@@ -55,5 +55,12 @@ public class CongeService {
 	}
 	public void deleteConge(long id) {
 		congeRepository.deleteById(id);
+	}
+	public Conge getById(Long id) {
+		return congeRepository.findById(id).get();
+	}
+	public Conge update(Long id, Conge c){
+		c.setId(id);
+		return congeRepository.findById(id).get();
 	}
 }

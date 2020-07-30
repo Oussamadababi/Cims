@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +37,7 @@ public class AnnulationCongeService {
 		Conge ca =cRepository.getOne(id_conge);
 		c.setConge(ca);
 		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
+		c.setEtat("En_attente");
 		return save(c);
 		
 	}
@@ -45,6 +48,15 @@ public class AnnulationCongeService {
 	public AnnulationConge getById(Long id) {
 		return annulationCongeRepository.findById(id).get();
 	}
+	
+	@Transactional
+	public void AccepterAnnulationConge (Long id){
+	 annulationCongeRepository.ModifierEtatAnulationConge("accepter", id);
+	}
+	@Transactional
+	public void RefuserAnnulationConge (Long id){
+		 annulationCongeRepository.ModifierEtatAnulationConge("refuser", id);
+		}
 	
 	
 

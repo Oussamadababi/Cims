@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import Cims.PFE.Entities.AnnulationConge;
 import Cims.PFE.Service.AnnulationCongeService;
 import Cims.PFE.payload.response.MessageResponse;
@@ -49,5 +51,17 @@ public class AnnulationCongeController {
 		annulationCongeService.deleteAnnulationConge(id);
 		return ResponseEntity.ok(new MessageResponse("demande annulation conge supprimer"));
 	}
+	
+	@PutMapping(value="/accepterAnnulationConge/{id}")
+	public ResponseEntity<MessageResponse> AccepterAConge(@PathVariable(name="id") Long id){
+		annulationCongeService.AccepterAnnulationConge(id);;
+		return ResponseEntity.ok(new MessageResponse("demande annulation conge Accepter"));
+	}
+	@PutMapping(value="/refuserAnnulationConge/{id}")
+	public ResponseEntity<MessageResponse> RefuserAConge(@PathVariable(name="id") Long id){
+		annulationCongeService.RefuserAnnulationConge(id);;
+		return ResponseEntity.ok(new MessageResponse("demande annulation conge Refuser"));
+	}
+	
 
 }

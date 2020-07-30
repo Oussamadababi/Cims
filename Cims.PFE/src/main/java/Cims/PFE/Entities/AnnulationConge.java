@@ -23,6 +23,9 @@ public class AnnulationConge {
 	@Column(name = "date")
 	@Temporal(TemporalType.DATE)
 	private Date datedemande;
+	
+	@Column(name = "Etat")
+	private String etat;
 
 	public Long getId() {
 		return id;
@@ -48,6 +51,14 @@ public class AnnulationConge {
 
 	public void setConge(Conge conge) {
 		this.conge = conge;
+	}
+
+	public String getEtat() {
+		return etat;
+	}
+
+	public void setEtat(String etat) {
+		this.etat = etat;
 	}
 	
 	

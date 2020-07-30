@@ -12,5 +12,6 @@ public interface CongeRepository  extends JpaRepository<Conge, Long>{
 	
 	@Query(value = "SELECT * from conge c join personnel p on c.id=p.id_personnel where p.matricule=?1  ", nativeQuery = true)
 	List<Conge>congeparMatricule(int matricule);
-
+	@Query(value = "SELECT * from conge c join personnel p on c.personnel_id=p.id_personnel where p.id_personnel=?1  ", nativeQuery = true)
+	List<Conge>congeparPersonnel(long idPersonnel);
 }

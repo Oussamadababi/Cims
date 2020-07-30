@@ -124,6 +124,7 @@ public class PersonnelController {
 		
 				
 		signUpRequest.setPassword(p.getNom()+"cims");
+		System.out.print(p.getNom()+"cims");
 		Compte compte = new Compte(signUpRequest.getUsername(), 
 							 encoder.encode(signUpRequest.getPassword()),null);
 

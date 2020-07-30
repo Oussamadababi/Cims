@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import Cims.PFE.Entities.Conge;
-import Cims.PFE.Entities.Grade;
-import Cims.PFE.Entities.Personnel;
 import Cims.PFE.Service.CongeService;
 import Cims.PFE.payload.response.MessageResponse;
 @CrossOrigin(origins = "http://localhost:4200")

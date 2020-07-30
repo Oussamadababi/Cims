@@ -38,6 +38,13 @@ public class AnnulationCongeService {
 		return save(c);
 		
 	}
+	public void deleteAnnulationConge(long id) {
+		annulationCongeRepository.deleteById(id);
+	}
+
+	public AnnulationConge getById(Long id) {
+		return annulationCongeRepository.findById(id).get();
+	}
 	
 	
 

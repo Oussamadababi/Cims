@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -44,6 +45,9 @@ public class Conge {
 	@ManyToOne
 	@JoinColumn(name = "Personnel_id", nullable = false)
 	private Personnel p;
+	
+	@OneToOne(mappedBy="conge")
+    private AnnulationConge annulationConge;
 
 
 	public Long getId() {

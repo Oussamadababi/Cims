@@ -92,6 +92,9 @@ public  class Personnel {
 	@JsonIgnore
     private List<AppelDeJour> appels ;
 	
+	@OneToMany(mappedBy="p", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<RecuperationSoldeRepos> ListRecupSoldeRepos ;
+	
 	
 	public Personnel() {
 		

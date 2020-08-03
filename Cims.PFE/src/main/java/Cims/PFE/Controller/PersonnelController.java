@@ -1,11 +1,13 @@
 package Cims.PFE.Controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -164,4 +166,10 @@ public class PersonnelController {
 	{
 		personnelService.updateSoldeexceptionnel(matricule, soldeExceptionnel);
 	}
+	@GetMapping("listAbsenceParJour/{date}")
+	public List<Personnel> listAbsenceParJour(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)Date date)
+	{
+		return personnelService.listAbsenceParJour(date);
+	}
+	
 	}

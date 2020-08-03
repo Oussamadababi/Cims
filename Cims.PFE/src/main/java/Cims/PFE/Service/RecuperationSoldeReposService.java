@@ -37,6 +37,7 @@ public RecuperationSoldeRepos save(RecuperationSoldeRepos Ac){
 		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
 		c.setEtat("En_attente");
 		c.setSoldeRecuperer(0);
+		c.setTitreAnnee(String.valueOf(LocalDate.now().getYear()-2));
 		return save(c);
 
 }
@@ -45,7 +46,6 @@ public RecuperationSoldeRepos save(RecuperationSoldeRepos Ac){
 		RecuperationSoldeRepos RSR = new RecuperationSoldeRepos ();
 		RSR=recuperationSoldeReposRepository.getOne(id);
 		RSR.setEtat("Valider");
-		RSR.setTitreAnnee(String.valueOf(LocalDate.now().getYear()-2));
 		RSR.setSoldeRecuperer(RSR.getP().getSoldeRepos());
 		Personnel P = new Personnel();
 		P=personnelService.getById(RSR.getP().getId_personnel());

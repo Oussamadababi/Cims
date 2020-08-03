@@ -24,8 +24,41 @@ public class RecuperationSoldeRepos {
 	private Date datedemande;
 	@Column(name = "Etat")
 	private String etat;
+	@Column(name = "TitreAnnee")
+	private String TitreAnnee;
 	@ManyToOne
 	@JoinColumn(name = "Personnel_id", nullable = false)
 	private Personnel p;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Date getDatedemande() {
+		return datedemande;
+	}
+	public void setDatedemande(Date datedemande) {
+		this.datedemande = datedemande;
+	}
+	public String getEtat() {
+		return etat;
+	}
+	public void setEtat(String etat) {
+		this.etat = etat;
+	}
+	public Personnel getP() {
+		return p;
+	}
+	public void setP(Personnel p) {
+		this.p = p;
+	}
+	public String getTitreAnnee() {
+		return TitreAnnee;
+	}
+	public void setTitreAnnee(String titreAnnee) {
+		TitreAnnee = titreAnnee;
+	}
 
+	
 }

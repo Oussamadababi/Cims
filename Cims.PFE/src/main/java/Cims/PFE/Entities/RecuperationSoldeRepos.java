@@ -26,6 +26,8 @@ public class RecuperationSoldeRepos {
 	private String etat;
 	@Column(name = "TitreAnnee")
 	private String TitreAnnee;
+	@Column(name = "soldeRecuperer")
+	private double SoldeRecuperer;
 	@ManyToOne
 	@JoinColumn(name = "Personnel_id", nullable = false)
 	private Personnel p;
@@ -59,6 +61,15 @@ public class RecuperationSoldeRepos {
 	public void setTitreAnnee(String titreAnnee) {
 		TitreAnnee = titreAnnee;
 	}
+	public double getSoldeRecuperer() {
+		return SoldeRecuperer;
+	}
+	public void setSoldeRecuperer(double soldeRecuperer) {
+		SoldeRecuperer = soldeRecuperer;
+	}
+	
+
+	
 
 	
 }

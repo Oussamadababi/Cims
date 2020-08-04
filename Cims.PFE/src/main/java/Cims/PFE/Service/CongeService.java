@@ -34,20 +34,31 @@ public class CongeService {
 	}
 
 	public Conge demanderConge(Conge c, long idCompte) {
+		
 		Compte co = compteRepository.getOne(idCompte);
+		Conge c1= congeRepository.congeparPersonnelenattente(co.getPersonnel().getId_personnel());
 		Personnel p = personnelRepository.getOne(co.getPersonnel().getId_personnel());
+		if(c1==null)
+		{
 		c.setEtat("en-attente");
 		c.setP(p);
 		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
 		return congeRepository.save(c);
+		}
+		return c1;
 	}
 
 	public Conge ajouterConge(Conge c, long id) {
 		Personnel p = personnelRepository.findById(id).get();
+		Conge c1= congeRepository.congeparPersonnelenattente(p.getId_personnel());
+		if(c1==null)
+		{
 		c.setP(p);
 		c.setEtat("en-attente");
 		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
 		return congeRepository.save(c);
+		}
+		return c1;
 	}
 
 	public List<Conge> congeparMatricule(int matricule) {
@@ -74,5 +85,14 @@ public class CongeService {
 		Compte co = compteRepository.getOne(idCompte);
 
 		return congeRepository.congeparPersonnel(co.getPersonnel().getId_personnel());
+	}
+	public Conge congeparPersonnelenattente(long idPersonnel)
+	{
+		return congeRepository.congeparPersonnelenattente(idPersonnel);
+	}
+	public Conge congeparPersonnelenattenteCompte(long idCompte)
+	{
+		Compte co = compteRepository.getOne(idCompte);
+		return congeRepository.congeparPersonnelenattente(co.getPersonnel().getId_personnel());
 	}
 }

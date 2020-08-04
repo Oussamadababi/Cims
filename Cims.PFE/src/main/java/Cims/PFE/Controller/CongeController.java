@@ -76,4 +76,14 @@ co.setDatefin(c.getDatefin());
 	public List<Conge> listGone(@PathVariable(name="id")long id) {
 		return congeService.congeparPersonnel(id);
 	}
+	@GetMapping(value = "/congeparpersonnel/{personnel_id}")
+	public Conge congeparPersonnelenattente(@PathVariable(name="personnel_id")long idPersonnel)
+	{
+		return congeService.congeparPersonnelenattente(idPersonnel);
+	}
+	@GetMapping(value = "/congeparpersonnelCompte/{idCompte}")
+	public Conge congeparPersonnelenattenteCompte(@PathVariable(name="idCompte")long idCompte)
+	{
+		return congeService.congeparPersonnelenattenteCompte(idCompte);
+	}
 }

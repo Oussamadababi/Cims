@@ -2,6 +2,7 @@ package Cims.PFE.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,6 +96,10 @@ public class PersonnelService {
 		
 		return Nbjrstravail;
 		
+	}
+	public List<Personnel> listAbsenceParJour(Date date)
+	{
+		return personnelRepository.listAbsenceParJour(date);
 	}
 	
 }

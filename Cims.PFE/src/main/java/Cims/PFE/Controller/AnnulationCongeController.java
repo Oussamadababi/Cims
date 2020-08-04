@@ -40,9 +40,9 @@ public class AnnulationCongeController {
 	}
 	
 	@PostMapping(value = "/ajouterAConge/{id_conge}")
-	public ResponseEntity<MessageResponse> ajouterAConge(@RequestBody AnnulationConge c,
+	public ResponseEntity<MessageResponse> ajouterAConge(
 			@PathVariable("id_conge") Long id_conge) {
-		annulationCongeService.ajouterAConge(c, id_conge);
+		annulationCongeService.ajouterAConge( id_conge);
 		return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("demande annulation conge ajouter"));
 	}
 	

@@ -33,8 +33,9 @@ public class AnnulationCongeService {
 		return conges;
 	}
 	
-	public  AnnulationConge ajouterAConge (AnnulationConge c,Long id_conge){
+	public  AnnulationConge ajouterAConge (Long id_conge){
 		Conge ca =cRepository.getOne(id_conge);
+		AnnulationConge c =new AnnulationConge();
 		c.setConge(ca);
 		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
 		c.setEtat("En_attente");
@@ -57,6 +58,8 @@ public class AnnulationCongeService {
 	public void RefuserAnnulationConge (Long id){
 		 annulationCongeRepository.ModifierEtatAnulationConge("refuser", id);
 		}
+
+
 	
 	
 

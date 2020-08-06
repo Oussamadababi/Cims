@@ -1,5 +1,6 @@
 package Cims.PFE.Entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -32,11 +33,11 @@ public class Conge {
 	
 	@Column(name = "datedebut")
 	@Temporal(TemporalType.DATE)
-	private Date datedebut;
+	private LocalDate datedebut;
 	
 	@Column(name = "datefin")
 	@Temporal(TemporalType.DATE)
-	private Date datefin;
+	private LocalDate datefin;
 	
 	@Column(name = "Etat")
 	private String etat;
@@ -69,7 +70,6 @@ public class Conge {
 		this.typedeconge = typedeconge;
 	}
 
-
 	public Date getDatedemande() {
 		return datedemande;
 	}
@@ -80,22 +80,22 @@ public class Conge {
 	}
 
 
-	public Date getDatedebut() {
+	public LocalDate getDatedebut() {
 		return datedebut;
 	}
 
 
-	public void setDatedebut(Date datedebut) {
+	public void setDatedebut(LocalDate datedebut) {
 		this.datedebut = datedebut;
 	}
 
 
-	public Date getDatefin() {
+	public LocalDate getDatefin() {
 		return datefin;
 	}
 
 
-	public void setDatefin(Date datefin) {
+	public void setDatefin(LocalDate datefin) {
 		this.datefin = datefin;
 	}
 
@@ -126,7 +126,7 @@ public class Conge {
 	}
 
 
-	public Conge(Long id, Type_conge typedeconge, Date datedemande, Date datedebut, Date datefin, String etat,
+	public Conge(Long id, Type_conge typedeconge, Date datedemande, LocalDate datedebut, LocalDate datefin, String etat,
 			Personnel p) {
 		super();
 		this.id = id;

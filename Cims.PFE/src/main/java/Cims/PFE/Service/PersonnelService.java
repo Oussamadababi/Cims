@@ -23,6 +23,9 @@ public class PersonnelService {
 	@Autowired
 	private AppelDeJourRepository appelDeJourRepository;
 	
+	@Autowired
+	CongeService congeService;
+	
 	public List<Personnel> listAll(){
 		List<Personnel> personnels = new ArrayList<>();
 		personnelRepository.findAll().forEach(personnels::add);
@@ -84,15 +87,16 @@ public class PersonnelService {
 		int NbAbscenceT=appelDeJourRepository.NbAbscenceparId(id);
 		Personnel p= new Personnel();
 		p=getById(id);
+		int NbjConge=congeService.NbjrsConge(id);
 		int anneeRecrutement = p.getDate_recrutement().getYear();
 		int anneeAujourdhui = LocalDate.now().getYear();
 			if(anneeAujourdhui-anneeRecrutement==0){
-				 Nbjrstravail=LocalDate.now().getDayOfYear()-p.getDate_recrutement().getDayOfYear()-NbAbscenceT;
+				 Nbjrstravail=LocalDate.now().getDayOfYear()-p.getDate_recrutement().getDayOfYear()-NbAbscenceT-NbjConge;
 			}
 			else if (anneeAujourdhui-anneeRecrutement==1){
-				 Nbjrstravail=LocalDate.now().getDayOfYear()-p.getDate_recrutement().getDayOfYear()-NbAbscenceT+356;
+				 Nbjrstravail=LocalDate.now().getDayOfYear()-p.getDate_recrutement().getDayOfYear()-NbAbscenceT-NbjConge+356;
 			}
-			else Nbjrstravail=LocalDate.now().getDayOfYear()-p.getDate_recrutement().getDayOfYear()-NbAbscenceT+712;	
+			else Nbjrstravail=LocalDate.now().getDayOfYear()-p.getDate_recrutement().getDayOfYear()-NbAbscenceT-NbjConge+712;	
 		
 		return Nbjrstravail;
 		

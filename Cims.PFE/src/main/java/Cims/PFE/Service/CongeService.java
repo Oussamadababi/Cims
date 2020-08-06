@@ -95,4 +95,15 @@ public class CongeService {
 		Compte co = compteRepository.getOne(idCompte);
 		return congeRepository.congeparPersonnelenattente(co.getPersonnel().getId_personnel());
 	}
+	public int NbjrsConge (Long id_p){
+		List<Conge> listeConge=congeparPersonnel(id_p);
+		int nbfinal=0;
+		for(Conge C :listeConge)
+		{
+			int nbj = C.getDatefin().getDayOfYear()-C.getDatefin().getDayOfYear();
+			nbfinal=nbfinal+nbj;
+		}
+		return nbfinal;
+		
+	}
 }

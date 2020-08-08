@@ -32,11 +32,9 @@ public class Conge {
 	private Date datedemande;
 	
 	@Column(name = "datedebut")
-	@Temporal(TemporalType.DATE)
 	private LocalDate datedebut;
 	
 	@Column(name = "datefin")
-	@Temporal(TemporalType.DATE)
 	private LocalDate datefin;
 	
 	@Column(name = "Etat")

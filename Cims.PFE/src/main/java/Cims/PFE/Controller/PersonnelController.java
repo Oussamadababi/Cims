@@ -172,4 +172,10 @@ public class PersonnelController {
 		return personnelService.listAbsenceParJour(date);
 	}
 	
+	@PutMapping("/updateSR")
+	public ResponseEntity<MessageResponse> updateSR(){
+		personnelService.updateAutoSoldeRepos();
+		return ResponseEntity.ok(new MessageResponse("Updated"));
+	}
+	
 	}

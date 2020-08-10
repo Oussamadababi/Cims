@@ -87,4 +87,15 @@ co.setDatefin(c.getDatefin());
 	{
 		return congeService.congeparPersonnelenattenteCompte(idCompte);
 	}
+	@PutMapping(value="/accepterConge/{id}")
+	public ResponseEntity<MessageResponse> AccepterConge(@PathVariable(name="id") Long id){
+		congeService.AccepterConge(id);;
+		return ResponseEntity.ok(new MessageResponse("demande conge Accepter"));
+	}
+	@PutMapping(value="/refuserConge/{id}")
+	public ResponseEntity<MessageResponse> RefuserConge(@PathVariable(name="id") Long id){
+		congeService.RefuserConge(id);;
+		return ResponseEntity.ok(new MessageResponse("demande conge Refuser"));
+	}
+	
 }

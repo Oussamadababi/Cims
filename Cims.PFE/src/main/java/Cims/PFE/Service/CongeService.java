@@ -80,9 +80,11 @@ public class CongeService {
 		c.setId(id);
 		return congeRepository.findById(id).get();
 	}
+	//liste conges par matricule
 	public List<Conge> congeparPersonnel(int matricule) {
 		return congeRepository.congeparMatricule(matricule);
 	}
+	// Liste des conges par id conges
 	public List<Conge> congeparPersonnel ( long idCompte) 
 	{
 		Compte co = compteRepository.getOne(idCompte);
@@ -99,7 +101,7 @@ public class CongeService {
 		return congeRepository.congeparPersonnelenattente(co.getPersonnel().getId_personnel());
 	}
 	public int NbjrsConge (Long id_p){
-		List<Conge> listeConge=congeparPersonnel(id_p);
+		List<Conge> listeConge=congeRepository.congeparPersonnel(id_p);
 		int nbfinal=0;
 		for(Conge C :listeConge)
 		{

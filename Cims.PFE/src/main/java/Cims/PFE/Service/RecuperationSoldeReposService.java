@@ -30,9 +30,9 @@ public RecuperationSoldeRepos save(RecuperationSoldeRepos Ac){
 		return ListeRecuperationSoldeR;
 	}
 	
-	public  RecuperationSoldeRepos ajouterdemandeRSR (RecuperationSoldeRepos c){
+	public  RecuperationSoldeRepos ajouterdemandeRSR (RecuperationSoldeRepos c,Long id){
 		Personnel P = new Personnel();
-		P=personnelService.getById(c.getP().getId_personnel());
+		P=personnelService.getById(id);
 		c.setP(P);
 		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
 		c.setEtat("En_attente");

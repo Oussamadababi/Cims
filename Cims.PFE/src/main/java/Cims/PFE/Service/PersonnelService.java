@@ -87,7 +87,7 @@ public class PersonnelService {
 		int NbAbscenceT=appelDeJourRepository.NbAbscenceparId(id);
 		Personnel p= new Personnel();
 		p=getById(id);
-		int NbjConge=congeService.NbjrsConge(id);
+		int NbjConge=congeService.NbjrsCongeAccepter(id);
 		int anneeRecrutement = p.getDate_recrutement().getYear();
 		int anneeAujourdhui = LocalDate.now().getYear();
 			if(anneeAujourdhui-anneeRecrutement==0){

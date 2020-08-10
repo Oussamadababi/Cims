@@ -100,8 +100,8 @@ public class CongeService {
 		Compte co = compteRepository.getOne(idCompte);
 		return congeRepository.congeparPersonnelenattente(co.getPersonnel().getId_personnel());
 	}
-	public int NbjrsConge (Long id_p){
-		List<Conge> listeConge=congeRepository.congeparPersonnel(id_p);
+	public int NbjrsCongeAccepter (Long id_p){
+		List<Conge> listeConge=congeRepository.congeAccepterParIdpersonnel(id_p);
 		int nbfinal=0;
 		for(Conge C :listeConge)
 		{

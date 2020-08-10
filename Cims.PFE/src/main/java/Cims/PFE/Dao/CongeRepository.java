@@ -27,4 +27,7 @@ public interface CongeRepository extends JpaRepository<Conge, Long> {
 	@Modifying
 	@Query(value = "UPDATE public.conge SET etat=?1 WHERE id=?2", nativeQuery = true)
 	public void ModifierEtatConge(String etat,long id);
+	
+	@Query(value = "SELECT * from conge c join personnel p on c.personnel_id=p.id_personnel where p.id_personnel=?1 and c.etat='accepter' ", nativeQuery = true)
+	List<Conge> congeAccepterParIdpersonnel(long idPersonnel);
 }

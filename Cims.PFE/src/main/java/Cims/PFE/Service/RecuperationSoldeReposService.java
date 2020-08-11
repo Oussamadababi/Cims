@@ -45,7 +45,7 @@ public RecuperationSoldeRepos save(RecuperationSoldeRepos Ac){
 	public void AccepterDemandeRSR(Long id){
 		RecuperationSoldeRepos RSR = new RecuperationSoldeRepos ();
 		RSR=recuperationSoldeReposRepository.getOne(id);
-		RSR.setEtat("Valider");
+		RSR.setEtat("Accepter");
 		RSR.setSoldeRecuperer(RSR.getP().getSoldeRepos());
 		Personnel P = new Personnel();
 		P=personnelService.getById(RSR.getP().getId_personnel());

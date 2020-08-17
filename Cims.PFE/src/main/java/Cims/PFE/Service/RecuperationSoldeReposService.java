@@ -53,6 +53,15 @@ public RecuperationSoldeRepos save(RecuperationSoldeRepos Ac){
 		personnelService.save(P);
 		recuperationSoldeReposRepository.save(RSR);	
 	}
+	
+	//Refuser la demander et changer l'etat
+	public void RefuserDemandeRSR(Long id){
+		RecuperationSoldeRepos RSR = new RecuperationSoldeRepos ();
+		RSR=recuperationSoldeReposRepository.getOne(id);
+		RSR.setEtat("Refuser");
+		recuperationSoldeReposRepository.save(RSR);	
+		
+	}
 
 
 }

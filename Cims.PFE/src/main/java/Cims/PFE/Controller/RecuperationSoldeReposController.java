@@ -41,4 +41,10 @@ public class RecuperationSoldeReposController {
 		recuperationSoldeRepos.AccepterDemandeRSR(RSR_id);
 		return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Demande RSR Accepter"));
 		}
+	
+	@PutMapping(value = "/RefuserDemandeRSR/{RSR_id}")
+	public ResponseEntity<MessageResponse> RefuserRSR(@PathVariable(name="RSR_id")long RSR_id) {
+		recuperationSoldeRepos.RefuserDemandeRSR(RSR_id);
+		return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Demande RSR Refuser"));
+		}
 }

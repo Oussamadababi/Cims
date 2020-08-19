@@ -71,7 +71,7 @@ public class PersonnelService {
 		for(Personnel Personnel1 : Listepersonnel)
 		{
 			int Nbjrstrav = Nbjourtrvail(Personnel1.getId_personnel());
-			double soldeRepos1 =(Nbjrstrav/7)*0.5;
+			double soldeRepos1 =(Nbjrstrav/6)*0.5;
 			Personnel1.setSoldeRepos(soldeRepos1);
 			personnelRepository.save(Personnel1);
 			

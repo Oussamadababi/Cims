@@ -67,6 +67,42 @@ public  class Personnel {
 	@NotBlank
 	private String email;
 	
+	@Column(name="nom_Ar")
+	private String nom_AR;
+	
+	@Column(name="prenom_AR")
+	private String prenom_AR;
+	
+	@Column(name="matricule_CNRPS")
+	private int matricule_CNRPS;
+	
+	@Column(name="matricule_CNSS")
+	private int matricule_CNSS;
+	
+	@Column(name="date_Naissance")
+	private LocalDate date_Naissance;
+	
+	@Column(name="Adresse")
+	private String Adresse;
+	
+	@Column(name="poste_Occupe")
+	private String poste_Occupe;
+	
+	@Column(name="date_Promotion")
+	private LocalDate date_Promotion;
+	
+	@Column(name="echelle")
+	private String echelle;
+	
+	@Column(name="date_Echelle")
+	private LocalDate date_Echelle;
+	
+	@Column(name="echellon")
+	private String echellon;
+	
+	@Column(name="date_Echellon")
+	private LocalDate date_Echellon;
+	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_dept", nullable = false)
 	private Departement departement;

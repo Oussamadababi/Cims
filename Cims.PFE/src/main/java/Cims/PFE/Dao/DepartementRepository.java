@@ -7,10 +7,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import Cims.PFE.Entities.Departement;
+import Cims.PFE.Entities.Structure;
 @CrossOrigin("*")
 @RepositoryRestResource
-public interface DepartementRepository extends JpaRepository<Departement,Long>{
+public interface DepartementRepository extends JpaRepository<Structure,Long>{
 	@Query(value="SELECT * from departement  where  nom_dept=?1",nativeQuery = true)
-	List<Departement> getDept( String nom);
+	List<Structure> getDept( String nom);
 }

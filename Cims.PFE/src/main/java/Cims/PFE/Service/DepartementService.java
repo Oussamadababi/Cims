@@ -7,26 +7,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Cims.PFE.Dao.DepartementRepository;
-import Cims.PFE.Entities.Departement;
+import Cims.PFE.Entities.Structure;
 
 @Service
 public class DepartementService {
 	@Autowired
 	private DepartementRepository repo;
 	
-	public List<Departement> listAll(){
-		List<Departement> dept = new ArrayList<>();
+	public List<Structure> listAll(){
+		List<Structure> dept = new ArrayList<>();
 		repo.findAll().forEach(dept::add);
 		return dept;
 	}
-	public Departement save(Departement d) {
+	public Structure save(Structure d) {
 		return repo.save(d);
 	}
-	public Departement update(Long id,Departement d){
+	public Structure update(Long id,Structure d){
 		d.setId_dept(id);
 		return repo.findById(id).get();
 	}
-	public Departement getById(Long id) {
+	public Structure getById(Long id) {
 		return repo.findById(id).get();
 	}
 	public boolean delete(Long id){

@@ -17,10 +17,10 @@ import org.hibernate.annotations.Proxy;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity  
-@Table(name="Departement") 
+@Table(name="Structure") 
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Proxy(lazy = false)
-public class Departement {
+public class Structure {
 	@Id  
     @GeneratedValue(strategy=GenerationType.IDENTITY)  
 	@Column(name="id_dept")
@@ -29,18 +29,27 @@ public class Departement {
 	@Column(name="nom_dept")
 	private String nom_dept;
 	
+	@Column(name="division")
+	private String division;
+	
+	@Column(name="direction")
+	private String direction;
+	
+	@Column(name="service")
+	private String service;
+	
 	@OneToMany(mappedBy="departement", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	    private List<Personnel> personnels ;
 
 	
-	public Departement(Long id_dept, String nom_dept) {
+	public Structure(Long id_dept, String nom_dept) {
 		super();
 		this.id_dept = id_dept;
 		this.nom_dept = nom_dept;
 		//this.personnels = personnels;
 	}
 
-	public Departement() {
+	public Structure() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

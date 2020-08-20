@@ -105,7 +105,9 @@ public  class Personnel {
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_dept", nullable = false)
-	private Departement departement;
+	private Structure departement;
+	
+	
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_grade", nullable = false)
@@ -142,7 +144,7 @@ public  class Personnel {
 				+  ", user=" + compte + "]";
 	}
 	public Personnel(Long id_personnel, String nom, String prenom, String sexe, int telephone, LocalDate date_recrutement,
-			String email,Departement departement,Grade grade, Compte compte) {
+			String email,Structure departement,Grade grade, Compte compte) {
 		super();
 		this.id_personnel = id_personnel;
 		this.nom = nom;
@@ -230,12 +232,12 @@ public  class Personnel {
 	}
 
 
-	public Departement getDepartement() {
+	public Structure getDepartement() {
 		return departement;
 	}
 
 
-	public void setDepartement(Departement departement) {
+	public void setDepartement(Structure departement) {
 		this.departement = departement;
 	}
 

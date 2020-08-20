@@ -30,7 +30,7 @@ public class AffectationPartielle {
 	
     @ManyToOne
     @JoinColumn(name = "id_site")
-	private Site site;
+	private Affectation site;
     
 	@ManyToOne
     @JoinColumn(name = "id_personnel")
@@ -72,11 +72,11 @@ public class AffectationPartielle {
 		this.idAffect = idAffect;
 	}
 
-	public Site getSite() {
+	public Affectation getSite() {
 		return site;
 	}
 
-	public void setSite(Site site) {
+	public void setSite(Affectation site) {
 		this.site = site;
 	}
 
@@ -164,7 +164,7 @@ public class AffectationPartielle {
 
 
 
-	public AffectationPartielle(Long idAffect, Site site, Personnel personnel, LocalDate dateDebut, LocalDate datefin,
+	public AffectationPartielle(Long idAffect, Affectation site, Personnel personnel, LocalDate dateDebut, LocalDate datefin,
 			List<String> jour, String sujet, Etat_AffectationP etat, List<OrdreAffectationP> ordreAffP,
 			List<Mission> missions) {
 		super();

@@ -17,20 +17,42 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "site")
+@Table(name = "affectation")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Site implements Serializable{
+public class Affectation implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)  
-	@Column(name="id_site")
-	private Long idSite;
+	@Column(name="id_affectation")
+	private Long id_affectation;
 	
 	@Column(name="nom_site")
 	private String nomSite;
 	
+	@Column(name="nom_etablissement_fr")
+	private String nom_etablissement_fr;
+	
+	@Column(name="nom_etablissement_ar")
+	private String nom_etablissement_ar;
+	
+	@Column(name="nature_etablissement_fr")
+	private String nature_etablissement_fr;
+	
+	@Column(name="nature_etablissement_ar")
+	private String nature_etablissement_ar;
+	
+	@Column(name="qualite_direction_fr")
+	private String qualite_direction_fr;
+	
+	@Column(name="qualite_direction_ar")
+	private String qualite_direction_ar;
+	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idGouv", nullable = false)
 	private Gouvernorat gouvernorat;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "idGouv_ar", nullable = false)
+	private Gouvernorat gouvernorat_ar;
 
 	@OneToMany(mappedBy = "site")
 	 private List<AffectationPartielle> affectationp; 
@@ -39,18 +61,24 @@ public class Site implements Serializable{
 	 private List<AffectationTotale> affectationt; 
 
 
-public Site() {
+public Affectation() {
 	super();
 	// TODO Auto-generated constructor stub
 }
 
-public Long getIdSite() {
-	return idSite;
+
+
+public Long getId_affectation() {
+	return id_affectation;
 }
 
-public void setIdSite(Long idSite) {
-	this.idSite = idSite;
+
+
+public void setId_affectation(Long id_affectation) {
+	this.id_affectation = id_affectation;
 }
+
+
 
 public String getNomSite() {
 	return nomSite;
@@ -78,10 +106,10 @@ public void setAffectationt(List<AffectationTotale> affectationt) {
 	this.affectationt = affectationt;
 }
 
-public Site(Long idSite, String nomSite, Gouvernorat gouvernorat, List<AffectationPartielle> affectationp,
+public Affectation(Long id_affectation, String nomSite, Gouvernorat gouvernorat, List<AffectationPartielle> affectationp,
 		List<AffectationTotale> affectationt) {
 	super();
-	this.idSite = idSite;
+	this.id_affectation = id_affectation;
 	this.nomSite = nomSite;
 	this.gouvernorat = gouvernorat;
 	this.affectationp = affectationp;
@@ -90,7 +118,7 @@ public Site(Long idSite, String nomSite, Gouvernorat gouvernorat, List<Affectati
 
 @Override
 public String toString() {
-	return "Site [idSite=" + idSite + ", nomSite=" + nomSite + ", gouvernorat=" + gouvernorat + ", affectationp="
+	return "Site [idSite=" + id_affectation + ", nomSite=" + nomSite + ", gouvernorat=" + gouvernorat + ", affectationp="
 			+ affectationp + ", affectationt=" + affectationt + "]";
 }
 

@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity  
-@Table(name="Gouvernorat")
+@Table(name="Gouvernorat_fr")
 public class Gouvernorat {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)  
@@ -24,7 +24,7 @@ public class Gouvernorat {
 	private String nomGouv;
 	
 	@OneToMany(mappedBy="gouvernorat", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	    private List<Site> Sites ;
+	    private List<Affectation> Sites ;
 	
 	
 	public Gouvernorat(Long idGouv, String nomGouv) {
@@ -49,7 +49,7 @@ public class Gouvernorat {
 		this.nomGouv = nomGouv;
 	}
 	
-	public void setSites(List<Site> sites) {
+	public void setSites(List<Affectation> sites) {
 		Sites = sites;
 	}
 	@Override

@@ -94,7 +94,7 @@ public class AffectationTotaleController {
 	
 	@PutMapping(value="/updateAffectation_T/{id}")
 	public ResponseEntity<?> update(@PathVariable(name="id") Long id,@RequestBody AffectationTotale t){
-		List<AffectationPartielle> list=Affrepo.getSiteParPersonnel(t.getSite().getIdSite(),t.getPersonnel().getId_personnel());
+		List<AffectationPartielle> list=Affrepo.getSiteParPersonnel(t.getSite().getId_affectation(),t.getPersonnel().getId_personnel());
 		AffectationTotale affT=service.getById(id);
 		affT.setPersonnel(t.getPersonnel());
 		if(list.isEmpty()) {

@@ -18,7 +18,7 @@ public class AffectationTotale{
 	
     @ManyToOne
     @JoinColumn(name = "id_site")
-	private Site site;
+	private Affectation site;
     
     @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "id_personnel")
@@ -26,7 +26,7 @@ public class AffectationTotale{
 	
 	
 
-	public AffectationTotale(Long idAffectT, Site site, Cims.PFE.Entities.Personnel personnel) {
+	public AffectationTotale(Long idAffectT, Affectation site, Cims.PFE.Entities.Personnel personnel) {
 		super();
 		this.idAffectT = idAffectT;
 		this.site = site;
@@ -44,11 +44,11 @@ public class AffectationTotale{
 		this.idAffectT = idAffectT;
 	}
 
-	public Site getSite() {
+	public Affectation getSite() {
 		return site;
 	}
 
-	public void setSite(Site site) {
+	public void setSite(Affectation site) {
 		this.site = site;
 	}
 

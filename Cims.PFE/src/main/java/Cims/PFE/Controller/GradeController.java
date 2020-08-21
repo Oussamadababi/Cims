@@ -43,7 +43,7 @@ public class GradeController {
 	
 	@PostMapping(value="/addGrade")
 	public ResponseEntity<MessageResponse> save(@RequestBody Grade p) {
-		List<Grade> list=gradeRepository.getGrade(p.getNom_grade());
+		List<Grade> list=gradeRepository.getGrade(p.getNom_grade_fr());
 		if(list.isEmpty()) {
 			gradeService.save(p);
 			return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Grade ajouter"));
@@ -54,9 +54,9 @@ public class GradeController {
 	@PutMapping(value="/updateGrade/{id}")
 	public ResponseEntity<?> updateGrade(@PathVariable("id") Long id, @RequestBody Grade grade) {
 	    Grade g=gradeService.getById(id);
-		List<Grade> list=gradeRepository.getGrade(grade.getNom_grade());
+		List<Grade> list=gradeRepository.getGrade(grade.getNom_grade_fr());
 		if(list.isEmpty()) {
-			 g.setNom_grade(grade.getNom_grade());
+			 g.setNom_grade_fr(grade.getNom_grade_fr());
 			    final Grade updatedGrade = gradeService.save(g);
 			    return ResponseEntity.ok(new MessageResponse("Grade modifier"));
 		}else return ResponseEntity.badRequest().body(new MessageResponse("Grade existe déja !!!"));

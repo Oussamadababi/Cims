@@ -134,6 +134,15 @@ public  class Personnel {
     private List<RecuperationSoldeRepos> ListRecupSoldeRepos ;
 	
 	
+	@OneToOne()
+	@JoinColumn(name = "fonction_id", nullable = false)
+	private Fonction fonction;
+	
+	@OneToOne()
+	@JoinColumn(name = "affectation_id", nullable = false)
+	private Fonction affectation;
+	
+	
 	public Personnel() {
 		
 	}

@@ -62,8 +62,8 @@ public class Affectation implements Serializable{
 	@OneToMany(mappedBy = "site")
 	 private List<AffectationTotale> affectationt; 
 	
-	@OneToOne(mappedBy="affectation",cascade = CascadeType.ALL)
-	private Personnel Personnel;
+	@OneToMany(mappedBy="affectation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Personnel> pesonnel ;
 
 public Affectation() {
 	super();

@@ -134,13 +134,13 @@ public  class Personnel {
     private List<RecuperationSoldeRepos> ListRecupSoldeRepos ;
 	
 	
-	@OneToOne()
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "fonction_id", nullable = false)
 	private Fonction fonction;
 	
-	@OneToOne()
-	@JoinColumn(name = "affectation_id", nullable = false)
-	private Fonction affectation;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "affectation_id", nullable = false)
+	private Affectation affectation;
 	
 	
 	public Personnel() {
@@ -310,6 +310,8 @@ public  class Personnel {
 		this.date_recrutement = date_recrutement;
 		this.email = email;
 	}
+	
+	
 	
 	
 	

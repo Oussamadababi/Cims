@@ -3,6 +3,7 @@ package Cims.PFE.Entities;
 import java.time.LocalDate;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -45,7 +46,7 @@ public class Conge {
 	@JoinColumn(name = "Personnel_id", nullable = false)
 	private Personnel p;
 	
-	@OneToOne(mappedBy="conge")
+	@OneToOne(mappedBy="conge",cascade = CascadeType.ALL)
     private AnnulationConge annulationConge;
 
 

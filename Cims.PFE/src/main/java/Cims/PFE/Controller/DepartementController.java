@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import Cims.PFE.Dao.DepartementRepository;
 import Cims.PFE.Dao.PersonnelRepository;
-import Cims.PFE.Entities.Departement;
+import Cims.PFE.Entities.Structure;
 import Cims.PFE.Entities.Personnel;
 import Cims.PFE.Service.DepartementService;
 import Cims.PFE.payload.response.MessageResponse;
@@ -34,13 +34,13 @@ public class DepartementController {
 	private DepartementRepository deptRepository;
 
 	@GetMapping(value="/listDepartements")
-	public List<Departement> listDepartements(){
+	public List<Structure> listDepartements(){
 		return DepartementService.listAll();
 	}
 	
 	@PostMapping(value="/addDepartement")
-	public ResponseEntity<?> save(@RequestBody Departement d) {
-		List<Departement> list=deptRepository.getDept(d.getNom_dept());
+	public ResponseEntity<?> save(@RequestBody Structure d) {
+		List<Structure> list=deptRepository.getDept(d.getNom_dept());
 		if(list.isEmpty()) {
 			 DepartementService.save(d);
 				return ResponseEntity.ok(new MessageResponse("Département ajouter"));
@@ -49,19 +49,19 @@ public class DepartementController {
 	}
 	
 	@PutMapping(value="/updateDepartement/{id}")
-	public  ResponseEntity<?> update(@PathVariable(name="id") Long id,@RequestBody Departement d){
-		Departement dept=DepartementService.getById(id);
-		List<Departement> list=deptRepository.getDept(d.getNom_dept());
+	public  ResponseEntity<?> update(@PathVariable(name="id") Long id,@RequestBody Structure d){
+		Structure dept=DepartementService.getById(id);
+		List<Structure> list=deptRepository.getDept(d.getNom_dept());
 		if(list.isEmpty()) {
 			dept.setNom_dept(d.getNom_dept());
-			Departement updatedDepartement=DepartementService.save(dept);
+			Structure updatedDepartement=DepartementService.save(dept);
 			return ResponseEntity.ok(new MessageResponse("Département modifier"));
 		}else return ResponseEntity.badRequest().body(new MessageResponse("Departement existe déja !!!"));
 		
 	}
 	
 	@GetMapping(value="/getDepartement/{id}")
-	public Departement get(@PathVariable(name="id") Long id) {
+	public Structure get(@PathVariable(name="id") Long id) {
 		return DepartementService.getById(id);
 	}
 	

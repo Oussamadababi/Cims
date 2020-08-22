@@ -67,9 +67,47 @@ public  class Personnel {
 	@NotBlank
 	private String email;
 	
+	@Column(name="nom_Ar")
+	private String nom_AR;
+	
+	@Column(name="prenom_AR")
+	private String prenom_AR;
+	
+	@Column(name="matricule_CNRPS")
+	private int matricule_CNRPS;
+	
+	@Column(name="matricule_CNSS")
+	private int matricule_CNSS;
+	
+	@Column(name="date_Naissance")
+	private LocalDate date_Naissance;
+	
+	@Column(name="Adresse")
+	private String Adresse;
+	
+	@Column(name="poste_Occupe")
+	private String poste_Occupe;
+	
+	@Column(name="date_Promotion")
+	private LocalDate date_Promotion;
+	
+	@Column(name="echelle")
+	private String echelle;
+	
+	@Column(name="date_Echelle")
+	private LocalDate date_Echelle;
+	
+	@Column(name="echellon")
+	private String echellon;
+	
+	@Column(name="date_Echellon")
+	private LocalDate date_Echellon;
+	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_dept", nullable = false)
-	private Departement departement;
+	private Structure departement;
+	
+	
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_grade", nullable = false)
@@ -96,6 +134,15 @@ public  class Personnel {
     private List<RecuperationSoldeRepos> ListRecupSoldeRepos ;
 	
 	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "fonction_id", nullable = false)
+	private Fonction fonction;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "affectation_id", nullable = false)
+	private Affectation affectation;
+	
+	
 	public Personnel() {
 		
 	}
@@ -106,7 +153,7 @@ public  class Personnel {
 				+  ", user=" + compte + "]";
 	}
 	public Personnel(Long id_personnel, String nom, String prenom, String sexe, int telephone, LocalDate date_recrutement,
-			String email,Departement departement,Grade grade, Compte compte) {
+			String email,Structure departement,Grade grade, Compte compte) {
 		super();
 		this.id_personnel = id_personnel;
 		this.nom = nom;
@@ -194,12 +241,12 @@ public  class Personnel {
 	}
 
 
-	public Departement getDepartement() {
+	public Structure getDepartement() {
 		return departement;
 	}
 
 
-	public void setDepartement(Departement departement) {
+	public void setDepartement(Structure departement) {
 		this.departement = departement;
 	}
 
@@ -263,6 +310,8 @@ public  class Personnel {
 		this.date_recrutement = date_recrutement;
 		this.email = email;
 	}
+	
+	
 	
 	
 	

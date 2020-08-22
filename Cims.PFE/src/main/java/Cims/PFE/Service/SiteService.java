@@ -7,26 +7,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Cims.PFE.Dao.SiteRepository;
-import Cims.PFE.Entities.Site;
+import Cims.PFE.Entities.Affectation;
 
 @Service
 public class SiteService {
 	@Autowired
 	private SiteRepository siteRepository;
 	
-	public List<Site> listAll(){
-		List<Site> sites = new ArrayList<>();
+	public List<Affectation> listAll(){
+		List<Affectation> sites = new ArrayList<>();
 		siteRepository.findAll().forEach(sites::add);
 		return sites;
 	}
-	public Site save(Site s) {
+	public Affectation save(Affectation s) {
 		return siteRepository.save(s);
 	}
-	public Site update(Long id,Site s){
-		s.setIdSite(id);
+	public Affectation update(Long id,Affectation s){
+		s.setId_affectation(id);
 		return siteRepository.findById(id).get();
 	}
-	public Site getById(Long id) {
+	public Affectation getById(Long id) {
 		return siteRepository.findById(id).get();
 	}
 	public boolean delete(Long id){

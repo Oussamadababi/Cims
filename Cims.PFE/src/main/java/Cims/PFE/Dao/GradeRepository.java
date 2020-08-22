@@ -12,6 +12,6 @@ import Cims.PFE.Entities.Grade;
 @CrossOrigin("*")
 @RepositoryRestResource
 public interface GradeRepository extends JpaRepository<Grade,Long> {
-	@Query(value="SELECT * from grade  where  nom_grade=?1",nativeQuery = true)
+	@Query(value="SELECT * from grade  where  nom_grade_fr=?1",nativeQuery = true)
 	List<Grade> getGrade( String nom);
 }

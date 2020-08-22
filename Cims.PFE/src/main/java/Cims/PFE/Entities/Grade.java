@@ -88,6 +88,10 @@ public Grade(Long id_grade, String nom_grade_fr, String nom_grade_ar, String cat
 	this.categorie_grade_ar = categorie_grade_ar;
 	this.personnels = personnels;
 }
+public Grade() {
+	super();
+}
+
 
 
 

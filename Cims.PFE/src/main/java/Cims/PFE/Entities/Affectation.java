@@ -110,6 +110,116 @@ public void setAffectationt(List<AffectationTotale> affectationt) {
 	this.affectationt = affectationt;
 }
 
+
+
+public String getNom_etablissement_fr() {
+	return nom_etablissement_fr;
+}
+
+
+
+public void setNom_etablissement_fr(String nom_etablissement_fr) {
+	this.nom_etablissement_fr = nom_etablissement_fr;
+}
+
+
+
+public String getNom_etablissement_ar() {
+	return nom_etablissement_ar;
+}
+
+
+
+public void setNom_etablissement_ar(String nom_etablissement_ar) {
+	this.nom_etablissement_ar = nom_etablissement_ar;
+}
+
+
+
+public String getNature_etablissement_fr() {
+	return nature_etablissement_fr;
+}
+
+
+
+public void setNature_etablissement_fr(String nature_etablissement_fr) {
+	this.nature_etablissement_fr = nature_etablissement_fr;
+}
+
+
+
+public String getNature_etablissement_ar() {
+	return nature_etablissement_ar;
+}
+
+
+
+public void setNature_etablissement_ar(String nature_etablissement_ar) {
+	this.nature_etablissement_ar = nature_etablissement_ar;
+}
+
+
+
+public String getQualite_direction_fr() {
+	return qualite_direction_fr;
+}
+
+
+
+public void setQualite_direction_fr(String qualite_direction_fr) {
+	this.qualite_direction_fr = qualite_direction_fr;
+}
+
+
+
+public String getQualite_direction_ar() {
+	return qualite_direction_ar;
+}
+
+
+
+public void setQualite_direction_ar(String qualite_direction_ar) {
+	this.qualite_direction_ar = qualite_direction_ar;
+}
+
+
+
+public Gouvernorat getGouvernorat_ar() {
+	return gouvernorat_ar;
+}
+
+
+
+public void setGouvernorat_ar(Gouvernorat gouvernorat_ar) {
+	this.gouvernorat_ar = gouvernorat_ar;
+}
+
+
+
+public List<Personnel> getPesonnel() {
+	return pesonnel;
+}
+
+
+
+public void setPesonnel(List<Personnel> pesonnel) {
+	this.pesonnel = pesonnel;
+}
+
+
+
+public List<AffectationPartielle> getAffectationp() {
+	return affectationp;
+}
+
+
+
+public List<AffectationTotale> getAffectationt() {
+	return affectationt;
+}
+
+
+
 public Affectation(Long id_affectation, String nomSite, Gouvernorat gouvernorat, List<AffectationPartielle> affectationp,
 		List<AffectationTotale> affectationt) {
 	super();

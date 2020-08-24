@@ -11,6 +11,6 @@ import Cims.PFE.Entities.Structure;
 @CrossOrigin("*")
 @RepositoryRestResource
 public interface DepartementRepository extends JpaRepository<Structure,Long>{
-	@Query(value="SELECT * from departement  where  nom_dept=?1",nativeQuery = true)
+	@Query(value="SELECT * from Structure  where  nom_dept=?1",nativeQuery = true)
 	List<Structure> getDept( String nom);
 }

@@ -28,18 +28,12 @@ public class Structure {
 	
 	@Column(name="nom_dept")
 	private String nom_dept;
-	
-	@Column(name="division")
-	private String division;
-	
-	@Column(name="direction")
-	private String direction;
-	
-	@Column(name="service")
-	private String service;
+
 	
 	@OneToMany(mappedBy="departement", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	    private List<Personnel> personnels ;
+	@OneToMany(mappedBy="structure", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Division> Divisions ;
 
 	
 	public Structure(Long id_dept, String nom_dept) {

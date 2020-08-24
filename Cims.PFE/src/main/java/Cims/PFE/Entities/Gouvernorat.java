@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity  
-@Table(name="Gouvernorat_fr")
+@Table(name="Gouvernorat")
 public class Gouvernorat {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)  
@@ -22,6 +22,9 @@ public class Gouvernorat {
 	
 	@Column(name="nomGouv")
 	private String nomGouv;
+	
+	@Column(name="nomGouvAr")
+	private String nomGouvAr;
 	
 	@OneToMany(mappedBy="gouvernorat", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	    private List<Affectation> Sites ;

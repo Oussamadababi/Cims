@@ -13,8 +13,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Proxy;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity  
 @Table(name="Division") 
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+@Proxy(lazy = false)
 public class Division {
 	@Id  
     @GeneratedValue(strategy=GenerationType.IDENTITY)  

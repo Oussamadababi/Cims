@@ -24,9 +24,6 @@ public class Gouvernorat {
 	private String nomGouv;
 	
 
-	@Column(name="nomGouvAr")
-	private String nomGouvAr;
-
 	@Column(name="nomGouv_ar")
 	private String nomGouv_ar;
 

@@ -29,14 +29,10 @@ public class Structure {
 	@Column(name="nom_dept")
 	private String nom_dept;
 	
-	@Column(name="division")
-	private String division;
-	
 	@Column(name="direction")
 	private String direction;
 	
-	@Column(name="service")
-	private String service;
+	
 	
 	@OneToMany(mappedBy="departement", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	    private List<Personnel> personnels ;
@@ -70,6 +66,15 @@ public class Structure {
 		this.nom_dept = nom_dept;
 	}
 
+	public String getDirection() {
+		return direction;
+	}
+
+	public void setDirection(String direction) {
+		this.direction = direction;
+	}
+	@OneToMany(mappedBy="structure", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Fonction> fonctions ;
 	
 
 	

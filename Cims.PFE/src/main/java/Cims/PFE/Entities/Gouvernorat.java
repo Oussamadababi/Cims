@@ -23,6 +23,9 @@ public class Gouvernorat {
 	@Column(name="nomGouv")
 	private String nomGouv;
 	
+	@Column(name="nomGouv_ar")
+	private String nomGouv_ar;
+	
 	@OneToMany(mappedBy="gouvernorat", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	    private List<Affectation> Sites ;
 	
@@ -51,6 +54,17 @@ public class Gouvernorat {
 	
 	public void setSites(List<Affectation> sites) {
 		Sites = sites;
+	}
+	
+	
+	public String getNomGouv_ar() {
+		return nomGouv_ar;
+	}
+	public void setNomGouv_ar(String nomGouv_ar) {
+		this.nomGouv_ar = nomGouv_ar;
+	}
+	public List<Affectation> getSites() {
+		return Sites;
 	}
 	@Override
 	public String toString() {

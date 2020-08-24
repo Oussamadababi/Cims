@@ -28,7 +28,15 @@ public class Structure {
 	
 	@Column(name="nom_dept")
 	private String nom_dept;
+<<<<<<< HEAD
 
+=======
+	
+	@Column(name="direction")
+	private String direction;
+	
+	
+>>>>>>> branch 'master' of https://github.com/Oussamadababi/Cims.git
 	
 	@OneToMany(mappedBy="departement", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	    private List<Personnel> personnels ;
@@ -64,6 +72,15 @@ public class Structure {
 		this.nom_dept = nom_dept;
 	}
 
+	public String getDirection() {
+		return direction;
+	}
+
+	public void setDirection(String direction) {
+		this.direction = direction;
+	}
+	@OneToMany(mappedBy="structure", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Fonction> fonctions ;
 	
 
 	

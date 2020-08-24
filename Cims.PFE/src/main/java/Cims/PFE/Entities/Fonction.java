@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,8 +30,9 @@ public class Fonction {
 	@Column(name="type_fonction")
 	private String type_fonction;
 	
-	@Column(name="structure")
-	private String structure;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "structure_id", nullable = false)
+	private Structure structure;
 	
 	@Column(name="date_fonction")
 	private LocalDate date_fonction;
@@ -61,21 +64,43 @@ public class Fonction {
 		this.type_fonction = type_fonction;
 	}
 
-	public String getStructure() {
+	
+
+	public Structure getStructure() {
 		return structure;
 	}
 
-	public void setStructure(String structure) {
+	public void setStructure(Structure structure) {
 		this.structure = structure;
 	}
 
-	public Fonction(Long id_fonction, String fonction, String type_fonction, String structure) {
+	public LocalDate getDate_fonction() {
+		return date_fonction;
+	}
+
+	public void setDate_fonction(LocalDate date_fonction) {
+		this.date_fonction = date_fonction;
+	}
+
+	public List<Personnel> getPesonnel() {
+		return pesonnel;
+	}
+
+	public void setPesonnel(List<Personnel> pesonnel) {
+		this.pesonnel = pesonnel;
+	}
+
+	public Fonction(Long id_fonction, String fonction, String type_fonction, Structure structure,
+			LocalDate date_fonction) {
 		super();
 		this.id_fonction = id_fonction;
 		this.fonction = fonction;
 		this.type_fonction = type_fonction;
 		this.structure = structure;
+		this.date_fonction = date_fonction;
 	}
+
+	
 	
 	
 	

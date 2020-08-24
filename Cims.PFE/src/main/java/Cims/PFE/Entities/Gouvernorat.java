@@ -23,13 +23,13 @@ public class Gouvernorat {
 	@Column(name="nomGouv")
 	private String nomGouv;
 	
-<<<<<<< HEAD
+
 	@Column(name="nomGouvAr")
 	private String nomGouvAr;
-=======
+
 	@Column(name="nomGouv_ar")
 	private String nomGouv_ar;
->>>>>>> branch 'master' of https://github.com/Oussamadababi/Cims.git
+
 	
 	@OneToMany(mappedBy="gouvernorat", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	    private List<Affectation> Sites ;

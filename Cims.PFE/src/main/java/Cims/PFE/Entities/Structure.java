@@ -28,15 +28,15 @@ public class Structure {
 	
 	@Column(name="nom_dept")
 	private String nom_dept;
-<<<<<<< HEAD
 
-=======
+
+
 	
 	@Column(name="direction")
 	private String direction;
 	
 	
->>>>>>> branch 'master' of https://github.com/Oussamadababi/Cims.git
+
 	
 	@OneToMany(mappedBy="departement", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	    private List<Personnel> personnels ;

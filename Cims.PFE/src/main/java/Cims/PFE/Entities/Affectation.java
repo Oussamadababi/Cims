@@ -13,10 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Table(name = "affectation")
@@ -53,17 +54,21 @@ public class Affectation implements Serializable{
 	@Column(name="qualite_direction_ar")
 	private String qualite_direction_ar;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "idGouv", nullable = false)
 	private Gouvernorat gouvernorat;
 
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "site")
 	 private List<AffectationPartielle> affectationp; 
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "site")
 	 private List<AffectationTotale> affectationt; 
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="affectation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Personnel> pesonnel ;
 

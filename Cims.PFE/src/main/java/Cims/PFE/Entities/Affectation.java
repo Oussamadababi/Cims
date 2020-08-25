@@ -22,6 +22,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "affectation")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Affectation implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)  
 	@Column(name="id_affectation")
@@ -52,9 +57,6 @@ public class Affectation implements Serializable{
     @JoinColumn(name = "idGouv", nullable = false)
 	private Gouvernorat gouvernorat;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idGouv_ar", nullable = false)
-	private Gouvernorat gouvernorat_ar;
 
 	@OneToMany(mappedBy = "site")
 	 private List<AffectationPartielle> affectationp; 
@@ -182,17 +184,6 @@ public void setQualite_direction_ar(String qualite_direction_ar) {
 	this.qualite_direction_ar = qualite_direction_ar;
 }
 
-
-
-public Gouvernorat getGouvernorat_ar() {
-	return gouvernorat_ar;
-}
-
-
-
-public void setGouvernorat_ar(Gouvernorat gouvernorat_ar) {
-	this.gouvernorat_ar = gouvernorat_ar;
-}
 
 
 

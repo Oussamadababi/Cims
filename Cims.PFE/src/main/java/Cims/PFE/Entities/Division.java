@@ -38,4 +38,61 @@ public class Division {
 	@OneToMany(mappedBy="division", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Service> Service ;
 
+	public Long getId_division() {
+		return id_division;
+	}
+
+	public void setId_division(Long id_division) {
+		this.id_division = id_division;
+	}
+
+	public String getNom_divisionFr() {
+		return nom_divisionFr;
+	}
+
+	public void setNom_divisionFr(String nom_divisionFr) {
+		this.nom_divisionFr = nom_divisionFr;
+	}
+
+	public String getNom_divisionAr() {
+		return nom_divisionAr;
+	}
+
+	public void setNom_divisionAr(String nom_divisionAr) {
+		this.nom_divisionAr = nom_divisionAr;
+	}
+
+	public Structure getStructure() {
+		return structure;
+	}
+
+	public void setStructure(Structure structure) {
+		this.structure = structure;
+	}
+
+	public List<Service> getService() {
+		return Service;
+	}
+
+	public void setService(List<Service> service) {
+		Service = service;
+	}
+
+	public Division(Long id_division, String nom_divisionFr, String nom_divisionAr, Structure structure,
+			List<Cims.PFE.Entities.Service> service) {
+		super();
+		this.id_division = id_division;
+		this.nom_divisionFr = nom_divisionFr;
+		this.nom_divisionAr = nom_divisionAr;
+		this.structure = structure;
+		Service = service;
+	}
+
+	public Division() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+
 }

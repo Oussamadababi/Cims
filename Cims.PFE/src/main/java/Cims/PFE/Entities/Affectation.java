@@ -51,10 +51,6 @@ public class Affectation implements Serializable{
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idGouv", nullable = false)
 	private Gouvernorat gouvernorat;
-	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idGouv_ar", nullable = false)
-	private Gouvernorat gouvernorat_ar;
 
 	@OneToMany(mappedBy = "site")
 	 private List<AffectationPartielle> affectationp; 
@@ -181,19 +177,6 @@ public String getQualite_direction_ar() {
 public void setQualite_direction_ar(String qualite_direction_ar) {
 	this.qualite_direction_ar = qualite_direction_ar;
 }
-
-
-
-public Gouvernorat getGouvernorat_ar() {
-	return gouvernorat_ar;
-}
-
-
-
-public void setGouvernorat_ar(Gouvernorat gouvernorat_ar) {
-	this.gouvernorat_ar = gouvernorat_ar;
-}
-
 
 
 public List<Personnel> getPesonnel() {

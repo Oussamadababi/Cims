@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name="Service") 
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 @Proxy(lazy = false)
-public class Service {
+public class Service1 {
 	@Id  
     @GeneratedValue(strategy=GenerationType.IDENTITY)  
 	@Column(name="id_Service")
@@ -31,5 +31,38 @@ public class Service {
 	
 	@ManyToOne
 	private Division division;
+
+	public Long getId_Service() {
+		return id_Service;
+	}
+
+	public void setId_Service(Long id_Service) {
+		this.id_Service = id_Service;
+	}
+
+	public String getNom_ServiceFr() {
+		return nom_ServiceFr;
+	}
+
+	public void setNom_ServiceFr(String nom_ServiceFr) {
+		this.nom_ServiceFr = nom_ServiceFr;
+	}
+
+	public String getNom_ServiceAr() {
+		return nom_ServiceAr;
+	}
+
+	public void setNom_ServiceAr(String nom_ServiceAr) {
+		this.nom_ServiceAr = nom_ServiceAr;
+	}
+
+	public Division getDivision() {
+		return division;
+	}
+
+	public void setDivision(Division division) {
+		this.division = division;
+	}
+	
 
 }

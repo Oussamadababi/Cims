@@ -1,5 +1,6 @@
 package Cims.PFE.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,18 @@ public class DivisionService {
 
 	public List<Division> getDivisionParStructure( long idStructure)
 	{
-		return divisionRepository.getDivisionParStructure(idStructure);
+//		List<Division> listeDivs=new ArrayList();
+//		Division div = new Division();
+//		div.setId_division(null);
+//		div.setNom_divisionAr(null);
+//		div.setNom_divisionFr(null);
+//		listeDivs.add(div);
+       List<Division> dicvs=divisionRepository.getDivisionParStructure(idStructure);
+//       for(Division a:dicvs)
+//       {
+//    	   listeDivs.add(a);
+//       }
+       return dicvs;
 	}
 
 }

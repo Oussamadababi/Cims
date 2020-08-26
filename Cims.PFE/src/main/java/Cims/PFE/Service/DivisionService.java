@@ -16,6 +16,7 @@ public class DivisionService {
 
 	public List<Division> getDivisionParStructure( long idStructure)
 	{
+
 //		List<Division> listeDivs=new ArrayList();
 //		Division div = new Division();
 //		div.setId_division(null);
@@ -27,7 +28,12 @@ public class DivisionService {
 //       {
 //    	   listeDivs.add(a);
 //       }
-       return dicvs;
+      
+
+		List<Division> Divisions = new ArrayList<>();
+		divisionRepository.getDivisionParStructure(idStructure).forEach(Divisions::add);
+		return Divisions;
+
 	}
 
 }

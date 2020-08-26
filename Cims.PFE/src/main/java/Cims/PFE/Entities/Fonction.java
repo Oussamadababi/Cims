@@ -100,6 +100,11 @@ public class Fonction {
 		this.date_fonction = date_fonction;
 	}
 
+	public Fonction() {
+		super();
+	}
+	
+
 	
 	
 	

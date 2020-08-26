@@ -105,4 +105,9 @@ public class SiteController {
 		return liste;
 	}
 	
+	@GetMapping(value="/attributparAf/{id_aff}")
+	public List<Object> AttributParaff(@PathVariable(name="id_aff") Long id) {
+		return siteService.attributsparaff(id);
+	}
+	
 }

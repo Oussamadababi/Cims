@@ -56,7 +56,7 @@ public class Affectation implements Serializable{
 	
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "idGouv", nullable = false)
+    @JoinColumn(name = "idGouvernorat", nullable = false)
 	private Gouvernorat gouvernorat;
 
 	

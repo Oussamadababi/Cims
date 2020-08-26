@@ -21,4 +21,9 @@ List<Long> existsAffTotale(Long id);
 @Query(value="SELECT * from affectation  where id_gouv=?1 and nom_site=?2",nativeQuery = true)
 List<Affectation> getSite(Long id_gouv, String nom);
 
+
+@Query(value="SELECT * FROM public.affectation a INNER JOIN public.gouvernorat g  on a.id_gouvernorat = g.id_gouv where id_affectation=?1",nativeQuery = true)
+List<Object> getAttributForAffectation(Long id_aff);
+
+
 }

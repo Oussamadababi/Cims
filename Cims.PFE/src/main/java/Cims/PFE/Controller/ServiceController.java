@@ -21,7 +21,7 @@ public class ServiceController {
 	@Autowired
 	ServiceService SS;
 	
-	@GetMapping(value="/getServiceParDiv/{idDivision}")
+	@GetMapping(value="/ServiceParDiv/{idDivision}")
 	public List<Service1> getServiceParDiv(@PathVariable(name="idDivision") Long idDivision) {
 		return SS.getServiceParDivision(idDivision);
 	}

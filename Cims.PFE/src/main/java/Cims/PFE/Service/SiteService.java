@@ -37,5 +37,9 @@ public class SiteService {
 		return false;
 	}
 
+	public List<Object> attributsparaff(Long id_aff){
+		
+		return siteRepository.getAttributForAffectation(id_aff);
+	}
 
 }

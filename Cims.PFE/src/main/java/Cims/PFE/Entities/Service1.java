@@ -3,6 +3,7 @@ package Cims.PFE.Entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity  
@@ -29,7 +31,8 @@ public class Service1 {
 	@Column(name="nom_ServiceAr")
 	private String nom_ServiceAr;
 	
-	@ManyToOne
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	private Division division;
 
 	public Long getId_Service() {

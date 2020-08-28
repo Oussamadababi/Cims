@@ -26,7 +26,9 @@ List<Affectation> getSite(Long id_gouv, String nom);
 
 @Query(value="SELECT  * FROM public.affectation a INNER JOIN public.gouvernorat g  on a.id_gouvernorat = g.id_gouv where id_affectation=?1",nativeQuery = true)
 List<Object> getAttributForAffectation(Long id_aff);
+
 @Query(value="SELECT NEW Cims.PFE.Entities.AffectationGouv ( a.nature_etablissement_fr,a.qualite_direction_fr,g.nomGouv) FROM Affectation a  JOIN a.gouvernorat g  where id_affectation=:id_aff")
 public AffectationGouv getAttributForAffectation2(@Param("id_aff")Long id_aff);
+
 
 }

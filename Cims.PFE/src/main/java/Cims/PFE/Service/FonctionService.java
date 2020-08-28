@@ -24,5 +24,9 @@ public class FonctionService {
 		FR.findAll().forEach(Fonctions::add);
 		return Fonctions;
 	}
+	public Fonction getTypeFonction( Long id_fonction)
+	{
+		return FR.getTypeFonction(id_fonction);
+	}
 
 }

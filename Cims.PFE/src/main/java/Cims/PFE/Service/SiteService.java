@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import Cims.PFE.Dao.SiteRepository;
 import Cims.PFE.Entities.Affectation;
+import Cims.PFE.Entities.AffectationGouv;
 
 @Service
 public class SiteService {
@@ -37,9 +38,9 @@ public class SiteService {
 		return false;
 	}
 
-	public List<Object> attributsparaff(Long id_aff){
+	public AffectationGouv attributsparaff(Long id_aff){
 		
-		return siteRepository.getAttributForAffectation(id_aff);
+		return siteRepository.getAttributForAffectation2(id_aff);
 	}
 
 }

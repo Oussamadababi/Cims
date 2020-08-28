@@ -19,6 +19,7 @@ import Cims.PFE.Dao.AffectationTotaleRepository;
 import Cims.PFE.Dao.SiteRepository;
 import Cims.PFE.Entities.AffectationPartielle;
 import Cims.PFE.Entities.Affectation;
+import Cims.PFE.Entities.AffectationGouv;
 import Cims.PFE.Service.SiteService;
 import Cims.PFE.payload.response.MessageResponse;
 
@@ -106,7 +107,7 @@ public class SiteController {
 	}
 	
 	@GetMapping(value="/attributparAf/{id_aff}")
-	public List<Object> AttributParaff(@PathVariable(name="id_aff") Long id) {
+	public AffectationGouv AttributParaff(@PathVariable(name="id_aff") Long id) {
 		return siteService.attributsparaff(id);
 	}
 	

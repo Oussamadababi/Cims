@@ -106,4 +106,27 @@ public class PersonnelService {
 		return personnelRepository.listAbsenceParJour(date);
 	}
 	
+	/*Transferer le Solde Repos vers le SRN-1 et N-2 chaque année*/
+//	@Scheduled(cron = "1 0 0 1 * ?")
+//	@Scheduled(fixedRate = 5000L) 518 400
+	public void TransferSoldeRepos() {
+		List<Personnel> Listepersonnel = personnelRepository.findAll();
+		for(Personnel Personnel1 : Listepersonnel)
+		{
+			 double N =Personnel1.getSoldeRepos();
+			 double N_1=Personnel1.getSoldeReposN_1();
+			 double N_2=Personnel1.getSoldeReposN_2();
+			 
+			 Personnel1.setSoldeRepos(0);
+			 Personnel1.setSoldeReposN_1(N);
+			 Personnel1.setSoldeReposN_2(N_1);
+			 
+			personnelRepository.save(Personnel1);
+			
+			
+		}
+		
+		
+	}
+	
 }

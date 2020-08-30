@@ -57,6 +57,12 @@ public  class Personnel {
 	@Column(name="solderepos")
 	private double soldeRepos;
 	
+	@Column(name="soldereposN_1")
+	private double soldeReposN_1;
+	
+	@Column(name="soldereposN_2")
+	private double soldeReposN_2;
+	
 	@Column(name="soldeexceptionnel")
 	private double soldeExceptionnel;
 	
@@ -290,6 +296,98 @@ public  class Personnel {
 	}
 	
 	
+	
+	
+	public double getSoldeReposN_1() {
+		return soldeReposN_1;
+	}
+	public void setSoldeReposN_1(double soldeReposN_1) {
+		this.soldeReposN_1 = soldeReposN_1;
+	}
+	public double getSoldeReposN_2() {
+		return soldeReposN_2;
+	}
+	public void setSoldeReposN_2(double soldeReposN_2) {
+		this.soldeReposN_2 = soldeReposN_2;
+	}
+	public String getNom_AR() {
+		return nom_AR;
+	}
+	public void setNom_AR(String nom_AR) {
+		this.nom_AR = nom_AR;
+	}
+	public String getPrenom_AR() {
+		return prenom_AR;
+	}
+	public void setPrenom_AR(String prenom_AR) {
+		this.prenom_AR = prenom_AR;
+	}
+	public int getMatricule_CNRPS() {
+		return matricule_CNRPS;
+	}
+	public void setMatricule_CNRPS(int matricule_CNRPS) {
+		this.matricule_CNRPS = matricule_CNRPS;
+	}
+	public int getMatricule_CNSS() {
+		return matricule_CNSS;
+	}
+	public void setMatricule_CNSS(int matricule_CNSS) {
+		this.matricule_CNSS = matricule_CNSS;
+	}
+	public LocalDate getDate_Naissance() {
+		return date_Naissance;
+	}
+	public void setDate_Naissance(LocalDate date_Naissance) {
+		this.date_Naissance = date_Naissance;
+	}
+	public String getPoste_Occupe() {
+		return poste_Occupe;
+	}
+	public void setPoste_Occupe(String poste_Occupe) {
+		this.poste_Occupe = poste_Occupe;
+	}
+	public LocalDate getDate_Promotion() {
+		return date_Promotion;
+	}
+	public void setDate_Promotion(LocalDate date_Promotion) {
+		this.date_Promotion = date_Promotion;
+	}
+	public String getEchelle() {
+		return echelle;
+	}
+	public void setEchelle(String echelle) {
+		this.echelle = echelle;
+	}
+	public LocalDate getDate_Echelle() {
+		return date_Echelle;
+	}
+	public void setDate_Echelle(LocalDate date_Echelle) {
+		this.date_Echelle = date_Echelle;
+	}
+	public String getEchellon() {
+		return echellon;
+	}
+	public void setEchellon(String echellon) {
+		this.echellon = echellon;
+	}
+	public LocalDate getDate_Echellon() {
+		return date_Echellon;
+	}
+	public void setDate_Echellon(LocalDate date_Echellon) {
+		this.date_Echellon = date_Echellon;
+	}
+	public List<RecuperationSoldeRepos> getListRecupSoldeRepos() {
+		return ListRecupSoldeRepos;
+	}
+	public void setListRecupSoldeRepos(List<RecuperationSoldeRepos> listRecupSoldeRepos) {
+		ListRecupSoldeRepos = listRecupSoldeRepos;
+	}
+	public Fonction getFonction() {
+		return fonction;
+	}
+	public void setFonction(Fonction fonction) {
+		this.fonction = fonction;
+	}
 	public List<AppelDeJour> getAppels() {
 		return appels;
 	}
@@ -310,6 +408,7 @@ public  class Personnel {
 		this.date_recrutement = date_recrutement;
 		this.email = email;
 	}
+	
 	
 	
 	

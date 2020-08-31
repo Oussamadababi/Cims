@@ -20,7 +20,7 @@ List<Affectation> getss(Long id_gouv);
 @Query(value="SELECT id_site from affectation_totale  where id_site=?1",nativeQuery = true)
 List<Long> existsAffTotale(Long id);
 
-@Query(value="SELECT * from affectation  where id_gouv=?1 and nom_site=?2",nativeQuery = true)
+@Query(value="SELECT * from affectation  where id_gouvernorat=?1 and nom_site=?2",nativeQuery = true)
 List<Affectation> getSite(Long id_gouv, String nom);
 
 

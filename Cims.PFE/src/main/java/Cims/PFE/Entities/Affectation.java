@@ -189,6 +189,7 @@ public void setQualite_direction_ar(String qualite_direction_ar) {
 	this.qualite_direction_ar = qualite_direction_ar;
 }
 
+
 public List<Personnel> getPesonnel() {
 	return pesonnel;
 }

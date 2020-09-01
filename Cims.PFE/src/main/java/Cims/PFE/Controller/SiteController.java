@@ -50,11 +50,11 @@ public class SiteController {
 	
 	@PostMapping(value="/addSite")
 	public ResponseEntity<?> save(@RequestBody Affectation s) {
-		List<Affectation> list=repo.getSite(s.getGouvernorat().getIdGouv(), s.getNomSite());
-	if(list.isEmpty()) {
+		//List<Affectation> list=repo.getSite(s.getGouvernorat().getIdGouv(), s.getNomSite());
+	//if(list.isEmpty()) {
 		 siteService.save(s);
-			return ResponseEntity.ok(new MessageResponse("Site ajouter"));
-	}else return ResponseEntity.badRequest().body(new MessageResponse(": Site existe déja !!!"));
+			//return ResponseEntity.ok(new MessageResponse("Site ajouter"));
+	/*}else*/ return ResponseEntity.badRequest().body(new MessageResponse(": Site existe déja !!!"));
 		
 	}
 	

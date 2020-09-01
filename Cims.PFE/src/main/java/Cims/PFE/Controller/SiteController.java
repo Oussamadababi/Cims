@@ -49,13 +49,13 @@ public class SiteController {
 		return siteService.listAll();
 	}
 	
-	@PostMapping(value="/addSite")
-	public ResponseEntity<MessageResponse> save(@RequestBody Affectation s) {
-		List<Affectation> list=repo.getSite(s.getGouvernorat().getIdGouv(), s.getNomSite());
-	if(list.isEmpty()) {
-		 siteService.save(s);
+	@PostMapping(value="/addSite/{id}")
+	public ResponseEntity<MessageResponse> save(@RequestBody Affectation s,@PathVariable(name="id") Long id) {
+//		List<Affectation> list=repo.getSite(s.getGouvernorat().getIdGouv(), s.getNomSite());
+//	if(list.isEmpty()) {
+		 siteService.save(s,id);
 			return ResponseEntity.ok(new MessageResponse("Site ajouter"));
-	}else return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Site déja existe"));
+//	}else return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Site déja existe"));
 		
 	}
 	
@@ -66,7 +66,7 @@ public class SiteController {
 		if(list.isEmpty()) {
 			site.setNomSite(s.getNomSite());
 			site.setGouvernorat(s.getGouvernorat());
-			final Affectation updatedSite=siteService.save(site);
+			final Affectation updatedSite=siteService.save(site,s.getGouvernorat().getIdGouv());
 			return ResponseEntity.ok(new MessageResponse("Site modifier"));
 		}else return ResponseEntity.badRequest().body(new MessageResponse(": Site existe déja !!!"));
 		

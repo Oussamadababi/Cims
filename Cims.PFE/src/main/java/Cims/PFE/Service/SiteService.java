@@ -21,6 +21,7 @@ public class SiteService {
 		return sites;
 	}
 	public Affectation save(Affectation s) {
+		
 		return siteRepository.save(s);
 	}
 	public Affectation update(Long id,Affectation s){

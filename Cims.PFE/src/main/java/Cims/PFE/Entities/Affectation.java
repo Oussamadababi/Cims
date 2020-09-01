@@ -214,21 +214,31 @@ public List<AffectationTotale> getAffectationt() {
 
 
 
-public Affectation(Long id_affectation, String nomSite, Gouvernorat gouvernorat, List<AffectationPartielle> affectationp,
-		List<AffectationTotale> affectationt) {
+
+
+public Affectation(Long id_affectation, String nomSite, String nom_etablissement_fr, String nom_etablissement_ar,
+		String nature_etablissement_fr, String nature_etablissement_ar, String qualite_direction_fr,
+		String qualite_direction_ar, Gouvernorat gouvernorat) {
 	super();
 	this.id_affectation = id_affectation;
 	this.nomSite = nomSite;
+	this.nom_etablissement_fr = nom_etablissement_fr;
+	this.nom_etablissement_ar = nom_etablissement_ar;
+	this.nature_etablissement_fr = nature_etablissement_fr;
+	this.nature_etablissement_ar = nature_etablissement_ar;
+	this.qualite_direction_fr = qualite_direction_fr;
+	this.qualite_direction_ar = qualite_direction_ar;
 	this.gouvernorat = gouvernorat;
-	this.affectationp = affectationp;
-	this.affectationt = affectationt;
 }
+
+
 
 @Override
 public String toString() {
 	return "Site [idSite=" + id_affectation + ", nomSite=" + nomSite + ", gouvernorat=" + gouvernorat + ", affectationp="
 			+ affectationp + ", affectationt=" + affectationt + "]";
 }
+
 
 
 

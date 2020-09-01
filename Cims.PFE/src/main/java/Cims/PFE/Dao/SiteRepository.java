@@ -14,11 +14,10 @@ import Cims.PFE.Entities.AffectationGouv;
 @CrossOrigin("*")
 @RepositoryRestResource
 public interface SiteRepository  extends JpaRepository<Affectation,Long>{
-	//SELECT * from affectation join gouvernorat using(idGouv) where id_gouvernorat=?1
-@Query(value="SELECT * from affectation a join gouvernorat g on a.id_gouvernorat = g.id_gouv where id_gouvernorat=?1",nativeQuery = true)
+@Query(value="SELECT * from affectation join gouvernorat using(id_gouv) where id_gouv=?1",nativeQuery = true)
 List<Affectation> getss(Long id_gouv);
 
-@Query(value="SELECT id_affectation from affectation_totale  where id_affectation=?1",nativeQuery = true)
+@Query(value="SELECT id_site from affectation_totale  where id_site=?1",nativeQuery = true)
 List<Long> existsAffTotale(Long id);
 
 @Query(value="SELECT * from affectation  where id_gouvernorat=?1 and nom_site=?2",nativeQuery = true)
@@ -30,6 +29,4 @@ List<Object> getAttributForAffectation(Long id_aff);
 
 @Query(value="SELECT NEW Cims.PFE.Entities.AffectationGouv ( a.nature_etablissement_fr,a.qualite_direction_fr,g.nomGouv) FROM Affectation a  JOIN a.gouvernorat g  where id_affectation=:id_aff")
 public AffectationGouv getAttributForAffectation2(@Param("id_aff")Long id_aff);
-
-
 }

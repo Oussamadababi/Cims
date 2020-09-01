@@ -3,7 +3,6 @@ package Cims.PFE.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import Cims.PFE.Dao.AffectationPartielleRepository;
 import Cims.PFE.Dao.AffectationTotaleRepository;
 import Cims.PFE.Dao.SiteRepository;
-import Cims.PFE.Entities.AffectationPartielle;
 import Cims.PFE.Entities.Affectation;
 import Cims.PFE.Entities.AffectationGouv;
+import Cims.PFE.Entities.AffectationPartielle;
 import Cims.PFE.Service.SiteService;
 import Cims.PFE.payload.response.MessageResponse;
 
@@ -51,11 +50,11 @@ public class SiteController {
 	
 	@PostMapping(value="/addSite/{id}")
 	public ResponseEntity<MessageResponse> save(@RequestBody Affectation s,@PathVariable(name="id") Long id) {
-//		List<Affectation> list=repo.getSite(s.getGouvernorat().getIdGouv(), s.getNomSite());
-//	if(list.isEmpty()) {
+		List<Affectation> list=repo.getSite(id, s.getNomSite());
+	if(list.isEmpty()) {
 		 siteService.save(s,id);
 			return ResponseEntity.ok(new MessageResponse("Site ajouter"));
-//	}else return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Site déja existe"));
+	}else return ResponseEntity.badRequest().body(new MessageResponse("Site déja existe"));
 		
 	}
 	

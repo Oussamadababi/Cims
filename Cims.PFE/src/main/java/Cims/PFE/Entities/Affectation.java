@@ -56,7 +56,7 @@ public class Affectation implements Serializable{
 	
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "idGouvernorat", nullable = false)
+    @JoinColumn(name = "id_gouvernorat", nullable = false)
 	private Gouvernorat gouvernorat;
 
 	
@@ -230,6 +230,29 @@ public Affectation(Long id_affectation, String nomSite, String nom_etablissement
 	this.qualite_direction_ar = qualite_direction_ar;
 	this.gouvernorat = gouvernorat;
 }
+
+
+
+public Affectation(Long id_affectation, String nomSite, String nom_etablissement_fr, String nom_etablissement_ar,
+		String nature_etablissement_fr, String nature_etablissement_ar, String qualite_direction_fr,
+		String qualite_direction_ar, Gouvernorat gouvernorat, List<AffectationPartielle> affectationp,
+		List<AffectationTotale> affectationt, List<Personnel> pesonnel) {
+	super();
+	this.id_affectation = id_affectation;
+	this.nomSite = nomSite;
+	this.nom_etablissement_fr = nom_etablissement_fr;
+	this.nom_etablissement_ar = nom_etablissement_ar;
+	this.nature_etablissement_fr = nature_etablissement_fr;
+	this.nature_etablissement_ar = nature_etablissement_ar;
+	this.qualite_direction_fr = qualite_direction_fr;
+	this.qualite_direction_ar = qualite_direction_ar;
+	this.gouvernorat = gouvernorat;
+	this.affectationp = affectationp;
+	this.affectationt = affectationt;
+	this.pesonnel = pesonnel;
+}
+
+
 
 
 

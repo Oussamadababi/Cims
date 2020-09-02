@@ -9,8 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Cims.PFE.Dao.AppelDeJourRepository;
+import Cims.PFE.Dao.DepartementRepository;
+import Cims.PFE.Dao.FonctionRepository;
+import Cims.PFE.Dao.GradeRepository;
 import Cims.PFE.Dao.PersonnelRepository;
+import Cims.PFE.Dao.SiteRepository;
+import Cims.PFE.Entities.Affectation;
+import Cims.PFE.Entities.Fonction;
+import Cims.PFE.Entities.Grade;
 import Cims.PFE.Entities.Personnel;
+import Cims.PFE.Entities.Structure;
 
 
 @Service
@@ -25,6 +33,14 @@ public class PersonnelService {
 	
 	@Autowired
 	CongeService congeService;
+	@Autowired
+	GradeRepository gradeRepository;
+	@Autowired
+	FonctionRepository fonctionRepository;
+	@Autowired
+	DepartementRepository departementRepository;
+	@Autowired
+	SiteRepository siteRepository;
 	
 	public List<Personnel> listAll(){
 		List<Personnel> personnels = new ArrayList<>();
@@ -37,7 +53,20 @@ public class PersonnelService {
 		p.setSoldeExceptionnel(0);
 		return personnelRepository.save(p);
 	}
-
+	public Personnel save2(Personnel p,long idFonction,long idStructure,long idAffectation) {
+		//Grade g =gradeRepository.getOne(idgrade);
+		Fonction f =fonctionRepository.getOne(idFonction);
+		Structure s =departementRepository.getOne(idStructure);
+		Affectation a=siteRepository.getOne(idAffectation);
+		p.setDepartement(s);
+		//p.setGrade(g);
+		p.setFonction(f);
+		p.setAffectation(a);
+		p.setSoldeRepos(0);
+		p.setSoldeExceptionnel(0);
+		return personnelRepository.save(p);
+		
+	}
 
 	
 	public Personnel update(Long id, Personnel p){

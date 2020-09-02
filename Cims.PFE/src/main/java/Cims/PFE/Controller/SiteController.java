@@ -48,6 +48,7 @@ public class SiteController {
 		return siteService.listAll();
 	}
 	
+
 	@PostMapping(value="/addSite/{id}")
 	public ResponseEntity<MessageResponse> save(@RequestBody Affectation s,@PathVariable(name="id") Long id) {
 		List<Affectation> list=repo.getSite(id, s.getNomSite());
@@ -55,6 +56,7 @@ public class SiteController {
 		 siteService.save(s,id);
 			return ResponseEntity.ok(new MessageResponse("Site ajouter"));
 	}else return ResponseEntity.badRequest().body(new MessageResponse("Site déja existe"));
+
 		
 	}
 	

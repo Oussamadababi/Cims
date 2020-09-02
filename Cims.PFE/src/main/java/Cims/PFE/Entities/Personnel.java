@@ -117,19 +117,23 @@ public  class Personnel {
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_grade", nullable = false)
+	@JsonIgnore
 	private Grade grade;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Compte compte;
 	
 	@OneToMany(mappedBy="personnel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
     private List<AffectationTotale> affectationt ;
 	
 	@OneToMany(mappedBy="personnel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
     private List<AffectationPartielle> affectationp ;
 	
 	
 	@OneToMany(mappedBy="p", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
     private List<Conge> Conges ;
 	
 	@ManyToMany(mappedBy="Personnels",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -137,18 +141,28 @@ public  class Personnel {
     private List<AppelDeJour> appels ;
 	
 	@OneToMany(mappedBy="p", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
     private List<RecuperationSoldeRepos> ListRecupSoldeRepos ;
 	
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "fonction_id", nullable = false)
+	@JsonIgnore
 	private Fonction fonction;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "affectation_id", nullable = false)
+	@JsonIgnore
 	private Affectation affectation;
 	
 	
+	
+	public Affectation getAffectation() {
+		return affectation;
+	}
+	public void setAffectation(Affectation affectation) {
+		this.affectation = affectation;
+	}
 	public Personnel() {
 		
 	}

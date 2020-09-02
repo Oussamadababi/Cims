@@ -62,6 +62,7 @@ public class PersonnelService {
 		p.setSoldeExceptionnel(soldeExceptionnel);
 		personnelRepository.save(p);
 	}
+	
 	/*Ajouter au solde repos chaque 6 jrs 0.5*/
 //	@Scheduled(cron = "1 0 0 1 * ?")
 //	@Scheduled(fixedRate = 5000L) 518 400

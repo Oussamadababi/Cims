@@ -422,6 +422,47 @@ public  class Personnel {
 		this.date_recrutement = date_recrutement;
 		this.email = email;
 	}
+	public String getAdresse() {
+		return Adresse;
+	}
+	public void setAdresse(String adresse) {
+		Adresse = adresse;
+	}
+	public Personnel(Long id_personnel, int matricule, String nom, String prenom, String sexe, int telephone,
+			double soldeRepos, double soldeReposN_1, double soldeReposN_2, double soldeExceptionnel,
+			LocalDate date_recrutement, @NotBlank String email, String nom_AR, String prenom_AR, int matricule_CNRPS,
+			int matricule_CNSS, LocalDate date_Naissance, String adresse, String poste_Occupe, LocalDate date_Promotion,
+			LocalDate date_Echellon, Structure departement, Grade grade, Compte compte, Fonction fonction,
+			Affectation affectation) {
+		super();
+		this.id_personnel = id_personnel;
+		this.matricule = matricule;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.sexe = sexe;
+		this.telephone = telephone;
+		this.soldeRepos = soldeRepos;
+		this.soldeReposN_1 = soldeReposN_1;
+		this.soldeReposN_2 = soldeReposN_2;
+		this.soldeExceptionnel = soldeExceptionnel;
+		this.date_recrutement = date_recrutement;
+		this.email = email;
+		this.nom_AR = nom_AR;
+		this.prenom_AR = prenom_AR;
+		this.matricule_CNRPS = matricule_CNRPS;
+		this.matricule_CNSS = matricule_CNSS;
+		this.date_Naissance = date_Naissance;
+		Adresse = adresse;
+		this.poste_Occupe = poste_Occupe;
+		this.date_Promotion = date_Promotion;
+		this.date_Echellon = date_Echellon;
+		this.departement = departement;
+		this.grade = grade;
+		this.compte = compte;
+		this.fonction = fonction;
+		this.affectation = affectation;
+	}
+	
 	
 	
 	

@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity  
@@ -69,6 +70,7 @@ public class Grade {
 		this.personnels = personnels;
 	}
 	@OneToMany(mappedBy="grade", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
     private List<Personnel> personnels ;
 
 

@@ -14,6 +14,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity  
@@ -39,8 +40,10 @@ public class Structure {
 
 	
 	@OneToMany(mappedBy="departement", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
 	    private List<Personnel> personnels ;
 	@OneToMany(mappedBy="structure", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
     private List<Division> Divisions ;
 
 	
@@ -80,6 +83,7 @@ public class Structure {
 		this.direction = direction;
 	}
 	@OneToMany(mappedBy="structure", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
     private List<Fonction> fonctions ;
 	
 

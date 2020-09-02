@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity  
 @Table(name="Fonction") 
 public class Fonction {
@@ -38,6 +40,7 @@ public class Fonction {
 	private LocalDate date_fonction;
 	
 	@OneToMany(mappedBy="fonction", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
     private List<Personnel> pesonnel ;
 
 	public Long getId_fonction() {

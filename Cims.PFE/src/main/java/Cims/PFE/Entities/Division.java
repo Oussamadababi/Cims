@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Proxy;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity  
@@ -92,6 +93,9 @@ public class Division {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	@OneToMany(mappedBy="division", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+    private List<Personnel> personnels ;
 	
 	
 

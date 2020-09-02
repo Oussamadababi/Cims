@@ -120,8 +120,8 @@ public class PersonnelController {
 	}
 	
 	
-	@PostMapping("/addPersonnel/{idFonction}/{idStructure}/{idAffectation}")
-	public ResponseEntity<?> registerUser(@RequestBody Personnel p ,SignupRequest signUpRequest,@PathVariable(name="idFonction") Long idFonction, @PathVariable(name="idStructure") Long idStructure,@PathVariable(name="idAffectation") Long idAffectation) {
+	@PostMapping("/addPersonnel/{id_grade}/{idFonction}/{idStructure}/{idAffectation}")
+	public ResponseEntity<?> registerUser(@RequestBody Personnel p ,SignupRequest signUpRequest,@PathVariable(name="id_grade") Long id_grade,@PathVariable(name="idFonction") Long idFonction, @PathVariable(name="idStructure") Long idStructure,@PathVariable(name="idAffectation") Long idAffectation) {
 		signUpRequest.setUsername(p.getPrenom()+"."+p.getNom());
 		
 				
@@ -149,7 +149,7 @@ public class PersonnelController {
 			});
 		}
 		if(personnelRepository.existsByEmail(p.getEmail())==false) {
-		if( personnelService.save2(p,idFonction,idStructure,idAffectation)!= null) {
+		if( personnelService.save2(p,id_grade,idFonction,idStructure,idAffectation)!= null) {
 			compte.setRoles(roles);
 			p.setUser(compte);
 			compte.setPersonnel(p);

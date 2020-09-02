@@ -53,13 +53,13 @@ public class PersonnelService {
 		p.setSoldeExceptionnel(0);
 		return personnelRepository.save(p);
 	}
-	public Personnel save2(Personnel p,long idFonction,long idStructure,long idAffectation) {
-		//Grade g =gradeRepository.getOne(idgrade);
+	public Personnel save2(Personnel p,long id_grade,long idFonction,long idStructure,long idAffectation) {
+		Grade g =gradeRepository.getOne(id_grade);
 		Fonction f =fonctionRepository.getOne(idFonction);
 		Structure s =departementRepository.getOne(idStructure);
 		Affectation a=siteRepository.getOne(idAffectation);
 		p.setDepartement(s);
-		//p.setGrade(g);
+		p.setGrade(g);
 		p.setFonction(f);
 		p.setAffectation(a);
 		p.setSoldeRepos(0);

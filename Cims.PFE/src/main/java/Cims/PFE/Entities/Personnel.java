@@ -88,8 +88,8 @@ public  class Personnel {
 	@Column(name="date_Naissance")
 	private LocalDate date_Naissance;
 	
-	@Column(name="Adresse")
-	private String Adresse;
+	@Column(name="adresse")
+	private String adresse;
 	
 	@Column(name="poste_Occupe")
 	private String poste_Occupe;
@@ -117,10 +117,10 @@ public  class Personnel {
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_grade", nullable = false)
-	@JsonIgnore
 	private Grade grade;
 	
 	@OneToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Compte compte;
 	
 	@OneToMany(mappedBy="personnel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -154,9 +154,28 @@ public  class Personnel {
     @JoinColumn(name = "affectation_id", nullable = false)
 	@JsonIgnore
 	private Affectation affectation;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "service1_id", nullable = false)
+	@JsonIgnore
+	Service1 service1;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "division_id", nullable = false)
+	@JsonIgnore
+	Division division;
 	
 	
-	
+	public Service1 getService1() {
+		return service1;
+	}
+	public void setService1(Service1 service1) {
+		this.service1 = service1;
+	}
+	public Division getDivision() {
+		return division;
+	}
+	public void setDivision(Division division) {
+		this.division = division;
+	}
 	public Affectation getAffectation() {
 		return affectation;
 	}
@@ -408,6 +427,25 @@ public  class Personnel {
 	public void setAppels(List<AppelDeJour> appels) {
 		this.appels = appels;
 	}
+	
+	public String getAdresse() {
+		return adresse;
+	}
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
+	}
+	public Compte getCompte() {
+		return compte;
+	}
+	public void setCompte(Compte compte) {
+		this.compte = compte;
+	}
+	public List<Conge> getConges() {
+		return Conges;
+	}
+	public void setConges(List<Conge> conges) {
+		Conges = conges;
+	}
 	public Personnel(Long id_personnel, int matricule, String nom, String prenom, String sexe, int telephone,
 			int soldeRepos, int soldeExceptionnel, LocalDate date_recrutement, @NotBlank String email) {
 		super();
@@ -422,6 +460,51 @@ public  class Personnel {
 		this.date_recrutement = date_recrutement;
 		this.email = email;
 	}
+	public Personnel(Long id_personnel, int matricule, String nom, String prenom, String sexe, int telephone,
+			double soldeRepos, double soldeReposN_1, double soldeReposN_2, double soldeExceptionnel,
+			LocalDate date_recrutement, @NotBlank String email, String nom_AR, String prenom_AR, int matricule_CNRPS,
+			int matricule_CNSS, LocalDate date_Naissance, String adresse, String poste_Occupe, LocalDate date_Promotion,
+			String echelle, LocalDate date_Echelle, String echellon, LocalDate date_Echellon, Structure departement,
+			Grade grade, Compte compte, List<AffectationTotale> affectationt, List<AffectationPartielle> affectationp,
+			List<Conge> conges, List<AppelDeJour> appels, List<RecuperationSoldeRepos> listRecupSoldeRepos,
+			Fonction fonction, Affectation affectation) {
+		super();
+		this.id_personnel = id_personnel;
+		this.matricule = matricule;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.sexe = sexe;
+		this.telephone = telephone;
+		this.soldeRepos = soldeRepos;
+		this.soldeReposN_1 = soldeReposN_1;
+		this.soldeReposN_2 = soldeReposN_2;
+		this.soldeExceptionnel = soldeExceptionnel;
+		this.date_recrutement = date_recrutement;
+		this.email = email;
+		this.nom_AR = nom_AR;
+		this.prenom_AR = prenom_AR;
+		this.matricule_CNRPS = matricule_CNRPS;
+		this.matricule_CNSS = matricule_CNSS;
+		this.date_Naissance = date_Naissance;
+		this.adresse = adresse;
+		this.poste_Occupe = poste_Occupe;
+		this.date_Promotion = date_Promotion;
+		this.echelle = echelle;
+		this.date_Echelle = date_Echelle;
+		this.echellon = echellon;
+		this.date_Echellon = date_Echellon;
+		this.departement = departement;
+		this.grade = grade;
+		this.compte = compte;
+		this.affectationt = affectationt;
+		this.affectationp = affectationp;
+		Conges = conges;
+		this.appels = appels;
+		ListRecupSoldeRepos = listRecupSoldeRepos;
+		this.fonction = fonction;
+		this.affectation = affectation;
+	}
+	
 	
 	
 	

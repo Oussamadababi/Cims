@@ -10,14 +10,18 @@ import org.springframework.stereotype.Service;
 
 import Cims.PFE.Dao.AppelDeJourRepository;
 import Cims.PFE.Dao.DepartementRepository;
+import Cims.PFE.Dao.DivisionRepository;
 import Cims.PFE.Dao.FonctionRepository;
 import Cims.PFE.Dao.GradeRepository;
 import Cims.PFE.Dao.PersonnelRepository;
+import Cims.PFE.Dao.ServiceRepository;
 import Cims.PFE.Dao.SiteRepository;
 import Cims.PFE.Entities.Affectation;
+import Cims.PFE.Entities.Division;
 import Cims.PFE.Entities.Fonction;
 import Cims.PFE.Entities.Grade;
 import Cims.PFE.Entities.Personnel;
+import Cims.PFE.Entities.Service1;
 import Cims.PFE.Entities.Structure;
 
 
@@ -41,6 +45,10 @@ public class PersonnelService {
 	DepartementRepository departementRepository;
 	@Autowired
 	SiteRepository siteRepository;
+	@Autowired
+	DivisionRepository divisionRepository;
+	@Autowired
+	ServiceRepository serviceRepository;
 	
 	public List<Personnel> listAll(){
 		List<Personnel> personnels = new ArrayList<>();
@@ -53,15 +61,19 @@ public class PersonnelService {
 		p.setSoldeExceptionnel(0);
 		return personnelRepository.save(p);
 	}
-	public Personnel save2(Personnel p,long id_grade,long idFonction,long idStructure,long idAffectation) {
+	public Personnel save2(Personnel p,long id_grade,long idFonction,long idStructure,long idAffectation,long idDivision,long idService) {
 		Grade g =gradeRepository.getOne(id_grade);
 		Fonction f =fonctionRepository.getOne(idFonction);
 		Structure s =departementRepository.getOne(idStructure);
 		Affectation a=siteRepository.getOne(idAffectation);
+		Division d =divisionRepository.getOne(idDivision);
+		Service1 service1=serviceRepository.getOne(idService);
 		p.setDepartement(s);
 		p.setGrade(g);
 		p.setFonction(f);
 		p.setAffectation(a);
+		p.setDivision(d);
+		p.setService1(service1);
 		p.setSoldeRepos(0);
 		p.setSoldeExceptionnel(0);
 		return personnelRepository.save(p);

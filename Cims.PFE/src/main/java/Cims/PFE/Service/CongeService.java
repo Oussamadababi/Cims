@@ -1,14 +1,18 @@
 package Cims.PFE.Service;
 
-
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import Cims.PFE.Dao.CompteRepository;
 import Cims.PFE.Dao.CongeRepository;
 import Cims.PFE.Dao.PersonnelRepository;
@@ -37,31 +41,41 @@ public class CongeService {
 	}
 
 	public Conge demanderConge(Conge c, long idCompte) {
-		
+
 		Compte co = compteRepository.getOne(idCompte);
-		Conge c1= congeRepository.congeparPersonnelenattente(co.getPersonnel().getId_personnel());
+		Conge c1 = congeRepository.congeparPersonnelenattente(co.getPersonnel().getId_personnel());
 		Personnel p = personnelRepository.getOne(co.getPersonnel().getId_personnel());
-		if(c1==null)
-		{
-		c.setEtat("en-attente");
-		c.setP(p);
-		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
-		return congeRepository.save(c);
+		if (c1 == null) {
+			c.setEtat("en-attente");
+			c.setP(p);
+			c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
+			return congeRepository.save(c);
 		}
 		return c1;
 	}
 
 	public Conge ajouterConge(Conge c, long id) {
 		Personnel p = personnelRepository.findById(id).get();
-		Conge c1= congeRepository.congeparPersonnelenattente(p.getId_personnel());
-	
-		//c.setDatefin(c.getDatedebut()+c.getNumDeJour());
+		Conge c1 = congeRepository.congeparPersonnelenattente(p.getId_personnel());
+		// Conveert local date to date pour utiliser dans le calendar
+		ZoneId defaultZoneId = ZoneId.systemDefault();
+		Date dated = Date.from(c.getDatedebut().atStartOfDay(defaultZoneId).toInstant());
+		// ajouter nbj au date
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(dated);
+		calendar.add(Calendar.DATE, c.getNumDeJour());
+		Date currentDatePlusOne = calendar.getTime();
+		//Converting the Date to LocalDate
+		Instant instant = currentDatePlusOne.toInstant();	
+		LocalDate Datedebutplusnbj = instant.atZone(defaultZoneId).toLocalDate();
+		//Convert Finis
+		c.setDatefin(Datedebutplusnbj);
 		c.setP(p);
 		c.setEtat("en-attente");
 		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
+
 		return congeRepository.save(c);
-		
-		
+
 	}
 
 	public List<Conge> congeparMatricule(int matricule) {
@@ -80,41 +94,44 @@ public class CongeService {
 		c.setId(id);
 		return congeRepository.findById(id).get();
 	}
-	//liste conges par matricule
+
+	// liste conges par matricule
 	public List<Conge> congeparPersonnel(int matricule) {
 		return congeRepository.congeparMatricule(matricule);
 	}
+
 	// Liste des conges par id conges
-	public List<Conge> congeparPersonnel ( long idCompte) 
-	{
+	public List<Conge> congeparPersonnel(long idCompte) {
 		Compte co = compteRepository.getOne(idCompte);
 
 		return congeRepository.congeparPersonnel(co.getPersonnel().getId_personnel());
 	}
-	public Conge congeparPersonnelenattente(long idPersonnel)
-	{
+
+	public Conge congeparPersonnelenattente(long idPersonnel) {
 		return congeRepository.congeparPersonnelenattente(idPersonnel);
 	}
-	public Conge congeparPersonnelenattenteCompte(long idCompte)
-	{
+
+	public Conge congeparPersonnelenattenteCompte(long idCompte) {
 		Compte co = compteRepository.getOne(idCompte);
 		return congeRepository.congeparPersonnelenattente(co.getPersonnel().getId_personnel());
 	}
-	public int NbjrsCongeAccepter (Long id_p){
-		List<Conge> listeConge=congeRepository.congeAccepterParIdpersonnel(id_p);
-		int nbfinal=0;
-		for(Conge C :listeConge)
-		{
-			int nbj = C.getDatefin().getDayOfYear()-C.getDatefin().getDayOfYear();
-			nbfinal=nbfinal+nbj;
+
+	public int NbjrsCongeAccepter(Long id_p) {
+		List<Conge> listeConge = congeRepository.congeAccepterParIdpersonnel(id_p);
+		int nbfinal = 0;
+		for (Conge C : listeConge) {
+			int nbj = C.getDatefin().getDayOfYear() - C.getDatefin().getDayOfYear();
+			nbfinal = nbfinal + nbj;
 		}
 		return nbfinal;
-		
+
 	}
+
 	@Transactional
 	public void AccepterConge(Long id) {
 		congeRepository.ModifierEtatConge("accepter", id);
 	}
+
 	@Transactional
 	public void RefuserConge(Long id) {
 		congeRepository.ModifierEtatConge("refuser", id);

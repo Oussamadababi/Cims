@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "conge")
 public class Conge {
@@ -45,6 +47,7 @@ public class Conge {
 
 	@ManyToOne
 	@JoinColumn(name = "Personnel_id", nullable = false)
+	@JsonIgnore
 	private Personnel p;
 
 	@OneToOne(mappedBy = "conge", cascade = CascadeType.ALL)
@@ -134,6 +137,28 @@ public class Conge {
 		this.numDeJour = numDeJour;
 		this.etat = etat;
 		this.p = p;
+	}
+
+	public int getNumDeJour() {
+		return numDeJour;
+	}
+
+	public void setNumDeJour(int numDeJour) {
+		this.numDeJour = numDeJour;
+	}
+
+	public Conge(Long id, Type_conge typedeconge, Date datedemande, LocalDate datedebut, LocalDate datefin,
+			int numDeJour, String etat, Personnel p, AnnulationConge annulationConge) {
+		super();
+		this.id = id;
+		this.typedeconge = typedeconge;
+		this.datedemande = datedemande;
+		this.datedebut = datedebut;
+		this.datefin = datefin;
+		this.numDeJour = numDeJour;
+		this.etat = etat;
+		this.p = p;
+		this.annulationConge = annulationConge;
 	}
 	
 

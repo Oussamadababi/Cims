@@ -54,14 +54,14 @@ public class CongeService {
 	public Conge ajouterConge(Conge c, long id) {
 		Personnel p = personnelRepository.findById(id).get();
 		Conge c1= congeRepository.congeparPersonnelenattente(p.getId_personnel());
-		if(c1==null)
-		{
+	
+		//c.setDatefin(c.getDatedebut()+c.getNumDeJour());
 		c.setP(p);
 		c.setEtat("en-attente");
 		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
 		return congeRepository.save(c);
-		}
-		return c1;
+		
+		
 	}
 
 	public List<Conge> congeparMatricule(int matricule) {

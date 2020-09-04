@@ -1,8 +1,8 @@
 package Cims.PFE.Entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -23,7 +23,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity  
@@ -33,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Inheritance( strategy = InheritanceType.SINGLE_TABLE )
 @DiscriminatorColumn( name="discriminator", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("Personnel")
-public  class Personnel {
+public  class Personnel implements Serializable {
 	@Id  
     @GeneratedValue(strategy=GenerationType.IDENTITY)  
 	@Column(name="id_personnel")
@@ -132,8 +131,8 @@ public  class Personnel {
     private List<AffectationPartielle> affectationp ;
 	
 	
-	@OneToMany(mappedBy="p", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
+	@OneToMany(mappedBy="p", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Conge> Conges ;
 	
 	@ManyToMany(mappedBy="Personnels",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -439,12 +438,6 @@ public  class Personnel {
 	}
 	public void setCompte(Compte compte) {
 		this.compte = compte;
-	}
-	public List<Conge> getConges() {
-		return Conges;
-	}
-	public void setConges(List<Conge> conges) {
-		Conges = conges;
 	}
 	public Personnel(Long id_personnel, int matricule, String nom, String prenom, String sexe, int telephone,
 			int soldeRepos, int soldeExceptionnel, LocalDate date_recrutement, @NotBlank String email) {

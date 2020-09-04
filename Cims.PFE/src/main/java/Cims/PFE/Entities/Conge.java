@@ -1,5 +1,6 @@
 package Cims.PFE.Entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -8,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,10 +21,11 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "conge")
-public class Conge {
+public class Conge implements Serializable  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -44,12 +47,14 @@ public class Conge {
 
 	@Column(name = "Etat")
 	private String etat;
-
-	@ManyToOne
+    
+	
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "Personnel_id", nullable = false)
-	@JsonIgnore
 	private Personnel p;
 
+	@JsonIgnore
 	@OneToOne(mappedBy = "conge", cascade = CascadeType.ALL)
 	private AnnulationConge annulationConge;
 

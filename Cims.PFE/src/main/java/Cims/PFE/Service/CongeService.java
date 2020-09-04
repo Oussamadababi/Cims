@@ -55,8 +55,8 @@ public class CongeService {
 	}
 
 	public Conge ajouterConge(Conge c, long id) {
-		Personnel p = personnelRepository.findById(id).get();
-		Conge c1 = congeRepository.congeparPersonnelenattente(p.getId_personnel());
+		Personnel p = personnelRepository.getOne(id);
+		//Conge c1 = congeRepository.congeparPersonnelenattente(p.getId_personnel());
 		// Conveert local date to date pour utiliser dans le calendar
 		ZoneId defaultZoneId = ZoneId.systemDefault();
 		Date dated = Date.from(c.getDatedebut().atStartOfDay(defaultZoneId).toInstant());
@@ -71,7 +71,7 @@ public class CongeService {
 		//Convert Finis
 		c.setDatefin(Datedebutplusnbj);
 		c.setP(p);
-		c.setEtat("en-attente");
+		c.setEtat("Accepté");
 		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
 
 		return congeRepository.save(c);

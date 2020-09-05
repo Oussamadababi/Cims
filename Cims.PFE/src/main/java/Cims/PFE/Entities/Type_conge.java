@@ -1,6 +1,7 @@
 package Cims.PFE.Entities;
 
 public enum Type_conge {
-	conge_repos,conge_exceptionnel,conge_maladie,conge_autre
+	Congé_derepos,conge_exceptionnel,conge_maladie,conge_maladie_longueDuree,Congé_post_natal,Congé_maternité,Congésanssolde
+	,Miseàpied,Détachement
 
 }

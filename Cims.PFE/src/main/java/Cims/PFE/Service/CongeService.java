@@ -19,6 +19,7 @@ import Cims.PFE.Dao.PersonnelRepository;
 import Cims.PFE.Entities.Compte;
 import Cims.PFE.Entities.Conge;
 import Cims.PFE.Entities.Personnel;
+import Cims.PFE.Entities.Type_conge;
 
 @Service
 public class CongeService {
@@ -56,7 +57,6 @@ public class CongeService {
 
 	public Conge ajouterConge(Conge c, long id) {
 		Personnel p = personnelRepository.getOne(id);
-		//Conge c1 = congeRepository.congeparPersonnelenattente(p.getId_personnel());
 		// Conveert local date to date pour utiliser dans le calendar
 		ZoneId defaultZoneId = ZoneId.systemDefault();
 		Date dated = Date.from(c.getDatedebut().atStartOfDay(defaultZoneId).toInstant());
@@ -73,8 +73,25 @@ public class CongeService {
 		c.setP(p);
 		c.setEtat("Accepté");
 		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
-
-		return congeRepository.save(c);
+		//soustracter le conge de la solde repos n-2
+		if(c.getTypedeconge()==Type_conge.conge_repos|c.getTypedeconge()==Type_conge.conge_compensation){
+		if(p.getSoldeReposN_2()!= 0){
+			p.setSoldeReposN_2(p.getSoldeReposN_2()-c.getNumDeJour());
+			return congeRepository.save(c);
+		}else if (p.getSoldeReposN_1()!=0){
+			p.setSoldeReposN_1(p.getSoldeReposN_1()-c.getNumDeJour());
+			return congeRepository.save(c);
+		}
+		else if(p.getSoldeRepos()!=0){
+			p.setSoldeRepos(p.getSoldeRepos()-c.getNumDeJour());
+			return congeRepository.save(c);
+		}
+		else
+		c.setEtat("Pas de solde");
+		return congeRepository.save(c); }
+		else
+			return congeRepository.save(c);
+		
 
 	}
 

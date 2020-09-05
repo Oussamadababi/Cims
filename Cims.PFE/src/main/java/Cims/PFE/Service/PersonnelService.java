@@ -171,4 +171,12 @@ public class PersonnelService {
 		
 	}
 	
+	public void AjouterSoldeCompensation (long id_p,double soldeC){
+		
+		Personnel p = personnelRepository.getOne(id_p);
+		p.setSoldeCompensation(soldeC);
+		personnelRepository.save(p);
+		
+	}
+	
 }

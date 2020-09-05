@@ -74,7 +74,7 @@ public class CongeService {
 		c.setEtat("Accepté");
 		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
 		//soustracter le conge de la solde repos n-2
-		if(c.getTypedeconge()==Type_conge.conge_repos|c.getTypedeconge()==Type_conge.conge_compensation){
+		if(c.getTypedeconge()==Type_conge.conge_repos){
 		if(p.getSoldeReposN_2()!= 0){
 			p.setSoldeReposN_2(p.getSoldeReposN_2()-c.getNumDeJour());
 			return congeRepository.save(c);

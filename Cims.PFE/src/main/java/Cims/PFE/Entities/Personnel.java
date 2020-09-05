@@ -65,6 +65,9 @@ public  class Personnel implements Serializable {
 	@Column(name="soldeexceptionnel")
 	private double soldeExceptionnel;
 	
+	@Column(name="soldeCompensation")
+	private double soldeCompensation;
+	
 	@Column(name="date_recrutement")
 	private LocalDate date_recrutement;
 	
@@ -243,8 +246,15 @@ public  class Personnel implements Serializable {
 	public void setTelephone(int telephone) {
 		this.telephone = telephone;
 	}
+	
 
 	
+	public double getSoldeCompensation() {
+		return soldeCompensation;
+	}
+	public void setSoldeCompensation(double soldeCompensation) {
+		this.soldeCompensation = soldeCompensation;
+	}
 	@JsonIgnore
 	public List<AffectationTotale> getAffectationt() {
 		return affectationt;

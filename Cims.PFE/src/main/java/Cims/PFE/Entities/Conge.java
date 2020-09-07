@@ -44,6 +44,9 @@ public class Conge implements Serializable  {
 	private LocalDate datefin;
 	@Column(name = "numDeJour")
 	private int numDeJour;
+	
+	@Column(name = "numDeMois")
+	private int numDeMois;
 
 	@Column(name = "Etat")
 	private String etat;
@@ -118,6 +121,15 @@ public class Conge implements Serializable  {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+
+	public int getNumDeMois() {
+		return numDeMois;
+	}
+
+	public void setNumDeMois(int numDeMois) {
+		this.numDeMois = numDeMois;
+	}
 
 	public Conge(Long id, Type_conge typedeconge, Date datedemande, LocalDate datedebut, LocalDate datefin, String etat,
 			Personnel p) {
@@ -161,6 +173,21 @@ public class Conge implements Serializable  {
 		this.datedebut = datedebut;
 		this.datefin = datefin;
 		this.numDeJour = numDeJour;
+		this.etat = etat;
+		this.p = p;
+		this.annulationConge = annulationConge;
+	}
+
+	public Conge(Long id, Type_conge typedeconge, Date datedemande, LocalDate datedebut, LocalDate datefin,
+			int numDeJour, int numDeMois, String etat, Personnel p, AnnulationConge annulationConge) {
+		super();
+		this.id = id;
+		this.typedeconge = typedeconge;
+		this.datedemande = datedemande;
+		this.datedebut = datedebut;
+		this.datefin = datefin;
+		this.numDeJour = numDeJour;
+		this.numDeMois = numDeMois;
 		this.etat = etat;
 		this.p = p;
 		this.annulationConge = annulationConge;

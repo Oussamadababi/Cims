@@ -178,8 +178,8 @@ public class PersonnelController {
 		return ResponseEntity.ok(new MessageResponse("Updated"));
 	}
 	
-	@PutMapping("/ajoutSoldeCompensation/{id_p}")
-	public ResponseEntity<MessageResponse> ajoutSoldeCompensation(@PathVariable(name="id_p") Long id_p, @RequestBody Object soldeC){
+	@PutMapping("/ajoutSoldeCompensation/{id_p}/{soldeC}")
+	public ResponseEntity<MessageResponse> ajoutSoldeCompensation(@PathVariable(name="id_p") Long id_p, @PathVariable(name="soldeC") double soldeC){
 		personnelService.AjouterSoldeCompensation(id_p,soldeC);
 		return ResponseEntity.ok(new MessageResponse("Solde Compensation ajouté"));
 	}

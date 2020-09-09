@@ -65,7 +65,7 @@ public class AnnulationCongeService {
 		annulationCongeRepository.ModifierEtatAnulationConge("refuser", id);
 	}
 
-	public Object AnulationCongeenattente(long idPersonnel) {
+	public AnnulationConge AnulationCongeenattente(long idPersonnel) {
 		return annulationCongeRepository.AnulationConge(idPersonnel);
 	}
 

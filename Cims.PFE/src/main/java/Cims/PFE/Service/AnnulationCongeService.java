@@ -65,14 +65,14 @@ public class AnnulationCongeService {
 		annulationCongeRepository.ModifierEtatAnulationConge("refuser", id);
 	}
 
-	public AnnulationConge AnulationCongeenattente(long idPersonnel) {
-		return annulationCongeRepository.AnulationCongeenattente(idPersonnel);
+	public Object AnulationCongeenattente(long idPersonnel) {
+		return annulationCongeRepository.AnulationConge(idPersonnel);
 	}
 
-	public List<AnnulationConge> AnulationConge(long idCompte)
-	{
-		Compte co = compteRepository.getOne(idCompte);
-		return annulationCongeRepository.AnulationConge(co.getPersonnel().getId_personnel());
-	}
+//	public List<AnnulationConge> AnulationConge(long idCompte)
+//	{
+//		Compte co = compteRepository.getOne(idCompte);
+//		return annulationCongeRepository.AnulationConge(co.getPersonnel().getId_personnel());
+//	}
 
 }

@@ -76,6 +76,7 @@ public class CongeService {
 			LocalDate Datedebutplusnbj = instant.atZone(defaultZoneId).toLocalDate();
 			// Convert Finis
 			c.setDatefin(Datedebutplusnbj);
+			c.setNumDeMois(0);
 			if (p.getSoldeReposN_2() != 0) {
 				p.setSoldeReposN_2(p.getSoldeReposN_2() - c.getNumDeJour());
 				return congeRepository.save(c);
@@ -90,8 +91,8 @@ public class CongeService {
 			else
 				c.setEtat("Pas de solde");
 			return congeRepository.save(c);
-		} else if (c.getTypedeconge() == Type_conge.conge_maladie_longue_duree | c.getTypedeconge() == Type_conge.conge_post_natal
-				| c.getTypedeconge() == Type_conge.conge_maternite
+		} else if (c.getTypedeconge() == Type_conge.conge_maladie_longue_duree
+				| c.getTypedeconge() == Type_conge.conge_post_natal | c.getTypedeconge() == Type_conge.conge_maternite
 				| c.getTypedeconge() == Type_conge.conge_sans_solde) {
 
 			calendar.add(Calendar.MONTH, c.getNumDeMois());
@@ -101,17 +102,20 @@ public class CongeService {
 			Instant instant = currentDatePlusOne.toInstant();
 			LocalDate DatedebutplusNbMois = instant.atZone(defaultZoneId).toLocalDate();
 			// Convert Finis
+			c.setNumDeJour(0);
 			c.setDatefin(DatedebutplusNbMois);
 			return congeRepository.save(c);
 
-		} else if (c.getTypedeconge() == Type_conge.mise_a_pied){
+		} else if (c.getTypedeconge() == Type_conge.mise_a_pied) {
+			c.setNumDeJour(0);
+			c.setNumDeMois(0);
 			c.setEtat("mise à pied");
 			return congeRepository.save(c);
-		}
-		else
-			c.setEtat("Detachement");
+		} else
+			c.setNumDeJour(0);
+		c.setNumDeMois(0);
+		c.setEtat("Detachement");
 		return congeRepository.save(c);
-			
 
 	}
 

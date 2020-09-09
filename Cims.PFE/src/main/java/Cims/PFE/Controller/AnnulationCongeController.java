@@ -64,16 +64,16 @@ public class AnnulationCongeController {
 		return ResponseEntity.ok(new MessageResponse("demande annulation conge Refuser"));
 	}
 	@GetMapping(value = "/AnulationCongeenattente/{personnel_id}")
-	public AnnulationConge AnulationCongeenattente(@PathVariable(name="personnel_id")long idPersonnel)
+	public Object AnulationCongeenattente(@PathVariable(name="personnel_id")long idPersonnel)
 	{
 		return annulationCongeService.AnulationCongeenattente(idPersonnel);
 	}
-	@GetMapping(value = "/AnulationConge/{personnel_id}")
-	public List<AnnulationConge> AnulationConge(@PathVariable(name="personnel_id")long idPersonnel)
-	{
-		return annulationCongeService.AnulationConge(idPersonnel);
-	}
-	
+//	@GetMapping(value = "/AnulationConge/{personnel_id}")
+//	public List<AnnulationConge> AnulationConge(@PathVariable(name="personnel_id")long idPersonnel)
+//	{
+//		return annulationCongeService.AnulationConge(idPersonnel);
+//	}
+//	
 	
 
 }

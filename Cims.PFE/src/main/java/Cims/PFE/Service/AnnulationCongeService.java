@@ -1,7 +1,9 @@
 package Cims.PFE.Service;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -12,9 +14,11 @@ import org.springframework.stereotype.Service;
 import Cims.PFE.Dao.AnnulationCongeRepository;
 import Cims.PFE.Dao.CompteRepository;
 import Cims.PFE.Dao.CongeRepository;
+import Cims.PFE.Dao.PersonnelRepository;
 import Cims.PFE.Entities.AnnulationConge;
-import Cims.PFE.Entities.Compte;
 import Cims.PFE.Entities.Conge;
+import Cims.PFE.Entities.Personnel;
+
 
 @Service
 public class AnnulationCongeService {
@@ -25,6 +29,8 @@ public class AnnulationCongeService {
 	CongeRepository cRepository;
 	@Autowired
 	CompteRepository compteRepository;
+	@Autowired
+	PersonnelRepository personnelRepository;
 
 	public AnnulationConge save(AnnulationConge Ac) {
 
@@ -38,13 +44,25 @@ public class AnnulationCongeService {
 	}
 
 	public AnnulationConge ajouterAConge(Long id_conge) {
-		Conge ca = cRepository.getOne(id_conge);
+		Conge conge = cRepository.getOne(id_conge);
 		AnnulationConge c = new AnnulationConge();
-		c.setConge(ca);
+		c.setConge(conge);
 		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
-		c.setEtat("En_attente");
-		return save(c);
-
+		c.setEtat("Accepté");
+		// Calculer difference entre deux localdate
+		LocalDate d1 = conge.getDatedebut();
+		LocalDate d2 = convertToLocalDateViaSqlDate(c.getDatedemande());
+		Duration diff = Duration.between(d1, d2);
+		long diffDays = diff.toDays();
+		if(diffDays<conge.getNumDeJour()){
+			Personnel P1=conge.getP();
+			P1.setSoldeRepos(P1.getSoldeRepos()+diffDays);
+			personnelRepository.save(P1);		
+		    annulationCongeRepository.save(c);
+		    return c;
+		}
+		else return c;
+		
 	}
 
 	public void deleteAnnulationConge(long id) {
@@ -55,9 +73,12 @@ public class AnnulationCongeService {
 		return annulationCongeRepository.findById(id).get();
 	}
 
+	
 	@Transactional
 	public void AccepterAnnulationConge(Long id) {
 		annulationCongeRepository.ModifierEtatAnulationConge("accepter", id);
+		
+		
 	}
 
 	@Transactional
@@ -74,5 +95,8 @@ public class AnnulationCongeService {
 //		Compte co = compteRepository.getOne(idCompte);
 //		return annulationCongeRepository.AnulationConge(co.getPersonnel().getId_personnel());
 //	}
+	public LocalDate convertToLocalDateViaSqlDate(Date dateToConvert) {
+	    return new java.sql.Date(dateToConvert.getTime()).toLocalDate();
+	}
 
 }

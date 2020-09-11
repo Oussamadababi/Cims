@@ -1,6 +1,5 @@
 package Cims.PFE.Service;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,7 +17,6 @@ import Cims.PFE.Dao.PersonnelRepository;
 import Cims.PFE.Entities.AnnulationConge;
 import Cims.PFE.Entities.Conge;
 import Cims.PFE.Entities.Personnel;
-
 
 @Service
 public class AnnulationCongeService {
@@ -46,23 +44,27 @@ public class AnnulationCongeService {
 	public AnnulationConge ajouterAConge(Long id_conge) {
 		Conge conge = cRepository.getOne(id_conge);
 		AnnulationConge c = new AnnulationConge();
-		c.setConge(conge);
-		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
-		c.setEtat("Accepté");
-		// Calculer difference entre deux localdate
-		LocalDate d1 = conge.getDatedebut();
-		LocalDate d2 = convertToLocalDateViaSqlDate(c.getDatedemande());
-		Duration diff = Duration.between(d1, d2);
-		long diffDays = diff.toDays();
-		if(diffDays<conge.getNumDeJour()){
-			Personnel P1=conge.getP();
-			P1.setSoldeRepos(P1.getSoldeRepos()+diffDays);
-			personnelRepository.save(P1);		
-		    annulationCongeRepository.save(c);
-		    return c;
-		}
-		else return c;
 		
+		// Calculer difference entre deux localdate
+		int A =conge.getDatedebut().getDayOfYear();
+		int B =LocalDate.now().getDayOfYear();
+		int res=B-A;
+		
+		 
+		if ((0<res)&(res< conge.getNumDeJour())|((0<res)&(res< conge.getNumDeMois()*30))){
+			
+			c.setConge(conge);
+			c.setDatedemande(LocalDate.now());
+			c.setEtat("Accepté");
+			Personnel P1 = conge.getP();
+			P1.setSoldeRepos(P1.getSoldeRepos() + res);
+			personnelRepository.save(P1);
+			annulationCongeRepository.save(c);
+			return c;
+		} else
+		
+			return null;
+
 	}
 
 	public void deleteAnnulationConge(long id) {
@@ -73,12 +75,10 @@ public class AnnulationCongeService {
 		return annulationCongeRepository.findById(id).get();
 	}
 
-	
 	@Transactional
 	public void AccepterAnnulationConge(Long id) {
 		annulationCongeRepository.ModifierEtatAnulationConge("accepter", id);
-		
-		
+
 	}
 
 	@Transactional
@@ -90,13 +90,14 @@ public class AnnulationCongeService {
 		return annulationCongeRepository.AnulationConge(idPersonnel);
 	}
 
-//	public List<AnnulationConge> AnulationConge(long idCompte)
-//	{
-//		Compte co = compteRepository.getOne(idCompte);
-//		return annulationCongeRepository.AnulationConge(co.getPersonnel().getId_personnel());
-//	}
+	// public List<AnnulationConge> AnulationConge(long idCompte)
+	// {
+	// Compte co = compteRepository.getOne(idCompte);
+	// return
+	// annulationCongeRepository.AnulationConge(co.getPersonnel().getId_personnel());
+	// }
 	public LocalDate convertToLocalDateViaSqlDate(Date dateToConvert) {
-	    return new java.sql.Date(dateToConvert.getTime()).toLocalDate();
+		return new java.sql.Date(dateToConvert.getTime()).toLocalDate();
 	}
 
 }

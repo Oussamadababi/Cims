@@ -41,10 +41,15 @@ public class AnnulationCongeController {
 	}
 	
 	@PostMapping(value = "/ajouterAConge/{id_conge}")
-	public ResponseEntity<MessageResponse> ajouterAConge(
+	public AnnulationConge ajouterAConge(
 			@PathVariable("id_conge") Long id_conge) {
-		annulationCongeService.ajouterAConge( id_conge);
-		return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("demande annulation conge ajouter"));
+		AnnulationConge ac = new AnnulationConge();
+		
+		ac=annulationCongeService.ajouterAConge( id_conge);
+//		if (ac!=null){
+//		return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("demande annulation conge ajouter"));}
+//		else
+		return ac;
 	}
 	
 	@DeleteMapping(value="/deleteAnnulationConge/{id}")

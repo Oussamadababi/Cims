@@ -142,8 +142,8 @@ public  class Personnel implements Serializable {
 	@JsonIgnore
     private List<AppelDeJour> appels ;
 	
-	@OneToMany(mappedBy="p", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
+	@OneToMany(mappedBy="p", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<RecuperationSoldeRepos> ListRecupSoldeRepos ;
 	
 	
@@ -418,12 +418,7 @@ public  class Personnel implements Serializable {
 	public void setDate_Echellon(LocalDate date_Echellon) {
 		this.date_Echellon = date_Echellon;
 	}
-	public List<RecuperationSoldeRepos> getListRecupSoldeRepos() {
-		return ListRecupSoldeRepos;
-	}
-	public void setListRecupSoldeRepos(List<RecuperationSoldeRepos> listRecupSoldeRepos) {
-		ListRecupSoldeRepos = listRecupSoldeRepos;
-	}
+
 	public Fonction getFonction() {
 		return fonction;
 	}

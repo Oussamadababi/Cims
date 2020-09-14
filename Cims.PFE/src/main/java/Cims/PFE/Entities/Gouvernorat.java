@@ -53,21 +53,14 @@ public class Gouvernorat {
 	public void setNomGouv(String nomGouv) {
 		this.nomGouv = nomGouv;
 	}
-	
-	public void setSites(List<Affectation> sites) {
-		Sites = sites;
-	}
-	
-	
+			
 	public String getNomGouv_ar() {
 		return nomGouv_ar;
 	}
 	public void setNomGouv_ar(String nomGouv_ar) {
 		this.nomGouv_ar = nomGouv_ar;
 	}
-	public List<Affectation> getSites() {
-		return Sites;
-	}
+
 	@Override
 	public String toString() {
 		return "Gouvernorat [idGouv=" + idGouv + ", nomGouv=" + nomGouv + ", Sites=" + Sites + "]";

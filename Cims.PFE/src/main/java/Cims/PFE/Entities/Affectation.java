@@ -54,7 +54,6 @@ public class Affectation implements Serializable{
 	@Column(name="qualite_direction_ar")
 	private String qualite_direction_ar;
 	
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "id_gouvernorat", nullable = false)
 	private Gouvernorat gouvernorat;
@@ -211,6 +210,7 @@ public List<AffectationPartielle> getAffectationp() {
 public List<AffectationTotale> getAffectationt() {
 	return affectationt;
 }
+
 
 
 

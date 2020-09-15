@@ -49,6 +49,7 @@ public class AppelDeJourService {
 				List<Personnel> personnels = new ArrayList<>();
 				personnels.add(p);
 				newAppel.setPersonnels(personnels);
+				newAppel.setEtat("Sansjusitf");
 				AppelDeJourRepository.save(newAppel);
 			}
 			// else {
@@ -89,6 +90,10 @@ public class AppelDeJourService {
 			
 		}
 	}
+//	public List<AppelDeJour>listAll(){
+//		
+//		
+//	}
 	
 	
 

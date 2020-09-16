@@ -1,13 +1,12 @@
 package Cims.PFE.Service;
 
-import java.time.LocalDate;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import Cims.PFE.Dao.AppelDeJourRepository;
 import Cims.PFE.Dao.PersonnelRepository;
@@ -90,10 +89,21 @@ public class AppelDeJourService {
 			
 		}
 	}
-//	public List<AppelDeJour>listAll(){
-//		
-//		
-//	}
+	public List<Personnel>listAllAbsent(){
+		List <Personnel> p = new ArrayList();
+		List <BigInteger> idp=AppelDeJourRepository.ListeAbsenceSansJustifiaction();
+		
+		for(BigInteger i : idp){
+			Personnel p1 = new Personnel ();
+			p1=personnelRepository.getOne(i.longValue());
+			p.add(p1);
+			
+			
+		}
+		return p;
+		
+		
+	}
 	
 	
 

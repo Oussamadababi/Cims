@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import Cims.PFE.Entities.AppelDeJour;
+import Cims.PFE.Entities.Personnel;
 import Cims.PFE.Service.AppelDeJourService;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -20,6 +20,7 @@ import Cims.PFE.Service.AppelDeJourService;
 public class AppelDeJourController {
 	@Autowired
 	AppelDeJourService appelDeJourService;
+	
 
 	@PutMapping(value = "ListeAbsence/{personnel_id}/{date}")
 	public void ajouteAuListeAbsence(@PathVariable("personnel_id") long personnel_id,
@@ -32,9 +33,9 @@ public class AppelDeJourController {
 		appelDeJourService.supprimerPersonnelDeLaListe(personnel_id, date);
 	}
 	
-//	@GetMapping(value = "/listAbsence")
-//	public List<AppelDeJour> listAbsence() {
-//		return appelDeJourService.listAll();
-//	}
+	@GetMapping(value = "/listPAbsence")
+	public List<Personnel> listAbsence() {
+		return appelDeJourService.listAllAbsent();
+	}
 
 }

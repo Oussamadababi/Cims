@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 import Cims.PFE.Dao.AppelDeJourRepository;
 import Cims.PFE.Dao.PersonnelRepository;
+import Cims.PFE.Dao.Pesonnel_Absent_SJRepository;
 import Cims.PFE.Entities.AppelDeJour;
 import Cims.PFE.Entities.Personnel;
+import Cims.PFE.Entities.Pesonnel_Absent_SJ;
 
 
 @Service
@@ -22,6 +24,9 @@ public class AppelDeJourService {
 
 	@Autowired
 	private PersonnelRepository personnelRepository;
+	
+	@Autowired
+    private Pesonnel_Absent_SJRepository PASJ;
 
 	// public void save(AppelDeJour a){
 	//
@@ -89,18 +94,21 @@ public class AppelDeJourService {
 			
 		}
 	}
-	public List<Personnel>listAllAbsent(){
-		List <Personnel> p = new ArrayList();
-		List <BigInteger> idp=AppelDeJourRepository.ListeAbsenceSansJustifiaction();
+	public List<Pesonnel_Absent_SJ>listAllAbsent(){
+		List <Pesonnel_Absent_SJ> idp=PASJ.ListeAbsenceSansJustifiaction();
 		
-		for(BigInteger i : idp){
-			Personnel p1 = new Personnel ();
-			p1=personnelRepository.getOne(i.longValue());
-			p.add(p1);
-			
-			
-		}
-		return p;
+//		for(Pesonnel_Absent_SJ i : idp){
+//			Personnel p1 = new Personnel ();
+//			p1=personnelRepository.getOne(i.getId_personnel());
+//			i.setMatricule(p1.getMatricule());
+//			i.setNom(p1.getNom());
+//			i.setPrenom(p1.getPrenom());
+//			i.setNom_AR(p1.getNom_AR());
+//			i.setPrenom_AR(p1.getPrenom_AR());
+//			
+//			
+//		}
+		return idp;
 		
 		
 	}

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import Cims.PFE.Entities.Personnel;
+import Cims.PFE.Entities.Pesonnel_Absent_SJ;
 import Cims.PFE.Service.AppelDeJourService;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -34,7 +35,7 @@ public class AppelDeJourController {
 	}
 	
 	@GetMapping(value = "/listPAbsence")
-	public List<Personnel> listAbsence() {
+	public List<Pesonnel_Absent_SJ> listAbsence() {
 		return appelDeJourService.listAllAbsent();
 	}
 	@GetMapping(value = "/listnonAbsent/{date}")

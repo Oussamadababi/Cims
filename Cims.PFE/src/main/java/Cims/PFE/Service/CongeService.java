@@ -44,15 +44,77 @@ public class CongeService {
 	public Conge demanderConge(Conge c, long idCompte) {
 
 		Compte co = compteRepository.getOne(idCompte);
-		Conge c1 = congeRepository.congeparPersonnelenattente(co.getPersonnel().getId_personnel());
 		Personnel p = personnelRepository.getOne(co.getPersonnel().getId_personnel());
+		/*Conge c1 = congeRepository.congeparPersonnelenattente(co.getPersonnel().getId_personnel());
+
 		if (c1 == null) {
 			c.setEtat("en-attente");
 			c.setP(p);
 			c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
 			return congeRepository.save(c);
 		}
-		return c1;
+		return c1;*/
+		
+		// Conveert local date to date pour utiliser dans le calendar
+		ZoneId defaultZoneId = ZoneId.systemDefault();
+		Date dated = Date.from(c.getDatedebut().atStartOfDay(defaultZoneId).toInstant());
+		// ajouter nbj au date
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(dated);
+		c.setP(p);
+		c.setEtat("En_attente");
+		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
+		// soustracter le conge de la solde repos n-2
+		if (c.getTypedeconge() == Type_conge.conge_repos) {
+
+			calendar.add(Calendar.DATE, c.getNumDeJour());
+			Date currentDatePlusOne = calendar.getTime();
+			// Converting the Date to LocalDate
+			Instant instant = currentDatePlusOne.toInstant();
+			LocalDate Datedebutplusnbj = instant.atZone(defaultZoneId).toLocalDate();
+			// Convert Finis
+			c.setDatefin(Datedebutplusnbj);
+			c.setNumDeMois(0);
+			if (p.getSoldeReposN_2() != 0) {
+				p.setSoldeReposN_2(p.getSoldeReposN_2() - c.getNumDeJour());
+				return congeRepository.save(c);
+			} else if (p.getSoldeReposN_1() != 0) {
+				p.setSoldeReposN_1(p.getSoldeReposN_1() - c.getNumDeJour());
+				return congeRepository.save(c);
+			} else if (p.getSoldeRepos() != 0) {
+				p.setSoldeRepos(p.getSoldeRepos() - c.getNumDeJour());
+				return congeRepository.save(c);
+			}
+
+			else
+				c.setEtat("Pas de solde");
+			return congeRepository.save(c);
+		} else if (c.getTypedeconge() == Type_conge.conge_maladie_longue_duree
+				| c.getTypedeconge() == Type_conge.conge_post_natal | c.getTypedeconge() == Type_conge.conge_maternite
+				| c.getTypedeconge() == Type_conge.conge_sans_solde) {
+
+			calendar.add(Calendar.MONTH, c.getNumDeMois());
+			// Converting the calendar to date
+			Date currentDatePlusOne = calendar.getTime();
+			// Converting the Date to LocalDate
+			Instant instant = currentDatePlusOne.toInstant();
+			LocalDate DatedebutplusNbMois = instant.atZone(defaultZoneId).toLocalDate();
+			// Convert Finis
+			c.setNumDeJour(0);
+			c.setDatefin(DatedebutplusNbMois);
+			return congeRepository.save(c);
+
+		} else if (c.getTypedeconge() == Type_conge.mise_a_pied) {
+			c.setNumDeJour(0);
+			c.setNumDeMois(0);
+			c.setEtat("mise à pied");
+			return congeRepository.save(c);
+		} else
+			c.setNumDeJour(0);
+		c.setNumDeMois(0);
+		c.setEtat("Detachement");
+		return congeRepository.save(c);
+		
 	}
 
 	public Conge ajouterConge(Conge c, long id) {

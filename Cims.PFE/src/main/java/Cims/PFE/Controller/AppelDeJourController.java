@@ -37,5 +37,9 @@ public class AppelDeJourController {
 	public List<Personnel> listAbsence() {
 		return appelDeJourService.listAllAbsent();
 	}
+	@GetMapping(value = "/listnonAbsent/{date}")
+	public List<Personnel> listnonAbsent(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
+		return appelDeJourService.listnonAbsent(date);
+	}
 
 }

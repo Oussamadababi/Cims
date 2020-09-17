@@ -1,5 +1,6 @@
 package Cims.PFE.Dao;
 
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -28,8 +29,8 @@ public interface PersonnelRepository extends JpaRepository<Personnel, Long> {
 
 	@Query(value = "SELECT * FROM appel_de_jour_personnels ap join appel_de_jour a on ap.appels_datedujour= a.datedujour join personnel p on p.id_personnel=ap.personnels_id_personnel where a.datedujour=?1 ", nativeQuery = true)
 	List<Personnel> listAbsenceParJour(Date date);
-	@Query(value = "SELECT * FROM appel_de_jour_personnels ap join appel_de_jour a on ap.appels_datedujour= a.datedujour join personnel p on p.id_personnel!=ap.personnels_id_personnel where a.datedujour=?1 ", nativeQuery = true)
-	List<Personnel> listNonAbsenceParJour(Date date);
-	//select id_personnel from personnel EXCEPT   (select p.id_personnel FROM appel_de_jour_personnels ap join appel_de_jour a on ap.appels_datedujour= a.datedujour join personnel p on p.id_personnel=ap.personnels_id_personnel where a.datedujour='01/10/2020')
+	@Query(value = "select id_personnel from personnel EXCEPT   (select p.id_personnel FROM appel_de_jour_personnels ap join appel_de_jour a on ap.appels_datedujour= a.datedujour join personnel p on p.id_personnel=ap.personnels_id_personnel where a.datedujour=?1) ", nativeQuery = true)
+	List<BigInteger> listNonAbsenceParJour(Date date);
+	
 
 }

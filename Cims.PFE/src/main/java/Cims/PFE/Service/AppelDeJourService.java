@@ -104,6 +104,21 @@ public class AppelDeJourService {
 		
 		
 	}
+	public List<Personnel>listnonAbsent(Date date){
+		List <Personnel> p = new ArrayList();
+		List <BigInteger> idp=personnelRepository.listNonAbsenceParJour(date);
+		
+		for(BigInteger i : idp){
+			Personnel p1 = new Personnel ();
+			p1=personnelRepository.getOne(i.longValue());
+			p.add(p1);
+			
+			
+		}
+		return p;
+		
+		
+	}
 	
 	
 

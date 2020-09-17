@@ -73,12 +73,11 @@ public class AnnulationCongeController {
 	{
 		return annulationCongeService.AnulationCongeenattente(idPersonnel);
 	}
-//	@GetMapping(value = "/AnulationConge/{personnel_id}")
-//	public List<AnnulationConge> AnulationConge(@PathVariable(name="personnel_id")long idPersonnel)
-//	{
-//		return annulationCongeService.AnulationConge(idPersonnel);
-//	}
-//	
+	@GetMapping(value = "/AnulationConge/{personnel_id}")
+	public List<AnnulationConge> AnulationConge(@PathVariable(name="personnel_id")long idPersonnel)	{
+		return annulationCongeService.AnulationConge(idPersonnel);
+	}
+	
 	
 
 }

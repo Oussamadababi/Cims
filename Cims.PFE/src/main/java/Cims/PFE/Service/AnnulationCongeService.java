@@ -15,6 +15,7 @@ import Cims.PFE.Dao.CompteRepository;
 import Cims.PFE.Dao.CongeRepository;
 import Cims.PFE.Dao.PersonnelRepository;
 import Cims.PFE.Entities.AnnulationConge;
+import Cims.PFE.Entities.Compte;
 import Cims.PFE.Entities.Conge;
 import Cims.PFE.Entities.Personnel;
 
@@ -89,13 +90,14 @@ public class AnnulationCongeService {
 	public AnnulationConge AnulationCongeenattente(long idPersonnel) {
 		return annulationCongeRepository.AnulationConge(idPersonnel);
 	}
+	
 
-	// public List<AnnulationConge> AnulationConge(long idCompte)
-	// {
-	// Compte co = compteRepository.getOne(idCompte);
-	// return
-	// annulationCongeRepository.AnulationConge(co.getPersonnel().getId_personnel());
-	// }
+	 public List<AnnulationConge> AnulationConge(long idCompte)
+	 {
+	 Compte co = compteRepository.getOne(idCompte);
+	 
+	 return annulationCongeRepository.AnulationCongeParPersonne(co.getPersonnel().getId_personnel());
+	 }
 	public LocalDate convertToLocalDateViaSqlDate(Date dateToConvert) {
 		return new java.sql.Date(dateToConvert.getTime()).toLocalDate();
 	}

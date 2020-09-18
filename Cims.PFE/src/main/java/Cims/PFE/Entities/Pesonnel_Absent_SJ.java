@@ -16,25 +16,25 @@ import javax.persistence.TemporalType;
 public class Pesonnel_Absent_SJ implements Serializable{
 	
 
-	@Column(name="nom")
+	
 	private String nom;
 	
-	@Column(name="prenom")
+
 	private String prenom;
 	
-	@Column(name="nom_Ar")
+	
 	private String nom_AR;
 	
-	@Column(name="prenom_AR")
+	
 	private String prenom_AR;
 	
-	@Column(name="poste_Occupe")
+
 	private String poste_Occupe;
 	
-	@Column(name="matricule")
+	
 	private int matricule;
 	
-	@Column(name="id_personnel")
+	
 	private Long id_personnel;
 	@Temporal(TemporalType.DATE)
 	private Date datedujour;

@@ -25,8 +25,8 @@ public class AppelDeJourService {
 	@Autowired
 	private PersonnelRepository personnelRepository;
 	
-	@Autowired
-    private Pesonnel_Absent_SJRepository PASJ;
+//	@Autowired
+//    private Pesonnel_Absent_SJRepository PASJ;
 
 	// public void save(AppelDeJour a){
 	//
@@ -94,8 +94,8 @@ public class AppelDeJourService {
 			
 		}
 	}
-	public List<Pesonnel_Absent_SJ>listAllAbsent(){
-		List <Pesonnel_Absent_SJ> idp=PASJ.ListeAbsenceSansJustifiaction();
+/*	public List<Pesonnel_Absent_SJ>listAllAbsent(){
+		//List <Pesonnel_Absent_SJ> idp=PASJ.ListeAbsenceSansJustifiaction();
 		
 //		for(Pesonnel_Absent_SJ i : idp){
 //			Personnel p1 = new Personnel ();
@@ -111,7 +111,7 @@ public class AppelDeJourService {
 		return idp;
 		
 		
-	}
+	}*/
 	public List<Personnel>listnonAbsent(Date date){
 		List <Personnel> p = new ArrayList();
 		List <BigInteger> idp=personnelRepository.listNonAbsenceParJour(date);
@@ -127,7 +127,10 @@ public class AppelDeJourService {
 		
 		
 	}
-	
+
+	public List<Object>listAllAbsent(){
+		return AppelDeJourRepository.ListeAbsenceSansJustifiaction2();
+	}
 	
 
 }

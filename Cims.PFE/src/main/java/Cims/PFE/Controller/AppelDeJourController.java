@@ -34,13 +34,17 @@ public class AppelDeJourController {
 		appelDeJourService.supprimerPersonnelDeLaListe(personnel_id, date);
 	}
 	
-	@GetMapping(value = "/listPAbsence")
+	/*@GetMapping(value = "/listPAbsence")
 	public List<Pesonnel_Absent_SJ> listAbsence() {
 		return appelDeJourService.listAllAbsent();
-	}
+	}*/
 	@GetMapping(value = "/listnonAbsent/{date}")
 	public List<Personnel> listnonAbsent(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
 		return appelDeJourService.listnonAbsent(date);
+	}
+	@GetMapping(value = "/listAllAbsent")
+	public List<Object>listAllAbsent(){
+		return appelDeJourService.listAllAbsent();
 	}
 
 }

@@ -32,6 +32,12 @@ public class RecuperationSoldeReposController {
 		return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Demande RSR ajouter"));
 
 	}
+	@PostMapping(value = "/addRSRPersonnel/{idCompte}")
+	public ResponseEntity<MessageResponse> save2(@RequestBody RecuperationSoldeRepos c,@PathVariable(name="idCompte")long idPersonnel) {
+		recuperationSoldeRepos.ajouterdemandeRSRparPersoonel(c,idPersonnel);
+		return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("Demande RSR ajouter"));
+
+	}
 	@GetMapping(value = "/listRSR")
 	public List<RecuperationSoldeRepos> listRSR() {
 		return recuperationSoldeRepos.listAll();

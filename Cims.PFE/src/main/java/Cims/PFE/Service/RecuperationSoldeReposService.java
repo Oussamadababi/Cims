@@ -7,7 +7,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import Cims.PFE.Dao.CompteRepository;
 import Cims.PFE.Dao.RecuperationSoldeReposRepository;
+import Cims.PFE.Entities.Compte;
 import Cims.PFE.Entities.Personnel;
 import Cims.PFE.Entities.RecuperationSoldeRepos;
 
@@ -18,6 +20,8 @@ public class RecuperationSoldeReposService {
 	RecuperationSoldeReposRepository recuperationSoldeReposRepository;
 	@Autowired
 	PersonnelService  personnelService;
+	@Autowired
+	CompteRepository compteRepository;
 	
 public RecuperationSoldeRepos save(RecuperationSoldeRepos Ac){
 		
@@ -33,6 +37,18 @@ public RecuperationSoldeRepos save(RecuperationSoldeRepos Ac){
 	public  RecuperationSoldeRepos ajouterdemandeRSR (RecuperationSoldeRepos c,Long id){
 		Personnel P = new Personnel();
 		P=personnelService.getById(id);
+		c.setP(P);
+		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
+		c.setEtat("En_attente");
+		c.setSoldeRecuperer(0);
+		c.setTitreAnnee(String.valueOf(LocalDate.now().getYear()-2));
+		return save(c);
+
+}
+	public  RecuperationSoldeRepos ajouterdemandeRSRparPersoonel (RecuperationSoldeRepos c,Long idCompte){
+		Compte co = compteRepository.getOne(idCompte);
+		Personnel P = new Personnel();
+		P=personnelService.getById(co.getPersonnel().getId_personnel());
 		c.setP(P);
 		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
 		c.setEtat("En_attente");

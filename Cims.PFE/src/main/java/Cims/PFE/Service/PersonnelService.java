@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import Cims.PFE.Dao.AppelDeJourRepository;
+import Cims.PFE.Dao.CompteRepository;
 import Cims.PFE.Dao.DepartementRepository;
 import Cims.PFE.Dao.DivisionRepository;
 import Cims.PFE.Dao.FonctionRepository;
@@ -17,6 +18,7 @@ import Cims.PFE.Dao.PersonnelRepository;
 import Cims.PFE.Dao.ServiceRepository;
 import Cims.PFE.Dao.SiteRepository;
 import Cims.PFE.Entities.Affectation;
+import Cims.PFE.Entities.Compte;
 import Cims.PFE.Entities.Division;
 import Cims.PFE.Entities.Fonction;
 import Cims.PFE.Entities.Grade;
@@ -49,6 +51,8 @@ public class PersonnelService {
 	DivisionRepository divisionRepository;
 	@Autowired
 	ServiceRepository serviceRepository;
+	@Autowired
+	CompteRepository compteRepository;
 	
 	public List<Personnel> listAll(){
 		List<Personnel> personnels = new ArrayList<>();
@@ -87,6 +91,10 @@ public class PersonnelService {
 	}
 	public Personnel getById(Long id) {
 		return personnelRepository.findById(id).get();
+	}
+	public Personnel getByIdcompte(Long idCompte) {
+		Compte c = compteRepository.getOne(idCompte);
+		return personnelRepository.findById(c.getPersonnel().getId_personnel()).get();
 	}
 	public boolean delete(Long id){
 		personnelRepository.deleteById(id);

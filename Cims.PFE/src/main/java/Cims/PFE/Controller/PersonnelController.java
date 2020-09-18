@@ -183,7 +183,10 @@ public class PersonnelController {
 		personnelService.AjouterSoldeCompensation(id_p,soldeC);
 		return ResponseEntity.ok(new MessageResponse("Solde Compensation ajouté"));
 	}
-	
+	@GetMapping("getByIdcompte/{idCompte}")
+	public Personnel getByIdcompte(@PathVariable(name="idCompte")Long idCompte) {
+		return personnelService.getByIdcompte(idCompte);
+	}
 	
 	
 	}

@@ -141,6 +141,9 @@ public  class Personnel implements Serializable {
 	@ManyToMany(mappedBy="Personnels",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
     private List<AppelDeJour> appels ;
+	@ManyToMany(mappedBy="Personnels",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+    private List<PointageRetard> retard ;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="p", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

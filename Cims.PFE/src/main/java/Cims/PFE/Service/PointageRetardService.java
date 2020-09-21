@@ -1,6 +1,7 @@
 package Cims.PFE.Service;
 
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,7 +22,7 @@ public class PointageRetardService {
 	PointageRetardRepository pointageRetardRepository;
 	@Autowired
 	PersonnelRepository personnelRepository;
-	public void ajouteAuListeRetard(long personnel_id, Date date,Time  heureEntree) {
+	public void ajouteAuListeRetard(long personnel_id, Date date,LocalDateTime   heureEntree) {
 		Personnel p = personnelRepository.findById(personnel_id).get();
 		PointageRetard r = pointageRetardRepository.findByDatedujour(date);
 		if (r == null) {
@@ -54,5 +55,20 @@ public class PointageRetardService {
 		}
 
 		
+	}
+	public void supprimerPersonnelDeLaListe(long personnel_id, Date date)
+	{
+		PointageRetard r = pointageRetardRepository.findByDatedujour(date);
+		int nbPersonnel=r.getPersonnels().size();	
+		for(int i = 0; i < nbPersonnel; i++)
+		{
+			if(r.getPersonnels().get(i).getId_personnel() == personnel_id)
+			{
+				r.getPersonnels().remove(i);
+				pointageRetardRepository.save(r);
+				break;
+			}
+			
+		}
 	}
 }

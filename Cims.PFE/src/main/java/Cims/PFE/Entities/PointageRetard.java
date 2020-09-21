@@ -1,6 +1,8 @@
 package Cims.PFE.Entities;
 
+
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
@@ -19,7 +21,7 @@ public class PointageRetard {
 	@Temporal(TemporalType.DATE)
 	private Date datedujour;
 	
-	private Time heureEntree;
+	private LocalDateTime  heureEntree;
 
 	@ManyToMany
 	private List<Personnel> Personnels;
@@ -34,11 +36,13 @@ public class PointageRetard {
 
 
 
-	public Time getHeureEntree() {
+
+
+	public LocalDateTime  getHeureEntree() {
 		return heureEntree;
 	}
 
-	public void setHeureEntree(Time heureEntree) {
+	public void setHeureEntree(LocalDateTime  heureEntree) {
 		this.heureEntree = heureEntree;
 	}
 

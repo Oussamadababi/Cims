@@ -1,6 +1,7 @@
 package Cims.PFE.Controller;
 
 import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -21,9 +22,14 @@ import Cims.PFE.Service.PointageRetardService;
 public class PointageRetardController {
 	@Autowired
 	PointageRetardService pointageRetardService;
-	@PutMapping(value = "ListeRetard/{personnel_id}/{date}")
+	@PutMapping(value = "ListeRetard/{personnel_id}/{date}/{heureEntree}")
 	public void ajouteAuListeAbsence(@PathVariable("personnel_id") long personnel_id,
-			@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date,@DateTimeFormat (iso = DateTimeFormat.ISO.DATE_TIME) Time heureEntree) {
+			@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date,@PathVariable("heureEntree")@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime   heureEntree) {
 		pointageRetardService.ajouteAuListeRetard(personnel_id, date,heureEntree);
+	}
+	@PutMapping(value = "supprimerPersonnelDeLaListeRetard/{personnel_id}/{date}")
+	public void supprimerPersonnelDeLaListe(@PathVariable("personnel_id")long personnel_id,@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date)
+	{
+		pointageRetardService.supprimerPersonnelDeLaListe(personnel_id, date);
 	}
 }

@@ -1,5 +1,6 @@
 package Cims.PFE.Service;
 
+import java.math.BigInteger;
 import java.sql.Time;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -70,5 +71,24 @@ public class PointageRetardService {
 			}
 			
 		}
+	}
+	public List<Personnel>listNonRetard(Date date){
+		List <Personnel> p = new ArrayList();
+		List <BigInteger> idp=pointageRetardRepository.listNonRetardParJour(date);
+		
+		for(BigInteger i : idp){
+			Personnel p1 = new Personnel ();
+			p1=personnelRepository.getOne(i.longValue());
+			p.add(p1);
+			
+			
+		}
+		return p;
+		
+		
+	}
+	public List<Personnel> listRetardParJour(Date date)
+	{
+		return pointageRetardRepository.listRetardParJour(date);
 	}
 }

@@ -43,7 +43,7 @@ public class AppelDeJourController {
 		return appelDeJourService.listnonAbsent(date);
 	}
 	@GetMapping(value = "/listAllAbsent")
-	public List<Object>listAllAbsent(){
+	public List<Pesonnel_Absent_SJ> listAllAbsent() {
 		return appelDeJourService.listAllAbsent();
 	}
 

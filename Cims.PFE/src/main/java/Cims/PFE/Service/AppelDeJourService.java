@@ -10,11 +10,9 @@ import org.springframework.stereotype.Service;
 
 import Cims.PFE.Dao.AppelDeJourRepository;
 import Cims.PFE.Dao.PersonnelRepository;
-import Cims.PFE.Dao.Pesonnel_Absent_SJRepository;
 import Cims.PFE.Entities.AppelDeJour;
 import Cims.PFE.Entities.Personnel;
 import Cims.PFE.Entities.Pesonnel_Absent_SJ;
-
 
 @Service
 public class AppelDeJourService {
@@ -24,9 +22,9 @@ public class AppelDeJourService {
 
 	@Autowired
 	private PersonnelRepository personnelRepository;
-	
-//	@Autowired
-//    private Pesonnel_Absent_SJRepository PASJ;
+
+	// @Autowired
+	// private Pesonnel_Absent_SJRepository PASJ;
 
 	// public void save(AppelDeJour a){
 	//
@@ -78,58 +76,82 @@ public class AppelDeJourService {
 
 		// return a.getPersonnels();
 	}
-	
-	public void supprimerPersonnelDeLaListe(long personnel_id, Date date)
-	{
+
+	public void supprimerPersonnelDeLaListe(long personnel_id, Date date) {
 		AppelDeJour a = AppelDeJourRepository.findByDatedujour(date);
-		int nbPersonnel=a.getPersonnels().size();	
-		for(int i = 0; i < nbPersonnel; i++)
-		{
-			if(a.getPersonnels().get(i).getId_personnel() == personnel_id)
-			{
+		int nbPersonnel = a.getPersonnels().size();
+		for (int i = 0; i < nbPersonnel; i++) {
+			if (a.getPersonnels().get(i).getId_personnel() == personnel_id) {
 				a.getPersonnels().remove(i);
 				AppelDeJourRepository.save(a);
 				break;
 			}
-			
+
 		}
-	}
-/*	public List<Pesonnel_Absent_SJ>listAllAbsent(){
-		//List <Pesonnel_Absent_SJ> idp=PASJ.ListeAbsenceSansJustifiaction();
-		
-//		for(Pesonnel_Absent_SJ i : idp){
-//			Personnel p1 = new Personnel ();
-//			p1=personnelRepository.getOne(i.getId_personnel());
-//			i.setMatricule(p1.getMatricule());
-//			i.setNom(p1.getNom());
-//			i.setPrenom(p1.getPrenom());
-//			i.setNom_AR(p1.getNom_AR());
-//			i.setPrenom_AR(p1.getPrenom_AR());
-//			
-//			
-//		}
-		return idp;
-		
-		
-	}*/
-	public List<Personnel>listnonAbsent(Date date){
-		List <Personnel> p = new ArrayList();
-		List <BigInteger> idp=personnelRepository.listNonAbsenceParJour(date);
-		
-		for(BigInteger i : idp){
-			Personnel p1 = new Personnel ();
-			p1=personnelRepository.getOne(i.longValue());
-			p.add(p1);
-			
-			
-		}
-		return p;
-		
-		
 	}
 
-	public List<Object>listAllAbsent(){
-		return AppelDeJourRepository.ListeAbsenceSansJustifiaction2();
+	/*
+	 * public List<Pesonnel_Absent_SJ>listAllAbsent(){ //List
+	 * <Pesonnel_Absent_SJ> idp=PASJ.ListeAbsenceSansJustifiaction();
+	 * 
+	 * // for(Pesonnel_Absent_SJ i : idp){ // Personnel p1 = new Personnel ();
+	 * // p1=personnelRepository.getOne(i.getId_personnel()); //
+	 * i.setMatricule(p1.getMatricule()); // i.setNom(p1.getNom()); //
+	 * i.setPrenom(p1.getPrenom()); // i.setNom_AR(p1.getNom_AR()); //
+	 * i.setPrenom_AR(p1.getPrenom_AR()); // // // } return idp;
+	 * 
+	 * 
+	 * }
+	 */
+	public List<Personnel> listnonAbsent(Date date) {
+		List<Personnel> p = new ArrayList();
+		List<BigInteger> idp = personnelRepository.listNonAbsenceParJour(date);
+
+		for (BigInteger i : idp) {
+			Personnel p1 = new Personnel();
+			p1 = personnelRepository.getOne(i.longValue());
+			p.add(p1);
+
+		}
+		return p;
+
+	}
+
+	public List<Pesonnel_Absent_SJ>listAllAbsent() {
+//		List<Pesonnel_Absent_SJ> listPSJ = new ArrayList<>();
+		ArrayList<Pesonnel_Absent_SJ> list = new ArrayList<Pesonnel_Absent_SJ>();
+		list=AppelDeJourRepository.ListeAbsenceSansJustifiaction2();
+		int n=list.size()/7;
+		for(Object i :list)
+		{
+			
+			
+			
+			
+		}
+	
+//			for(int j=0;j<n;j++)
+//			{
+//				Pesonnel_Absent_SJ PASJ= new Pesonnel_Absent_SJ();
+//				for(int i=j*7;i<j*7+7;i++)
+//				{
+//					SimpleDateFormat formatter1=new SimpleDateFormat("yyyy/MM/dd/"); 
+//				    PASJ.setDatedujour(formatter1.parse((String) list.get(i)));
+//					PASJ.setNom((String) list.get(i+1));
+//					PASJ.setPrenom((String) list.get(i+2));
+//					PASJ.setNom_AR((String) list.get(i+3));
+//					PASJ.setPrenom_AR((String) list.get(i+4));
+//					PASJ.setMatricule(Integer.parseInt((String) list.get(i+5)));
+//					PASJ.setPoste_Occupe((String) list.get(i+6));
+//					
+//				}
+//				
+//				listPSJ.add(PASJ);
+//				
+//			}
+			
+		
+		return list;
 	}
 	
 

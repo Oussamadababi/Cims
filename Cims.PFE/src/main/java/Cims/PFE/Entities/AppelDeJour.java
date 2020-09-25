@@ -31,7 +31,7 @@ public class AppelDeJour {
 	@ManyToMany
 	private List<Personnel> Personnels;
 
-	private String Etat;
+	private String etat;
 
 	public Date getDatedujour() {
 		return datedujour;
@@ -50,11 +50,13 @@ public class AppelDeJour {
 	}
 
 	public String getEtat() {
-		return Etat;
+		return etat;
 	}
 
 	public void setEtat(String etat) {
-		Etat = etat;
+		this.etat = etat;
 	}
+
+
 
 }

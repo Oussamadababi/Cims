@@ -87,8 +87,23 @@ public class PointageRetardService {
 		
 		
 	}
-	public List<Personnel> listRetardParJour(Date date)
+	public List<Personnel>listRetardParJour(Date date){
+		List <Personnel> p = new ArrayList();
+		List <BigInteger> idp=pointageRetardRepository.listRetardParJour(date);
+		
+		for(BigInteger i : idp){
+			Personnel p1 = new Personnel ();
+			p1=personnelRepository.getOne(i.longValue());
+			p.add(p1);
+			
+			
+		}
+		return p;
+		
+		
+	}
+/*	public List<BigInteger> listRetardParJour(Date date)
 	{
 		return pointageRetardRepository.listRetardParJour(date);
-	}
+	}*/
 }

@@ -16,6 +16,6 @@ public interface PointageRetardRepository extends JpaRepository<PointageRetard, 
 	PointageRetard findByDatedujour(Date datedujour);
 	@Query(value = "select id_personnel from personnel EXCEPT   (select p.id_personnel FROM pointage_retard_personnels ap join pointage_retard a on ap.retard_datedujour= a.datedujour join personnel p on p.id_personnel=ap.personnels_id_personnel where a.datedujour=?1) ", nativeQuery = true)
 	List<BigInteger> listNonRetardParJour(Date date);
-	@Query(value = "SELECT * FROM pointage_retard_personnels ap join pointage_retard a on ap.retard_datedujour= a.datedujour join personnel p on p.id_personnel=ap.personnels_id_personnel where a.datedujour=?1 ", nativeQuery = true)
-	List<Personnel> listRetardParJour(Date date);
+	@Query(value = "SELECT p.id_personnel FROM pointage_retard_personnels ap join pointage_retard a on ap.retard_datedujour= a.datedujour join personnel p on p.id_personnel=ap.personnels_id_personnel where a.datedujour=?1 ", nativeQuery = true)
+	List<BigInteger> listRetardParJour(Date date);
 }

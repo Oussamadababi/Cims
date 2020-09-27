@@ -58,6 +58,13 @@ public class PointageRetard {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	public PointageRetard(Date datedujour, LocalDateTime heureEntree, List<Personnel> personnels) {
+		super();
+		this.datedujour = datedujour;
+		this.heureEntree = heureEntree;
+		Personnels = personnels;
+	}
 	
 	
 

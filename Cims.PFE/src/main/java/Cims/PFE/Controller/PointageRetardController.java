@@ -41,7 +41,7 @@ public class PointageRetardController {
 	}
 	@GetMapping(value = "/listRetard/{date}")
 	public List<Personnel> listRetard(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
-		return pointageRetardService.listNonRetard(date);
+		return pointageRetardService.listRetardParJour(date);
 	}
 	
 }

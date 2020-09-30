@@ -39,9 +39,13 @@ public RecuperationSoldeRepos save(RecuperationSoldeRepos Ac){
 		P=personnelService.getById(id);
 		c.setP(P);
 		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
-		c.setEtat("En_attente");
+		c.setEtat("Accepter");
 		c.setSoldeRecuperer(0);
 		c.setTitreAnnee(String.valueOf(LocalDate.now().getYear()-2));
+		c.setSoldeRecuperer(c.getP().getSoldeRepos());
+		P=personnelService.getById(c.getP().getId_personnel());
+		P.setSoldeRepos(0);
+		personnelService.save(P);
 		return save(c);
 
 }
@@ -51,13 +55,10 @@ public RecuperationSoldeRepos save(RecuperationSoldeRepos Ac){
 		P=personnelService.getById(co.getPersonnel().getId_personnel());
 		c.setP(P);
 		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
-		c.setEtat("Accepter");
+		c.setEtat("En-attente");
 		c.setSoldeRecuperer(0);
 		c.setTitreAnnee(String.valueOf(LocalDate.now().getYear()-2));
-		c.setSoldeRecuperer(c.getP().getSoldeRepos());
-		P=personnelService.getById(c.getP().getId_personnel());
-		P.setSoldeRepos(0);
-		personnelService.save(P);
+		
 		return save(c);
 
 }

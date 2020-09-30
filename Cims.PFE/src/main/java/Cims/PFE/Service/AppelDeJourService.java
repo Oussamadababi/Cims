@@ -117,18 +117,18 @@ public class AppelDeJourService {
 
 	}
 
-	public List<Pesonnel_Absent_SJ>listAllAbsent() {
+	public List<Object>listAllAbsent() {
 //		List<Pesonnel_Absent_SJ> listPSJ = new ArrayList<>();
-		ArrayList<Pesonnel_Absent_SJ> list = new ArrayList<Pesonnel_Absent_SJ>();
+		ArrayList<Object> list = new ArrayList<Object>();
 		list=AppelDeJourRepository.ListeAbsenceSansJustifiaction2();
 		int n=list.size()/7;
-		for(Object i :list)
-		{
-			
-			
-			
-			
-		}
+//		for(Object i :list)
+//		{
+//			
+//			
+//			
+//			
+//		}
 	
 //			for(int j=0;j<n;j++)
 //			{

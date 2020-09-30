@@ -20,7 +20,7 @@ public interface AppelDeJourRepository extends JpaRepository<AppelDeJour, Date> 
 //	@Query(value = "SELECT * from appel_de_jour_personnels c join personnel p on c.personnels_id_personnel=p.id_personnel join appel_de_jour a on c.appels_datedujour=a.datedujour where a.etat='Sansjusitf'", nativeQuery = true)
 //	public  List<Personnel> ListeAbsenceSansJustifiaction();
 	@Query(value = "SELECT p.nom,p.prenom,p.nom_AR,p.prenom_AR,p.poste_occupe,p.matricule,a.datedujour from appel_de_jour_personnels c join c.personnel p on c.personnels_id_personnel=p.id_personnel join c.appel_de_jour a on c.appels_datedujour=a.datedujour where a.etat='Sansjusitf' ", nativeQuery = true)
-	public  ArrayList<Pesonnel_Absent_SJ> ListeAbsenceSansJustifiaction2();
+	public  ArrayList<Object> ListeAbsenceSansJustifiaction2();
 	
 }
 

@@ -50,7 +50,7 @@ public class AppelDeJour {
 		this.etat = etat;
 	}
 
-<<<<<<< HEAD
+
 	public List<AppelJourPersonnel> getAppelJourPersonnel() {
 		return appelJourPersonnel;
 	}
@@ -58,8 +58,8 @@ public class AppelDeJour {
 	public void setAppelJourPersonnel(List<AppelJourPersonnel> appelJourPersonnel) {
 		this.appelJourPersonnel = appelJourPersonnel;
 	}
-=======
 
->>>>>>> branch 'master' of https://github.com/Oussamadababi/Cims.git
+
+
 
 }

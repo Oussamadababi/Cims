@@ -1,9 +1,11 @@
 package Cims.PFE.Controller;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,6 +37,10 @@ public class CongeController {
 	@GetMapping(value = "/listconge")
 	public List<Conge> listGrades() {
 		return congeService.listAll();
+	}
+	@GetMapping(value = "/listcongepardate/{idPersonnel}/{date}")
+	public List<Conge> listGongepardate(@PathVariable(name="idPersonnel") Long idPersonnel,@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
+		return congeService.listCongeParDate(idPersonnel, date);
 	}
 
 	@PostMapping(value = "/demanderConge/{personnel_id}")

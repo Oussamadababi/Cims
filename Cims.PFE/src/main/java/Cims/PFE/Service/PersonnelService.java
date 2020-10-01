@@ -115,7 +115,7 @@ public class PersonnelService {
 	/*Ajouter au solde repos chaque 6 jrs 0.5*/
 //	@Scheduled(cron = "1 0 0 1 * ?")
 //	@Scheduled(fixedRate = 5000L) 518 400
-	public void updateAutoSoldeRepos()
+	/*public void updateAutoSoldeRepos()
 	{
 		List<Personnel> Listepersonnel = personnelRepository.findAll();
 		for(Personnel Personnel1 : Listepersonnel)
@@ -128,11 +128,11 @@ public class PersonnelService {
 			
 		}
 		
-	}
+	}*/
 	
 	
 	//Nombre de jour de travail les deux dernière annees
-	public int Nbjourtrvail(Long id){
+	/*public int Nbjourtrvail(Long id){
 		int Nbjrstravail;
 		int NbAbscenceT=appelDeJourRepository.NbAbscenceparId(id);
 		Personnel p= new Personnel();
@@ -150,7 +150,7 @@ public class PersonnelService {
 		
 		return Nbjrstravail;
 		
-	}
+	}*/
 	public List<Personnel> listAbsenceParJour(Date date)
 	{
 		return personnelRepository.listAbsenceParJour(date);

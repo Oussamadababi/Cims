@@ -17,6 +17,7 @@ import Cims.PFE.Dao.GradeRepository;
 import Cims.PFE.Dao.PersonnelRepository;
 import Cims.PFE.Dao.ServiceRepository;
 import Cims.PFE.Dao.SiteRepository;
+import Cims.PFE.Entities.Absence;
 import Cims.PFE.Entities.Affectation;
 import Cims.PFE.Entities.Compte;
 import Cims.PFE.Entities.Division;
@@ -151,9 +152,9 @@ public class PersonnelService {
 		return Nbjrstravail;
 		
 	}*/
-	public List<Personnel> listAbsenceParJour(Date date)
+	public List<Absence> listAbsenceParJour(Date date)
 	{
-		return personnelRepository.listAbsenceParJour(date);
+		return personnelRepository.listAbsenceParJour2(date);
 	}
 	
 	/*Transferer le Solde Repos vers le SRN-1 et N-2 chaque année*/

@@ -25,6 +25,7 @@ import Cims.PFE.Dao.AffectationPartielleRepository;
 import Cims.PFE.Dao.CompteRepository;
 import Cims.PFE.Dao.PersonnelRepository;
 import Cims.PFE.Dao.RoleRepository;
+import Cims.PFE.Entities.Absence;
 import Cims.PFE.Entities.AffectationPartielle;
 import Cims.PFE.Entities.Compte;
 import Cims.PFE.Entities.ERole;
@@ -167,7 +168,7 @@ public class PersonnelController {
 		personnelService.updateSoldeexceptionnel(matricule, soldeExceptionnel);
 	}
 	@GetMapping("listAbsenceParJour/{date}")
-	public List<Personnel> listAbsenceParJour(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)Date date)
+	public List<Absence> listAbsenceParJour(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)Date date)
 	{
 		return personnelService.listAbsenceParJour(date);
 	}

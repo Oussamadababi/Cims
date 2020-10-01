@@ -1,5 +1,6 @@
 package Cims.PFE.Dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -30,4 +31,6 @@ public interface CongeRepository extends JpaRepository<Conge, Long> {
 	
 	@Query(value = "SELECT * from conge c join personnel p on c.personnel_id=p.id_personnel where p.id_personnel=?1 and c.etat='accepter' ", nativeQuery = true)
 	List<Conge> congeAccepterParIdpersonnel(long idPersonnel);
+	@Query(value = "SELECT * from conge c join personnel p on c.personnel_id=p.id_personnel join appel_de_jour_personnels ap on ap.personnels_id_personnel=p.id_personnel where p.id_personnel=?1 and ?2 BETWEEN c.datedebut and c.datefin  ", nativeQuery = true)
+	List<Conge> congeparPersonnelParDate(long idPersonnel,Date date);
 }

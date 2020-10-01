@@ -17,6 +17,7 @@ import Cims.PFE.Dao.GradeRepository;
 import Cims.PFE.Dao.PersonnelRepository;
 import Cims.PFE.Dao.ServiceRepository;
 import Cims.PFE.Dao.SiteRepository;
+import Cims.PFE.Entities.Absence;
 import Cims.PFE.Entities.Affectation;
 import Cims.PFE.Entities.Compte;
 import Cims.PFE.Entities.Division;
@@ -115,7 +116,7 @@ public class PersonnelService {
 	/*Ajouter au solde repos chaque 6 jrs 0.5*/
 //	@Scheduled(cron = "1 0 0 1 * ?")
 //	@Scheduled(fixedRate = 5000L) 518 400
-	public void updateAutoSoldeRepos()
+	/*public void updateAutoSoldeRepos()
 	{
 		List<Personnel> Listepersonnel = personnelRepository.findAll();
 		for(Personnel Personnel1 : Listepersonnel)
@@ -128,11 +129,11 @@ public class PersonnelService {
 			
 		}
 		
-	}
+	}*/
 	
 	
 	//Nombre de jour de travail les deux dernière annees
-	public int Nbjourtrvail(Long id){
+	/*public int Nbjourtrvail(Long id){
 		int Nbjrstravail;
 		int NbAbscenceT=appelDeJourRepository.NbAbscenceparId(id);
 		Personnel p= new Personnel();
@@ -150,10 +151,10 @@ public class PersonnelService {
 		
 		return Nbjrstravail;
 		
-	}
-	public List<Personnel> listAbsenceParJour(Date date)
+	}*/
+	public List<Absence> listAbsenceParJour(Date date)
 	{
-		return personnelRepository.listAbsenceParJour(date);
+		return personnelRepository.listAbsenceParJour2(date);
 	}
 	
 	/*Transferer le Solde Repos vers le SRN-1 et N-2 chaque année*/

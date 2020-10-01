@@ -138,9 +138,9 @@ public  class Personnel implements Serializable {
 	@OneToMany(mappedBy="p", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Conge> Conges ;
 	
-	@ManyToMany(mappedBy="Personnels",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="personnels",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
-    private List<AppelDeJour> appels ;
+    private List<AppelJourPersonnel> appels ;
 	@ManyToMany(mappedBy="Personnels",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
     private List<PointageRetard> retard ;
@@ -428,10 +428,10 @@ public  class Personnel implements Serializable {
 	public void setFonction(Fonction fonction) {
 		this.fonction = fonction;
 	}
-	public List<AppelDeJour> getAppels() {
+	public List<AppelJourPersonnel> getAppels() {
 		return appels;
 	}
-	public void setAppels(List<AppelDeJour> appels) {
+	public void setAppels(List<AppelJourPersonnel> appels) {
 		this.appels = appels;
 	}
 	
@@ -467,7 +467,7 @@ public  class Personnel implements Serializable {
 			int matricule_CNSS, LocalDate date_Naissance, String adresse, String poste_Occupe, LocalDate date_Promotion,
 			String echelle, LocalDate date_Echelle, String echellon, LocalDate date_Echellon, Structure departement,
 			Grade grade, Compte compte, List<AffectationTotale> affectationt, List<AffectationPartielle> affectationp,
-			List<Conge> conges, List<AppelDeJour> appels, List<RecuperationSoldeRepos> listRecupSoldeRepos,
+			List<Conge> conges, List<AppelJourPersonnel> appels, List<RecuperationSoldeRepos> listRecupSoldeRepos,
 			Fonction fonction, Affectation affectation) {
 		super();
 		this.id_personnel = id_personnel;

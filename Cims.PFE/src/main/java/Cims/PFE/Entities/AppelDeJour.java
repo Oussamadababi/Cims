@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -27,9 +28,8 @@ public class AppelDeJour {
 	@Id
 	@Temporal(TemporalType.DATE)
 	private Date datedujour;
-
-	@ManyToMany
-	private List<Personnel> Personnels;
+	@OneToMany(mappedBy="appelDeJour", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<AppelJourPersonnel> appelJourPersonnel;
 
 	private String etat;
 
@@ -41,13 +41,6 @@ public class AppelDeJour {
 		this.datedujour = datedujour;
 	}
 
-	public List<Personnel> getPersonnels() {
-		return Personnels;
-	}
-
-	public void setPersonnels(List<Personnel> personnels) {
-		Personnels = personnels;
-	}
 
 	public String getEtat() {
 		return etat;
@@ -56,6 +49,16 @@ public class AppelDeJour {
 	public void setEtat(String etat) {
 		this.etat = etat;
 	}
+
+
+	public List<AppelJourPersonnel> getAppelJourPersonnel() {
+		return appelJourPersonnel;
+	}
+
+	public void setAppelJourPersonnel(List<AppelJourPersonnel> appelJourPersonnel) {
+		this.appelJourPersonnel = appelJourPersonnel;
+	}
+
 
 
 

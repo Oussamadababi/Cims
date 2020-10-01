@@ -239,4 +239,9 @@ public class CongeService {
 	public void RefuserConge(Long id) {
 		congeRepository.ModifierEtatConge("refuser", id);
 	}
+	public List<Conge> listCongeParDate(long idPersonnel,Date date) {
+		List<Conge> conges = new ArrayList<>();
+		congeRepository.congeparPersonnelParDate(idPersonnel, date).forEach(conges::add);
+		return conges;
+	}
 }

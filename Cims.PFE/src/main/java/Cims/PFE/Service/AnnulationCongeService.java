@@ -51,8 +51,10 @@ public class AnnulationCongeService {
 		int B =LocalDate.now().getDayOfYear();
 		int res=B-A;
 		
+		
 		 
-		if ((0<res)&(res< conge.getNumDeJour())|((0<res)&(res< conge.getNumDeMois()*30))){
+		if ((0<=res)&(res< conge.getNumDeJour())|((0<res)&(res< conge.getNumDeMois()*30))){
+			
 			
 			c.setConge(conge);
 			c.setDatedemande(LocalDate.now());

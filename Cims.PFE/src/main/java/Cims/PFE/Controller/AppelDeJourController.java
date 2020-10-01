@@ -1,3 +1,4 @@
+
 //package Cims.PFE.Controller;
 //
 //import java.util.Date;
@@ -43,8 +44,9 @@
 //		return appelDeJourService.listnonAbsent(date);
 //	}
 //	@GetMapping(value = "/listAllAbsent")
-//	public List<Object>listAllAbsent(){
+//	public List<Object> listAllAbsent() {
 //		return appelDeJourService.listAllAbsent();
 //	}
 //
 //}
+

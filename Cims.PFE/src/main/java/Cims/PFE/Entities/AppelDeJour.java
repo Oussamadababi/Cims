@@ -31,7 +31,7 @@ public class AppelDeJour {
 	@OneToMany(mappedBy="appelDeJour", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<AppelJourPersonnel> appelJourPersonnel;
 
-	private String Etat;
+	private String etat;
 
 	public Date getDatedujour() {
 		return datedujour;
@@ -43,13 +43,14 @@ public class AppelDeJour {
 
 
 	public String getEtat() {
-		return Etat;
+		return etat;
 	}
 
 	public void setEtat(String etat) {
-		Etat = etat;
+		this.etat = etat;
 	}
 
+<<<<<<< HEAD
 	public List<AppelJourPersonnel> getAppelJourPersonnel() {
 		return appelJourPersonnel;
 	}
@@ -57,5 +58,8 @@ public class AppelDeJour {
 	public void setAppelJourPersonnel(List<AppelJourPersonnel> appelJourPersonnel) {
 		this.appelJourPersonnel = appelJourPersonnel;
 	}
+=======
+
+>>>>>>> branch 'master' of https://github.com/Oussamadababi/Cims.git
 
 }

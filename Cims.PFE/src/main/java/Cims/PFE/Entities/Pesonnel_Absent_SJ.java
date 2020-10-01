@@ -34,8 +34,6 @@ public class Pesonnel_Absent_SJ implements Serializable{
 	
 	private int matricule;
 	
-	
-	private Long id_personnel;
 	@Temporal(TemporalType.DATE)
 	private Date datedujour;
 
@@ -83,16 +81,9 @@ public class Pesonnel_Absent_SJ implements Serializable{
 	}
 	
 	
-	public Long getId_personnel() {
-		return id_personnel;
-	}
-	public void setId_personnel(Long id_personnel) {
-		this.id_personnel = id_personnel;
-	}
-	
 	
 	public Pesonnel_Absent_SJ( String nom, String prenom, String nom_AR, String prenom_AR, String poste_Occupe,
-			int matricule, Long id_personnel, Date datedujour) {
+			int matricule, Date datedujour) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -100,11 +91,16 @@ public class Pesonnel_Absent_SJ implements Serializable{
 		this.prenom_AR = prenom_AR;
 		this.poste_Occupe = poste_Occupe;
 		this.matricule = matricule;
-		this.id_personnel = id_personnel;
 		this.datedujour = datedujour;
 	}
 	public Pesonnel_Absent_SJ() {
 		super();
+	}
+	@Override
+	public String toString() {
+		return "Pesonnel_Absent_SJ [nom=" + nom + ", prenom=" + prenom + ", nom_AR=" + nom_AR + ", prenom_AR="
+				+ prenom_AR + ", poste_Occupe=" + poste_Occupe + ", matricule=" + matricule + ", datedujour="
+				+ datedujour + "]";
 	}
 	
 

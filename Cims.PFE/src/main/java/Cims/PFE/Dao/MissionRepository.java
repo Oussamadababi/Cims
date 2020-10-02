@@ -1,6 +1,7 @@
 package Cims.PFE.Dao;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -47,4 +48,6 @@ public interface MissionRepository extends JpaRepository<Mission,Long> {
 	
 	@Query(value="SELECT * FROM public.mission  where file_id_file=?1",nativeQuery = true)
 	Mission getMissionFILE(Long id_file);
+	@Query(value="SELECT * FROM public.mission m join affectation_partielle a on m.id_affectation_p=a.id_affectation_p  where a.id_personnel=?1 and ?2 BETWEEN a.date_debut and a.date_fin ",nativeQuery = true)
+	List<Mission> verificationMission(long idPersonnel,Date date);
 }

@@ -33,7 +33,7 @@ public interface PersonnelRepository extends JpaRepository<Personnel, Long> {
 	List<Personnel> listAbsenceParJour(Date date);
 	@Query(value = "select id_personnel from personnel EXCEPT   (SELECT p.id_personnel FROM appel_de_jour_personnels ap join appel_de_jour a on ap.appel_de_jour_datedujour= a.datedujour join personnel p on p.id_personnel=ap.personnels_id_personnel where a.datedujour=?1) ", nativeQuery = true)
 	List<BigInteger> listNonAbsenceParJour(Date date);
-	@Query(value = "SELECT NEW Cims.PFE.Entities.Absence (p.nom,p.prenom,ap.etat) FROM AppelJourPersonnel  ap join ap.personnels p join ap.appelDeJour a where a.datedujour=:dates ")
+	@Query(value = "SELECT NEW Cims.PFE.Entities.Absence (p.id,p.nom,p.prenom,ap.etat) FROM AppelJourPersonnel  ap join ap.personnels p join ap.appelDeJour a where a.datedujour=:dates ")
 	List<Absence> listAbsenceParJour2(@Param("dates")Date date);
 	
 

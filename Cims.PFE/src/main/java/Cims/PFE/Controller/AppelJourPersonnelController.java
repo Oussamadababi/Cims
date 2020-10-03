@@ -3,6 +3,8 @@ package Cims.PFE.Controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,7 +26,7 @@ public class AppelJourPersonnelController {
 	@Autowired
 	AppelJourPersonnelService appelJourPersonnelService;
 	@PostMapping(value = "/ajouteAuListeAbsence/{idPersonnel}/{date}")
-	public void ajouteAuListeAbsence(@PathVariable(name="idPersonnel") Long idPersonnel, @PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date,@RequestBody AppelJourPersonnel ap)
+	public void ajouteAuListeAbsence(@PathVariable(name="idPersonnel") Long idPersonnel, @PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date,@RequestBody AppelJourPersonnel ap) throws MessagingException
 	{
 		appelJourPersonnelService.ajouteAuListeAbsence(idPersonnel, date, ap);
 	}

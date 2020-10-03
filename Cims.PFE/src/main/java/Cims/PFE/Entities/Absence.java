@@ -1,6 +1,7 @@
 package Cims.PFE.Entities;
 
 public class Absence {
+	private long id;
 	private String nom;
 	private String prenom;
 	private String etat;
@@ -28,6 +29,24 @@ public class Absence {
 		this.prenom = prenom;
 		this.etat = etat;
 	}
+	public Absence() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Absence(long id, String nom, String prenom, String etat) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.etat = etat;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	
 	
 
 }

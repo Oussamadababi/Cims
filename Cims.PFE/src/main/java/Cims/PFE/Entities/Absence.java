@@ -1,10 +1,13 @@
 package Cims.PFE.Entities;
 
+import java.util.Date;
+
 public class Absence {
 	private long id;
 	private String nom;
 	private String prenom;
 	private String etat;
+	private Date date;
 	public String getNom() {
 		return nom;
 	}
@@ -45,6 +48,18 @@ public class Absence {
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	public Absence(String nom, String prenom, Date date) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.date = date;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
 	}
 	
 	

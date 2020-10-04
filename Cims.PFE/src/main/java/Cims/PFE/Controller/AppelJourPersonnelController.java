@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import Cims.PFE.Entities.Personnel;
+import Cims.PFE.Entities.Absence;
 import Cims.PFE.Entities.AppelJourPersonnel;
 import Cims.PFE.Service.AppelJourPersonnelService;
 
@@ -44,4 +45,9 @@ public class AppelJourPersonnelController {
 //	public List<Object>listAllAbsent(){
 //		return appelDeJourService.listAllAbsent();
 //	}
+	@GetMapping(value = "/listabsentSansJus")
+	public List<Absence> listAbsenceSansJusftication()
+	{
+	return	appelJourPersonnelService.listAbsenceSansJusftication();
+	}
 }

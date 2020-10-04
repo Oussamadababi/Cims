@@ -18,6 +18,7 @@ import Cims.PFE.Dao.AppelDeJourRepository;
 import Cims.PFE.Dao.CongeRepository;
 import Cims.PFE.Dao.MissionRepository;
 import Cims.PFE.Dao.PersonnelRepository;
+import Cims.PFE.Entities.Absence;
 import Cims.PFE.Entities.AppelDeJour;
 import Cims.PFE.Entities.AppelJourPersonnel;
 import Cims.PFE.Entities.Conge;
@@ -432,5 +433,9 @@ public class AppelJourPersonnelService {
 		}
 		return p;
 
+	}
+	public List<Absence> listAbsenceSansJusftication()
+	{
+	return	appelDeJourRepository.listAbsenceSansJusftication();
 	}
 }

@@ -111,6 +111,9 @@ public  class Personnel implements Serializable {
 	@Column(name="date_Echellon")
 	private LocalDate date_Echellon;
 	
+	@Column(name="date_fonction")
+	private LocalDate date_fonction;
+	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_dept", nullable = false)
 	private Structure departement;
@@ -197,7 +200,7 @@ public  class Personnel implements Serializable {
 				+  ", user=" + compte + "]";
 	}
 	public Personnel(Long id_personnel, String nom, String prenom, String sexe, int telephone, LocalDate date_recrutement,
-			String email,Structure departement,Grade grade, Compte compte) {
+			String email,Structure departement,Grade grade, Compte compte,LocalDate date_fonction) {
 		super();
 		this.id_personnel = id_personnel;
 		this.nom = nom;
@@ -209,6 +212,7 @@ public  class Personnel implements Serializable {
 		this.departement = departement;
 		this.grade = grade;
 		this.compte = compte;
+		this.date_fonction=date_fonction;
 	}
 	public Long getId_personnel() {
 		return id_personnel;
@@ -446,6 +450,13 @@ public  class Personnel implements Serializable {
 	}
 	public void setCompte(Compte compte) {
 		this.compte = compte;
+	}
+	
+	public LocalDate getDate_fonction() {
+		return date_fonction;
+	}
+	public void setDate_fonction(LocalDate date_fonction) {
+		this.date_fonction = date_fonction;
 	}
 	public Personnel(Long id_personnel, int matricule, String nom, String prenom, String sexe, int telephone,
 			int soldeRepos, int soldeExceptionnel, LocalDate date_recrutement, @NotBlank String email) {

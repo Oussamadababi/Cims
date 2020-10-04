@@ -66,7 +66,7 @@ public RecuperationSoldeRepos save(RecuperationSoldeRepos Ac){
 	public void AccepterDemandeRSR(Long id){
 		RecuperationSoldeRepos RSR = new RecuperationSoldeRepos ();
 		RSR=recuperationSoldeReposRepository.getOne(id);
-		RSR.setEtat("Accepter");
+		RSR.setEtat("Accepté");
 		RSR.setSoldeRecuperer(RSR.getP().getSoldeRepos());
 		Personnel P = new Personnel();
 		P=personnelService.getById(RSR.getP().getId_personnel());
@@ -79,7 +79,7 @@ public RecuperationSoldeRepos save(RecuperationSoldeRepos Ac){
 	public void RefuserDemandeRSR(Long id){
 		RecuperationSoldeRepos RSR = new RecuperationSoldeRepos ();
 		RSR=recuperationSoldeReposRepository.getOne(id);
-		RSR.setEtat("Refuser");
+		RSR.setEtat("Refusé");
 		recuperationSoldeReposRepository.save(RSR);	
 		
 	}

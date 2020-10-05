@@ -435,8 +435,15 @@ public class AppelJourPersonnelService {
 	//Envoyer des mail au personnel marqué absent sans justification
 	public void envoyermail() throws MessagingException{
 		List<Absence> listeallpersonnelabsent =appelDeJourRepository.listAbsenceSansJusfticationEtNonMailing();	
+		
 		for (Absence a : listeallpersonnelabsent)
 		{
+			 
+			System.out.println("hani lenna 3Asba");
+			long ida =appelDeJourRepository.ListeIdAbsenceParNomPrenomDate(a.getNom(), a.getPrenom(), a.getDate());
+			AppelJourPersonnel adj = new AppelJourPersonnel();
+			adj.setMail("true");
+			
 			SimpleMailMessage mail = new SimpleMailMessage();
 			StringBuilder buf = new StringBuilder();
 			buf.append("\"<html>\n" + "  <head>\n" + "    <meta name=\"viewport\" content=\"width=device-width\" />\n"
@@ -597,6 +604,7 @@ public class AppelJourPersonnelService {
 			   helper.setSubject("Verification absence");
 			   helper.setText(messaage, messaage);
 			  javaMailSender.send(message);	
+			  
 			  
 			
 			

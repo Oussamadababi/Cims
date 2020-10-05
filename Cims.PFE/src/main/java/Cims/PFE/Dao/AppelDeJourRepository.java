@@ -1,6 +1,5 @@
 package Cims.PFE.Dao;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import Cims.PFE.Entities.Absence;
 import Cims.PFE.Entities.AppelDeJour;
-import Cims.PFE.Entities.Pesonnel_Absent_SJ;
+import Cims.PFE.Entities.AppelJourPersonnel;
 
 
 @Repository
@@ -38,6 +37,11 @@ public interface AppelDeJourRepository extends JpaRepository<AppelDeJour, Date> 
 	
 	@Query(value = "SELECT NEW Cims.PFE.Entities.Absence (p.nom,p.prenom,a.datedujour) FROM AppelJourPersonnel  ap join ap.personnels p join ap.appelDeJour a where  ap.etat='non justifié' and ap.mail='false' order by  a.datedujour")
 	List<Absence> listAbsenceSansJusfticationEtNonMailing();
+	
+	@Query(value = "SELECT a.id FROM  appel_de_jour_personnels a join personnel p on a.personnels_id_personnel=p.id_personnel where p.nom=?1 and p.prenom=?2 and a.appel_de_jour_datedujour=?3")
+	Long ListeIdAbsenceParNomPrenomDate(String nom,String Prenom,Date Date);
+	
+	// SELECT id FROM  appel_de_jour_personnels a join personnel p on a.personnels_id_personnel=p.id_personnel where p.nom=?1 and p.prenom=?2 and a.appel_de_jour_datedujour=?3 ;
 	
 	
 	

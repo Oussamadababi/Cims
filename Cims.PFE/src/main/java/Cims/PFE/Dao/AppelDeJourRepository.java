@@ -36,5 +36,11 @@ public interface AppelDeJourRepository extends JpaRepository<AppelDeJour, Date> 
 	@Query(value = "SELECT NEW Cims.PFE.Entities.Absence (p.nom,p.prenom,a.datedujour) FROM AppelJourPersonnel  ap join ap.personnels p join ap.appelDeJour a where  ap.etat='non justifié' order by  a.datedujour")
 	List<Absence> listAbsenceSansJusftication();
 	
+	@Query(value = "SELECT NEW Cims.PFE.Entities.Absence (p.nom,p.prenom,a.datedujour) FROM AppelJourPersonnel  ap join ap.personnels p join ap.appelDeJour a where  ap.etat='non justifié' and ap.mail='false' order by  a.datedujour")
+	List<Absence> listAbsenceSansJusfticationEtNonMailing();
+	
+	
+	
+	
 
 }

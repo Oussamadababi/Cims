@@ -28,6 +28,7 @@ public class AppelJourPersonnel {
 	@ManyToOne
 	AppelDeJour appelDeJour;
 	private String etat;
+	private String mail;
 	public Long getId() {
 		return id;
 	}
@@ -51,6 +52,13 @@ public class AppelJourPersonnel {
 	}
 	public void setEtat(String etat) {
 		this.etat = etat;
+	}
+	
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 	public AppelJourPersonnel() {
 		super();

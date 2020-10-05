@@ -36,5 +36,7 @@ public interface PersonnelRepository extends JpaRepository<Personnel, Long> {
 	@Query(value = "SELECT NEW Cims.PFE.Entities.Absence (p.id,p.nom,p.prenom,ap.etat) FROM AppelJourPersonnel  ap join ap.personnels p join ap.appelDeJour a where a.datedujour=:dates ")
 	List<Absence> listAbsenceParJour2(@Param("dates")Date date);
 	
-
+	@Query(value = "SELECT email FROM public.personnel where nom=?1 and prenom=?2 ", nativeQuery = true)
+	String  getEmailparNometPrenom(String nom,String prenom);
+	
 }

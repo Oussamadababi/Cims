@@ -14,6 +14,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import Cims.PFE.Dao.AppelDeJourPersonnelRepository;
 import Cims.PFE.Dao.AppelDeJourRepository;
 import Cims.PFE.Dao.CongeRepository;
 import Cims.PFE.Dao.MissionRepository;
@@ -39,6 +40,9 @@ public class AppelJourPersonnelService {
 	private MissionRepository missionRepository;
 
 	private JavaMailSender javaMailSender;
+	
+	@Autowired
+	AppelDeJourPersonnelRepository appelDeJourPersonnelRepository;
 
 	@Autowired
 	public AppelJourPersonnelService(JavaMailSender javaMailSender) {
@@ -442,7 +446,9 @@ public class AppelJourPersonnelService {
 			System.out.println("hani lenna 3Asba");
 			long ida =appelDeJourRepository.ListeIdAbsenceParNomPrenomDate(a.getNom(), a.getPrenom(), a.getDate());
 			AppelJourPersonnel adj = new AppelJourPersonnel();
+			adj =appelDeJourPersonnelRepository.getOne(ida);
 			adj.setMail("true");
+			appelDeJourPersonnelRepository.save(adj);
 			
 			SimpleMailMessage mail = new SimpleMailMessage();
 			StringBuilder buf = new StringBuilder();

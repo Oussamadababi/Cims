@@ -142,12 +142,12 @@ public class PersonnelService {
 		int anneeRecrutement = p.getDate_recrutement().getYear();
 		int anneeAujourdhui = LocalDate.now().getYear();
 			if(anneeAujourdhui-anneeRecrutement==0){
-				 Nbjrstravail=LocalDate.now().getDayOfYear()-p.getDate_recrutement().getDayOfYear()-NbAbscenceT-NbjConge;
+				 Nbjrstravail=LocalDate.now().getDayOfYear()-p.getDate_recrutement().getDayOfYear();
 			}
 			else if (anneeAujourdhui-anneeRecrutement==1){
-				 Nbjrstravail=LocalDate.now().getDayOfYear()-p.getDate_recrutement().getDayOfYear()-NbAbscenceT-NbjConge+356;
+				 Nbjrstravail=LocalDate.now().getDayOfYear()-p.getDate_recrutement().getDayOfYear()+356;
 			}
-			else Nbjrstravail=LocalDate.now().getDayOfYear()-p.getDate_recrutement().getDayOfYear()-NbAbscenceT-NbjConge+712;	
+			else Nbjrstravail=LocalDate.now().getDayOfYear()-p.getDate_recrutement().getDayOfYear()+712;	
 		
 		return Nbjrstravail;
 		

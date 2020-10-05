@@ -173,11 +173,11 @@ public class PersonnelController {
 		return personnelService.listAbsenceParJour(date);
 	}
 	
-//	@PutMapping("/updateSR")
-//	public ResponseEntity<MessageResponse> updateSR(){
-//		personnelService.updateAutoSoldeRepos();
-//		return ResponseEntity.ok(new MessageResponse("Updated"));
-//	}
+	@PutMapping("/updateSR")
+	public ResponseEntity<MessageResponse> updateSR(){
+		personnelService.updateAutoSoldeRepos();
+		return ResponseEntity.ok(new MessageResponse("Updated"));
+	}
 	
 	@PutMapping("/ajoutSoldeCompensation/{id_p}/{soldeC}")
 	public ResponseEntity<MessageResponse> ajoutSoldeCompensation(@PathVariable(name="id_p") Long id_p, @PathVariable(name="soldeC") double soldeC){

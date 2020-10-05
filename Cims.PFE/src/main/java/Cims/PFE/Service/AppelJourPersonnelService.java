@@ -53,7 +53,7 @@ public class AppelJourPersonnelService {
 		List<Mission> missions = missionRepository.verificationMission(personnel_id, date);
 		if ((a == null)) {
 			if ((conges.isEmpty()) || (missions.isEmpty())) {
-				ap.setEtat("nonjus");
+				ap.setEtat("non justifié");
 				SimpleMailMessage mail = new SimpleMailMessage();
 				StringBuilder buf = new StringBuilder();
 				buf.append("\"<html>\n" + "  <head>\n" + "    <meta name=\"viewport\" content=\"width=device-width\" />\n"
@@ -217,7 +217,7 @@ public class AppelJourPersonnelService {
 				  javaMailSender.send(message);	
 			
 			} else if(!conges.isEmpty() && !missions.isEmpty()) {
-				ap.setEtat("jus");
+				ap.setEtat("justifié");
 			}
 			AppelDeJour newAppel = new AppelDeJour();
 			newAppel.setDatedujour(date);
@@ -229,7 +229,7 @@ public class AppelJourPersonnelService {
 
 		} else {
 			if (conges.isEmpty() || (missions.isEmpty())) {
-				ap.setEtat("nonjus");
+				ap.setEtat("non justifié");
 				SimpleMailMessage mail = new SimpleMailMessage();
 				StringBuilder buf = new StringBuilder();
 				buf.append("\"<html>\n" + "  <head>\n" + "    <meta name=\"viewport\" content=\"width=device-width\" />\n"
@@ -398,7 +398,7 @@ public class AppelJourPersonnelService {
 				  javaMailSender.send(message);	
 			
 			} else if(!conges.isEmpty() && !missions.isEmpty()){
-				ap.setEtat("jus");
+				ap.setEtat("justifié");
 			}
 
 			ap.setAppelDeJour(a);

@@ -442,11 +442,10 @@ public class AppelJourPersonnelService {
 		
 		for (Absence a : listeallpersonnelabsent)
 		{
-			 
-			System.out.println("hani lenna 3Asba");
-			long ida =appelDeJourRepository.ListeIdAbsenceParNomPrenomDate(a.getNom(), a.getPrenom(), a.getDate());
+		
+			BigInteger ida =appelDeJourRepository.ListeIdAbsenceParNomPrenomDate(a.getNom(),a.getPrenom(),a.getDate());
 			AppelJourPersonnel adj = new AppelJourPersonnel();
-			adj =appelDeJourPersonnelRepository.getOne(ida);
+			adj =appelDeJourPersonnelRepository.getOne(ida.longValue());
 			adj.setMail("true");
 			appelDeJourPersonnelRepository.save(adj);
 			

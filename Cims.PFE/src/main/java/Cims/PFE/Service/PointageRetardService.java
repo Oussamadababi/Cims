@@ -22,6 +22,7 @@ public class PointageRetardService {
 	PersonnelRepository personnelRepository;
 	@Autowired
 	PersonnelService personnelService;
+	
 	public void ajouteAuListeRetard(long personnel_id, Date date,LocalDateTime   heureEntree) {
 		Personnel p = personnelRepository.findById(personnel_id).get();
 		PointageRetard r = pointageRetardRepository.findByDatedujour(date);
@@ -105,9 +106,24 @@ public class PointageRetardService {
 	{
 		List<Personnel> ListPersonnels=personnelService.listAll();
 		List<LocalDateTime> ListeHeure= new ArrayList();
+		int nbrMinuteRetard =0;
 		for(Personnel p : ListPersonnels){
 			ListeHeure=pointageRetardRepository.ListeDesHeuresRetardParPersonnelId(p.getId_personnel());
-			
+			for(LocalDateTime Time : ListeHeure)
+			{
+				int Minute=Time.getMinute();
+				int Heure=Time.getHour();
+				if(Heure<12){
+				 nbrMinuteRetard=nbrMinuteRetard+((Heure-8)*60)+Minute-15;
+				}
+				else {
+				  nbrMinuteRetard=nbrMinuteRetard+((Heure-13)*60)+Minute-15;
+				}
+				
+				
+			}
+			p.setNbrMinuteRetard(nbrMinuteRetard);
+			personnelRepository.save(p);
 			
 		}
 		

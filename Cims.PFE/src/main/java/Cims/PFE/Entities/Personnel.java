@@ -114,6 +114,9 @@ public  class Personnel implements Serializable {
 	@Column(name="date_fonction")
 	private LocalDate date_fonction;
 	
+	@Column(name="NbrMinuteRetard")
+	private int NbrMinuteRetard;
+	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_dept", nullable = false)
 	private Structure departement;
@@ -457,6 +460,13 @@ public  class Personnel implements Serializable {
 	}
 	public void setDate_fonction(LocalDate date_fonction) {
 		this.date_fonction = date_fonction;
+	}
+	
+	public int getNbrMinuteRetard() {
+		return NbrMinuteRetard;
+	}
+	public void setNbrMinuteRetard(int nbrMinuteRetard) {
+		NbrMinuteRetard = nbrMinuteRetard;
 	}
 	public Personnel(Long id_personnel, int matricule, String nom, String prenom, String sexe, int telephone,
 			int soldeRepos, int soldeExceptionnel, LocalDate date_recrutement, @NotBlank String email) {

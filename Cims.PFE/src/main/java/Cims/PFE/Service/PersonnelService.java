@@ -61,6 +61,7 @@ public class PersonnelService {
 		return personnelRepository.findAll();
 	}
 	
+	
 	public Personnel save(Personnel p) {
 		p.setSoldeRepos(0);
 		p.setSoldeExceptionnel(0);
@@ -81,6 +82,7 @@ public class PersonnelService {
 		p.setService1(service1);
 		p.setSoldeRepos(0);
 		p.setSoldeExceptionnel(0);
+		p.setNbrMinuteRetard(0);
 		return personnelRepository.save(p);
 		
 	}

@@ -103,19 +103,21 @@ public class PointageRetardService {
 		
 		
 	}
-	@SuppressWarnings("deprecation")
+	
 	public void calculerRetardPersonnel()
 	{
 		List<Personnel> ListPersonnels=personnelService.listAll();
 		List<Timestamp> ListeHeure= new ArrayList<Timestamp>();
-		int nbrMinuteRetard =0;
+		
 		for(Personnel p : ListPersonnels){
+			int nbrMinuteRetard =0;
+		
 			ListeHeure=pointageRetardRepository.ListeDesHeuresRetardParPersonnelId(p.getId_personnel());
 			for(Timestamp Time : ListeHeure)
 			{
 				int Minute=Time.getMinutes();
 				int Heure=Time.getHours();
-				System.out.println("heure zaaaab "+Heure+"d9aye9 sayeb zeby "+Minute);
+			
 				if(Heure<12){
 				 nbrMinuteRetard=nbrMinuteRetard+((Heure-8)*60)+Minute-15;
 				 System.out.println("hethaa l sbeh"+nbrMinuteRetard);
@@ -129,7 +131,6 @@ public class PointageRetardService {
 				
 				
 			}
-			System.out.println("a zebyyyyyyyyyyy"+nbrMinuteRetard);
 			p.setNbrMinuteRetard(nbrMinuteRetard);
 			personnelRepository.save(p);
 			

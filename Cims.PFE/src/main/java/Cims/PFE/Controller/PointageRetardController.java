@@ -8,6 +8,7 @@ import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.Timed;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import Cims.PFE.Entities.Personnel;
 import Cims.PFE.Service.PointageRetardService;
+import Cims.PFE.payload.response.MessageResponse;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -42,6 +44,11 @@ public class PointageRetardController {
 	@GetMapping(value = "/listRetard/{date}")
 	public List<Personnel> listRetard(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
 		return pointageRetardService.listRetardParJour(date);
+	}
+	@PutMapping(value ="/CalculeNbrMinuteRetard")
+	public ResponseEntity<MessageResponse> CalculeNbrMinuteRetard(){
+		pointageRetardService.calculerRetardPersonnel();
+		return ResponseEntity.ok(new MessageResponse("Calcule nombre minutre retard fait"));
 	}
 	
 	

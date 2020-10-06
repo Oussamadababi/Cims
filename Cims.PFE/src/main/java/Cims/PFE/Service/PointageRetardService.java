@@ -1,6 +1,7 @@
 package Cims.PFE.Service;
 
 import java.math.BigInteger;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -102,26 +103,33 @@ public class PointageRetardService {
 		
 		
 	}
+	@SuppressWarnings("deprecation")
 	public void calculerRetardPersonnel()
 	{
 		List<Personnel> ListPersonnels=personnelService.listAll();
-		List<LocalDateTime> ListeHeure= new ArrayList();
+		List<Timestamp> ListeHeure= new ArrayList<Timestamp>();
 		int nbrMinuteRetard =0;
 		for(Personnel p : ListPersonnels){
 			ListeHeure=pointageRetardRepository.ListeDesHeuresRetardParPersonnelId(p.getId_personnel());
-			for(LocalDateTime Time : ListeHeure)
+			for(Timestamp Time : ListeHeure)
 			{
-				int Minute=Time.getMinute();
-				int Heure=Time.getHour();
+				int Minute=Time.getMinutes();
+				int Heure=Time.getHours();
+				System.out.println("heure zaaaab "+Heure+"d9aye9 sayeb zeby "+Minute);
 				if(Heure<12){
 				 nbrMinuteRetard=nbrMinuteRetard+((Heure-8)*60)+Minute-15;
+				 System.out.println("hethaa l sbeh"+nbrMinuteRetard);
 				}
-				else {
+				else if(12<<Heure<17) {
 				  nbrMinuteRetard=nbrMinuteRetard+((Heure-13)*60)+Minute-15;
+				  System.out.println("hethaa laachya"+nbrMinuteRetard);
 				}
+				else
+					nbrMinuteRetard=0;
 				
 				
 			}
+			System.out.println("a zebyyyyyyyyyyy"+nbrMinuteRetard);
 			p.setNbrMinuteRetard(nbrMinuteRetard);
 			personnelRepository.save(p);
 			

@@ -1,7 +1,7 @@
 package Cims.PFE.Dao;
 
 import java.math.BigInteger;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +19,6 @@ public interface PointageRetardRepository extends JpaRepository<PointageRetard, 
 	List<BigInteger> listRetardParJour(Date date);
 	
 	@Query(value = "SELECT heure_entree FROM  pointage_retard a join pointage_retard_personnels p on a.datedujour=p.retard_datedujour where p.personnels_id_personnel=?1 ", nativeQuery = true)
-	List<LocalDateTime> ListeDesHeuresRetardParPersonnelId(Long id);
+	List<Timestamp> ListeDesHeuresRetardParPersonnelId(Long id);
 	//SELECT heure_entree FROM  pointage_retard a join pointage_retard_personnels p on a.datedujour=p.retard_datedujour where p.personnels_id_personnel=?2
 }

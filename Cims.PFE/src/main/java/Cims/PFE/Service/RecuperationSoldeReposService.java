@@ -35,6 +35,9 @@ public RecuperationSoldeRepos save(RecuperationSoldeRepos Ac){
 	}
 	
 	public  RecuperationSoldeRepos ajouterdemandeRSR (RecuperationSoldeRepos c,Long id){
+		List<RecuperationSoldeRepos> ListRSRParDateAndIdP = recuperationSoldeReposRepository.getRSRByDateAndIdPersonnel(String.valueOf(LocalDate.now().getYear()-2),id);
+		if(ListRSRParDateAndIdP.size()==0){
+			System.out.println("mchet shiha");
 		Personnel P = new Personnel();
 		P=personnelService.getById(id);
 		c.setP(P);
@@ -46,7 +49,10 @@ public RecuperationSoldeRepos save(RecuperationSoldeRepos Ac){
 		P=personnelService.getById(c.getP().getId_personnel());
 		P.setSoldeRepos(0);
 		personnelService.save(P);
-		return save(c);
+		return save(c);}
+		else{
+			System.out.println("mchet ki zeby"+ListRSRParDateAndIdP);
+			return null;}
 
 }
 	public  RecuperationSoldeRepos ajouterdemandeRSRparPersoonel (RecuperationSoldeRepos c,Long idCompte){

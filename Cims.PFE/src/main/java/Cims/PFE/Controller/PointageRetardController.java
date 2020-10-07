@@ -1,6 +1,7 @@
 package Cims.PFE.Controller;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import Cims.PFE.Entities.Personnel;
+import Cims.PFE.Entities.PointageRetard;
+import Cims.PFE.Entities.Retard;
 import Cims.PFE.Service.PointageRetardService;
 import Cims.PFE.payload.response.MessageResponse;
 
@@ -42,7 +45,7 @@ public class PointageRetardController {
 		return pointageRetardService.listNonRetard(date);
 	}
 	@GetMapping(value = "/listRetard/{date}")
-	public List<Personnel> listRetard(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
+	public List<Personnel> listRetardParJour(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
 		return pointageRetardService.listRetardParJour(date);
 	}
 	@PutMapping(value ="/CalculeNbrMinuteRetard")
@@ -50,7 +53,15 @@ public class PointageRetardController {
 		pointageRetardService.calculerRetardPersonnel();
 		return ResponseEntity.ok(new MessageResponse("Calcule nombre minutre retard fait"));
 	}
-	
+	@GetMapping(value = "/listRetardParPersonnel/{personnel_id}")
+	public List<Retard> listRetard(@PathVariable("personnel_id")long personnel_id) {
+		return pointageRetardService.listRetard(personnel_id);
+	}
+	@GetMapping(value = "/ListeDesHeuresRetardParPersonnelId/{personnel_id}")
+	List<PointageRetard> listeDesHeuresRetardParPersonnelId(@PathVariable("personnel_id")Long idpersonnel)
+	{
+		return pointageRetardService.listeDesHeuresRetardParPersonnelId(idpersonnel);
+	}
 	
 	
 }

@@ -14,6 +14,7 @@ import Cims.PFE.Dao.PersonnelRepository;
 import Cims.PFE.Dao.PointageRetardRepository;
 import Cims.PFE.Entities.Personnel;
 import Cims.PFE.Entities.PointageRetard;
+import Cims.PFE.Entities.Retard;
 
 @Service
 public class PointageRetardService {
@@ -143,4 +144,26 @@ public class PointageRetardService {
 	{
 		return pointageRetardRepository.listRetardParJour(date);
 	}*/
+	public List<Retard> listRetard(long idpersonnel)
+	{
+		List<Retard> Retards = new ArrayList<>();
+		Personnel p= personnelRepository.getOne(idpersonnel);
+		List<Timestamp> ListeHeure= pointageRetardRepository.ListeDesHeuresRetardParPersonnelId(idpersonnel);
+		Retard r = new Retard();
+		for(Timestamp Time : ListeHeure)
+		{
+			r.setHeureEntree(Time);	
+			r.setNom(p.getNom());
+			r.setPrenom(p.getPrenom());
+			r.setNbrMinuteRetard(p.getNbrMinuteRetard());
+			Retards.add(r);
+			return Retards;
+		}
+		return Retards;
+
+	}
+	public List<PointageRetard> listeDesHeuresRetardParPersonnelId(	Long idpersonnel)
+	{
+		return pointageRetardRepository.ListeRetardParPersonnelId(idpersonnel);
+	}
 }

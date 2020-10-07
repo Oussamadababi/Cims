@@ -21,4 +21,6 @@ public interface PointageRetardRepository extends JpaRepository<PointageRetard, 
 	@Query(value = "SELECT heure_entree FROM  pointage_retard a join pointage_retard_personnels p on a.datedujour=p.retard_datedujour where p.personnels_id_personnel=?1 ", nativeQuery = true)
 	List<Timestamp> ListeDesHeuresRetardParPersonnelId(Long id);
 	//SELECT heure_entree FROM  pointage_retard a join pointage_retard_personnels p on a.datedujour=p.retard_datedujour where p.personnels_id_personnel=?2
+	@Query(value = "SELECT * FROM  pointage_retard a join pointage_retard_personnels p on a.datedujour=p.retard_datedujour where p.personnels_id_personnel=?1 ", nativeQuery = true)
+	List<PointageRetard> ListeRetardParPersonnelId(Long id);
 }

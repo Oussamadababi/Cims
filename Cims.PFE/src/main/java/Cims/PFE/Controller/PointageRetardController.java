@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import Cims.PFE.Entities.Personnel;
 import Cims.PFE.Entities.PointageRetard;
+import Cims.PFE.Entities.PointageRetardPersonnel;
 import Cims.PFE.Entities.Retard;
 import Cims.PFE.Service.PointageRetardService;
 import Cims.PFE.payload.response.MessageResponse;
@@ -30,38 +31,34 @@ import Cims.PFE.payload.response.MessageResponse;
 public class PointageRetardController {
 	@Autowired
 	PointageRetardService pointageRetardService;
-	@PutMapping(value = "ListeRetard/{personnel_id}/{date}/{heureEntree}")
-	public void ajouteAuListeAbsence(@PathVariable("personnel_id") long personnel_id,
-			@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date,@PathVariable("heureEntree")@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime   heureEntree) {
-		pointageRetardService.ajouteAuListeRetard(personnel_id, date,heureEntree);
-	}
-	@PutMapping(value = "supprimerPersonnelDeLaListeRetard/{personnel_id}/{date}")
-	public void supprimerPersonnelDeLaListe(@PathVariable("personnel_id")long personnel_id,@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date)
-	{
-		pointageRetardService.supprimerPersonnelDeLaListe(personnel_id, date);
-	}
-	@GetMapping(value = "/listNonRetard/{date}")
-	public List<Personnel> listnonRetard(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
-		return pointageRetardService.listNonRetard(date);
-	}
-	@GetMapping(value = "/listRetard/{date}")
-	public List<Personnel> listRetardParJour(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
-		return pointageRetardService.listRetardParJour(date);
-	}
-	@PutMapping(value ="/CalculeNbrMinuteRetard")
-	public ResponseEntity<MessageResponse> CalculeNbrMinuteRetard(){
-		pointageRetardService.calculerRetardPersonnel();
-		return ResponseEntity.ok(new MessageResponse("Calcule nombre minutre retard fait"));
-	}
-	@GetMapping(value = "/listRetardParPersonnel/{personnel_id}")
-	public List<Retard> listRetard(@PathVariable("personnel_id")long personnel_id) {
-		return pointageRetardService.listRetard(personnel_id);
-	}
-	@GetMapping(value = "/ListeDesHeuresRetardParPersonnelId/{personnel_id}")
-	List<PointageRetard> listeDesHeuresRetardParPersonnelId(@PathVariable("personnel_id")Long idpersonnel)
-	{
-		return pointageRetardService.listeDesHeuresRetardParPersonnelId(idpersonnel);
-	}
-	
-	
+//	@PutMapping(value = "ListeRetard/{personnel_id}/{date}/{heureEntree}")
+//	public void ajouteAuListeAbsence(@PathVariable("personnel_id") long personnel_id,
+//			@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date,@PathVariable("heureEntree")@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime   heureEntree) {
+//		pointageRetardService.ajouteAuListeRetard(personnel_id, date,heureEntree);
+//	}
+//	@PutMapping(value = "supprimerPersonnelDeLaListeRetard/{personnel_id}/{date}")
+//	public void supprimerPersonnelDeLaListe(@PathVariable("personnel_id")long personnel_id,@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date)
+//	{
+//		pointageRetardService.supprimerPersonnelDeLaListe(personnel_id, date);
+//	}
+//	@GetMapping(value = "/listNonRetard/{date}")
+//	public List<Personnel> listnonRetard(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
+//		return pointageRetardService.listNonRetard(date);
+//	}
+//	@GetMapping(value = "/listRetard/{date}")
+//	public List<Personnel> listRetardParJour(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
+//		return pointageRetardService.listRetardParJour(date);
+//	}
+//	@PutMapping(value ="/CalculeNbrMinuteRetard")
+//	public ResponseEntity<MessageResponse> CalculeNbrMinuteRetard(){
+//		pointageRetardService.calculerRetardPersonnel();
+//		return ResponseEntity.ok(new MessageResponse("Calcule nombre minutre retard fait"));
+//	}
+//	@GetMapping(value = "/listRetardParPersonnel")
+//	public List<Retard> listRetard() {
+//		return pointageRetardService.list();
+//	}
+
+//	
+//	
 }

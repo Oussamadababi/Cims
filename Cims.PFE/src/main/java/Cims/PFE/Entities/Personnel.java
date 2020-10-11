@@ -147,9 +147,9 @@ public  class Personnel implements Serializable {
 	@OneToMany(mappedBy="personnels",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
     private List<AppelJourPersonnel> appels ;
-	@ManyToMany(mappedBy="Personnels",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy="personnels",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
-    private List<PointageRetard> retard ;
+    private List<PointageRetardPersonnel> retard ;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="p", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -525,6 +525,64 @@ public  class Personnel implements Serializable {
 		ListRecupSoldeRepos = listRecupSoldeRepos;
 		this.fonction = fonction;
 		this.affectation = affectation;
+	}
+	public List<PointageRetardPersonnel> getRetard() {
+		return retard;
+	}
+	public void setRetard(List<PointageRetardPersonnel> retard) {
+		this.retard = retard;
+	}
+	public Personnel(Long id_personnel, int matricule, String nom, String prenom, String sexe, int telephone,
+			double soldeRepos, double soldeReposN_1, double soldeReposN_2, double soldeExceptionnel,
+			double soldeCompensation, LocalDate date_recrutement, @NotBlank String email, String nom_AR,
+			String prenom_AR, int matricule_CNRPS, int matricule_CNSS, LocalDate date_Naissance, String adresse,
+			String poste_Occupe, LocalDate date_Promotion, String echelle, LocalDate date_Echelle, String echellon,
+			LocalDate date_Echellon, LocalDate date_fonction, int nbrMinuteRetard, Structure departement, Grade grade,
+			Compte compte, List<AffectationTotale> affectationt, List<AffectationPartielle> affectationp,
+			List<Conge> conges, List<AppelJourPersonnel> appels, List<PointageRetardPersonnel> retard,
+			List<RecuperationSoldeRepos> listRecupSoldeRepos, Fonction fonction, Affectation affectation,
+			Service1 service1, Division division) {
+		super();
+		this.id_personnel = id_personnel;
+		this.matricule = matricule;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.sexe = sexe;
+		this.telephone = telephone;
+		this.soldeRepos = soldeRepos;
+		this.soldeReposN_1 = soldeReposN_1;
+		this.soldeReposN_2 = soldeReposN_2;
+		this.soldeExceptionnel = soldeExceptionnel;
+		this.soldeCompensation = soldeCompensation;
+		this.date_recrutement = date_recrutement;
+		this.email = email;
+		this.nom_AR = nom_AR;
+		this.prenom_AR = prenom_AR;
+		this.matricule_CNRPS = matricule_CNRPS;
+		this.matricule_CNSS = matricule_CNSS;
+		this.date_Naissance = date_Naissance;
+		this.adresse = adresse;
+		this.poste_Occupe = poste_Occupe;
+		this.date_Promotion = date_Promotion;
+		this.echelle = echelle;
+		this.date_Echelle = date_Echelle;
+		this.echellon = echellon;
+		this.date_Echellon = date_Echellon;
+		this.date_fonction = date_fonction;
+		NbrMinuteRetard = nbrMinuteRetard;
+		this.departement = departement;
+		this.grade = grade;
+		this.compte = compte;
+		this.affectationt = affectationt;
+		this.affectationp = affectationp;
+		Conges = conges;
+		this.appels = appels;
+		this.retard = retard;
+		ListRecupSoldeRepos = listRecupSoldeRepos;
+		this.fonction = fonction;
+		this.affectation = affectation;
+		this.service1 = service1;
+		this.division = division;
 	}
 	
 	

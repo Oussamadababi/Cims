@@ -7,5 +7,6 @@ import Cims.PFE.Entities.AppelJourPersonnel;
 
 @Repository
 public interface AppelDeJourPersonnelRepository extends JpaRepository<AppelJourPersonnel, Long> {
+	
 
 }

@@ -7,12 +7,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "PointageRetard")
@@ -20,11 +25,11 @@ public class PointageRetard {
 	@Id
 	@Temporal(TemporalType.DATE)
 	private Date datedujour;
-	
-	private LocalDateTime  heureEntree;
 
-	@ManyToMany
-	private List<Personnel> Personnels;
+
+	@OneToMany(mappedBy="pointageRetard",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<PointageRetardPersonnel> retard;
 
 	public Date getDatedujour() {
 		return datedujour;
@@ -34,24 +39,13 @@ public class PointageRetard {
 		this.datedujour = datedujour;
 	}
 
-
-
-
-
-	public LocalDateTime  getHeureEntree() {
-		return heureEntree;
+	
+	public List<PointageRetardPersonnel> getRetard() {
+		return retard;
 	}
 
-	public void setHeureEntree(LocalDateTime  heureEntree) {
-		this.heureEntree = heureEntree;
-	}
-
-	public List<Personnel> getPersonnels() {
-		return Personnels;
-	}
-
-	public void setPersonnels(List<Personnel> personnels) {
-		Personnels = personnels;
+	public void setRetard(List<PointageRetardPersonnel> retard) {
+		this.retard = retard;
 	}
 
 	public PointageRetard() {
@@ -59,12 +53,12 @@ public class PointageRetard {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PointageRetard(Date datedujour, LocalDateTime heureEntree, List<Personnel> personnels) {
+	public PointageRetard(Date datedujour, List<PointageRetardPersonnel> retard) {
 		super();
 		this.datedujour = datedujour;
-		this.heureEntree = heureEntree;
-		Personnels = personnels;
+		this.retard = retard;
 	}
+
 	
 	
 

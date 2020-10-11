@@ -1,5 +1,6 @@
 package Cims.PFE.Entities;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Absence {
@@ -8,6 +9,22 @@ public class Absence {
 	private String prenom;
 	private String etat;
 	private Date date;
+	private int minute;
+	private LocalDateTime  heureEntree;
+	
+	
+	public LocalDateTime getHeureEntree() {
+		return heureEntree;
+	}
+	public void setHeureEntree(LocalDateTime heureEntree) {
+		this.heureEntree = heureEntree;
+	}
+	public int getMinute() {
+		return minute;
+	}
+	public void setMinute(int minute) {
+		this.minute = minute;
+	}
 	public String getNom() {
 		return nom;
 	}
@@ -60,6 +77,20 @@ public class Absence {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	public Absence(String nom, String prenom, Date date, int minute) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.date = date;
+		this.minute = minute;
+	}
+	public Absence(String nom, String prenom, int minute, LocalDateTime heureEntree) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.minute = minute;
+		this.heureEntree = heureEntree;
 	}
 	
 	

@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 public class Retard {
 private String nom;
 private String prenom;
-private Timestamp  heureEntree;
+private LocalDateTime  heureEntree;
 private int nbrMinuteRetard;
 public Retard() {
 	super();
@@ -24,10 +24,10 @@ public String getPrenom() {
 public void setPrenom(String prenom) {
 	this.prenom = prenom;
 }
-public Timestamp getHeureEntree() {
+public LocalDateTime getHeureEntree() {
 	return heureEntree;
 }
-public void setHeureEntree(Timestamp heureEntree) {
+public void setHeureEntree(LocalDateTime heureEntree) {
 	this.heureEntree = heureEntree;
 }
 public int getNbrMinuteRetard() {

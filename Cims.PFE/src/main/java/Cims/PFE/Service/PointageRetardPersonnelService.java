@@ -1,6 +1,7 @@
 package Cims.PFE.Service;
 
 import java.math.BigInteger;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,8 +14,6 @@ import Cims.PFE.Dao.PersonnelRepository;
 import Cims.PFE.Dao.PointageRetardPersonnelRepository;
 import Cims.PFE.Dao.PointageRetardRepository;
 import Cims.PFE.Entities.Absence;
-import Cims.PFE.Entities.AppelDeJour;
-import Cims.PFE.Entities.AppelJourPersonnel;
 import Cims.PFE.Entities.Personnel;
 import Cims.PFE.Entities.PointageRetard;
 import Cims.PFE.Entities.PointageRetardPersonnel;
@@ -102,5 +101,40 @@ public class PointageRetardPersonnelService {
 	public List<PointageRetardPersonnel> listeDesHeuresRetardParPersonnelId(long idpersonnel)
 	{
 		return pointageRetardPersonnelRepository.ListeRetardParPersonnelId(idpersonnel);
+	}
+	public void calculerRetardPersonnel()
+	{
+		List<Personnel> ListPersonnels=personnelService.listAll();
+		List<Timestamp> ListeHeure= new ArrayList<Timestamp>();
+		
+		for(Personnel p : ListPersonnels){
+			int nbrMinuteRetard =0;
+		
+			ListeHeure=pointageRetardPersonnelRepository.ListeDesHeuresRetardParPersonnelId(p.getId_personnel());
+			for(Timestamp Time : ListeHeure)
+			{
+				int Minute=Time.getMinutes();
+				int Heure=Time.getHours();
+			
+				if(Heure<12){
+				 nbrMinuteRetard=nbrMinuteRetard+((Heure-8)*60)+Minute-15;
+				 System.out.println("hethaa l sbeh"+nbrMinuteRetard);
+				}
+				else if(12<<Heure<17) {
+				  nbrMinuteRetard=nbrMinuteRetard+((Heure-13)*60)+Minute-15;
+				  System.out.println("hethaa laachya"+nbrMinuteRetard);
+				}
+				else
+					nbrMinuteRetard=0;
+				
+				
+			}
+			p.setNbrMinuteRetard(nbrMinuteRetard);
+			personnelRepository.save(p);
+			
+		}
+		
+		
+		
 	}
 }

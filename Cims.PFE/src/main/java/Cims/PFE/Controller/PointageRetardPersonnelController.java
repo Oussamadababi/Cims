@@ -6,11 +6,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +21,7 @@ import Cims.PFE.Entities.Absence;
 import Cims.PFE.Entities.Personnel;
 import Cims.PFE.Entities.PointageRetardPersonnel;
 import Cims.PFE.Service.PointageRetardPersonnelService;
+import Cims.PFE.payload.response.MessageResponse;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -61,5 +64,10 @@ public class PointageRetardPersonnelController {
 	List<PointageRetardPersonnel> listeDesHeuresRetardParPersonnelId(@PathVariable("personnel_id")long idpersonnel)
 	{
 		return pointageRetardPersonnelService.listeDesHeuresRetardParPersonnelId(idpersonnel);
+	}
+	@PutMapping(value ="/CalculeNbrMinuteRetard")
+	public ResponseEntity<MessageResponse> CalculeNbrMinuteRetard(){
+		pointageRetardPersonnelService.calculerRetardPersonnel();
+		return ResponseEntity.ok(new MessageResponse("Calcule nombre minutre retard fait"));
 	}
 }

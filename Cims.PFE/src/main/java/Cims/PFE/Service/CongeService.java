@@ -40,6 +40,16 @@ public class CongeService {
 		congeRepository.findAll().forEach(conges::add);
 		return conges;
 	}
+	public List<Conge> listAllAccepte() {
+		List<Conge> conges = new ArrayList<>();
+		congeRepository.congeparEtat("Accepté").forEach(conges::add);
+		return conges;
+	}
+	public List<Conge> listAllEnAttente() {
+		List<Conge> conges = new ArrayList<>();
+		congeRepository.congeparEtat("En_attente").forEach(conges::add);
+		return conges;
+	}
 
 	public Conge demanderConge(Conge c, long idCompte) {
 

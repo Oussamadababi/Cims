@@ -363,7 +363,9 @@ public class AppelJourPersonnelService {
 //						+ "                  <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n"
 //						+ "                    <tr>\n" + "                      <td>\n"
 //						+ "                        <p>Bonjour </p>\n"+p.getNom()+" " + p.getPrenom()
-//						+ "                        <p>nous vous informons que vous êtes marqué absent sans justification dans la date : </p>\n" + date
+//						+ "                        <p>vous avez une absence du : </p>\n" + date
+//				+ "                                  <p>qui n'est pas encore justifié . </p>\n"
+//				+ "                                  <p>Veuillez vérifier avec ressources humaines pour régler la situation </p>\n"
 //						+ "                        <table role=\"presentation\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" class=\"btn btn-primary\">\n"
 //						+ "                          <tbody>\n" + "                            <tr>\n"
 //						+ "                              <td align=\"left\">\n"

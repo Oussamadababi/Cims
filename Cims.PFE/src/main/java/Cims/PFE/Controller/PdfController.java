@@ -29,6 +29,7 @@ public class PdfController {
 	@Autowired
 	private OrdreMissionService ordreMissionService;
 	
+	
 	//afficher le pdf dans le navigateur
 	//ordre aff
 	@RequestMapping(value = "/pdfreport/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_PDF_VALUE)

@@ -33,7 +33,7 @@ Long getNbrAffectValidee();
 @Query(value="SELECT count(id_affectation_p) from public.affectation_partielle where id_etat=3",nativeQuery = true)
 Long getNbrAffectRefusee();
 
-@Query(value="SELECT count(id_affectation_p) as X ,gouvernorat.nom_gouv as Y FROM public.affectation_partielle  join affectation  using (id_affectation) natural join gouvernorat where id_etat=2  group by gouvernorat.nom_gouv ; ",nativeQuery = true)
+@Query(value="SELECT count(id_affectation_p) as X ,gouvernorat.nom_gouv as Y FROM public.affectation_partielle  join affectation  using (id_affectationt) natural join gouvernorat where id_etat=2  group by gouvernorat.nom_gouv ; ",nativeQuery = true)
 List<DashGouv>DashAffparGouv();
 
 boolean existsByPersonnel(Personnel personnel);

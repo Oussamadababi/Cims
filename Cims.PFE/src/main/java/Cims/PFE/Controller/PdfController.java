@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import Cims.PFE.Service.CongeService;
 import Cims.PFE.Service.OrdreAffPService;
 import Cims.PFE.Service.OrdreMissionService;
 import Cims.PFE.Utils.generatePdf;
@@ -28,6 +29,8 @@ public class PdfController {
 	
 	@Autowired
 	private OrdreMissionService ordreMissionService;
+	@Autowired
+	private CongeService congeService;
 	
 	//afficher le pdf dans le navigateur
 	//ordre aff
@@ -60,5 +63,20 @@ public class PdfController {
 
 		return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
 				.body(new InputStreamResource(bis));
+	}
+	@RequestMapping(value = "/allCongeA", method = RequestMethod.GET, produces = MediaType.APPLICATION_PDF_VALUE)
+	public ResponseEntity<InputStreamResource> conge() throws IOException {
+		
+		
+
+		ByteArrayInputStream bis = generatePdf.listConge(congeService.listAllAccepte());
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Disposition", "inline; filename=conge.pdf");
+		//headers.add("Content-Disposition", "attachment; filename=report.pdf");
+
+		return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
+				.body(new InputStreamResource(bis));
+		//save pdf file fi bureau
 	}
 }

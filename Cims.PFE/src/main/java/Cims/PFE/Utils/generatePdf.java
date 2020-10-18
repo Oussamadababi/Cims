@@ -4,13 +4,16 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Rectangle;
@@ -18,6 +21,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import Cims.PFE.Entities.Conge;
 import Cims.PFE.Entities.Deplacement;
 import Cims.PFE.Entities.Hebergement;
 import Cims.PFE.Entities.MoyenDeTransport;
@@ -25,7 +29,165 @@ import Cims.PFE.Entities.OrdreAffectationP;
 import Cims.PFE.Entities.OrdreMission;
 import Cims.PFE.Entities.Transport;
 
+
 public class generatePdf {
+	
+	public static ByteArrayInputStream listConge(List<Conge> o) throws MalformedURLException, IOException {
+		
+		Document document = new Document();
+		//document.setMargins(60, 60, 60, 60);
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		
+		try {
+			PdfWriter.getInstance(document, out);
+			document.open();
+			Font f = new Font();
+	        f.setStyle(Font.BOLD);
+	        f.setSize(15);
+			Paragraph p = new Paragraph();
+			 p.setFont(f);
+			  p.setAlignment(Element.ALIGN_CENTER);
+			  Image img = Image.getInstance("cims-logo.png");
+		         img.scaleAbsoluteWidth(60);
+		         img.scaleAbsoluteHeight(30);
+		         img.setAlignment(Element.ALIGN_LEFT);
+		         p.add(img);
+        p.add("République tunisienne \n Ministère de la santé \n Centre de l'informatique \n\n\n\n\n");
+        p.add("Liste Conge \n\n\n\n");
+			  PdfPTable headerTable = new PdfPTable(7);
+			  document.add(p);
+			  Font tableHeader = FontFactory.getFont("Arial", 10, BaseColor.BLACK);
+			   PdfPCell name = new PdfPCell(new Paragraph("NumConge", tableHeader));
+			    name.setBorderColor(BaseColor.BLACK);
+			    name.setPaddingLeft(2);
+			    name.setHorizontalAlignment(Element.ALIGN_CENTER);
+			    name.setVerticalAlignment(Element.ALIGN_CENTER);
+			    name.setBackgroundColor(BaseColor.DARK_GRAY);
+			    name.setExtraParagraphSpace(10f);
+			    headerTable.addCell(name);
+			    PdfPCell Type = new PdfPCell(new Paragraph("TypeConge", tableHeader));
+			    Type.setBorderColor(BaseColor.BLACK);
+			    Type.setPaddingLeft(0);
+			    Type.setHorizontalAlignment(Element.ALIGN_CENTER);
+			    Type.setVerticalAlignment(Element.ALIGN_CENTER);
+			    Type.setBackgroundColor(BaseColor.DARK_GRAY);
+			    Type.setExtraParagraphSpace(10f);
+			    headerTable.addCell(Type);
+			  
+			  PdfPCell dateDebut = new PdfPCell(new Paragraph("DateDebut" , tableHeader));
+			  dateDebut.setBorderColor(BaseColor.BLACK);
+			  dateDebut.setPaddingLeft(0);
+			  dateDebut.setHorizontalAlignment(Element.ALIGN_CENTER);
+			  dateDebut.setVerticalAlignment(Element.ALIGN_CENTER);
+			  dateDebut.setBackgroundColor(BaseColor.DARK_GRAY);
+			  dateDebut.setExtraParagraphSpace(10f);
+			  headerTable.addCell(dateDebut);
+		        
+		         
+				  PdfPCell datefin = new PdfPCell(new Paragraph("Datefin" , tableHeader));
+				  datefin.setBorderColor(BaseColor.BLACK);
+				  datefin.setPaddingLeft(0);
+				  datefin.setHorizontalAlignment(Element.ALIGN_CENTER);
+				  datefin.setVerticalAlignment(Element.ALIGN_CENTER);
+				  datefin.setBackgroundColor(BaseColor.DARK_GRAY);
+				  datefin.setExtraParagraphSpace(10f);
+				  headerTable.addCell(datefin);
+				  PdfPCell nombreJour = new PdfPCell(new Paragraph("NombreJour" , tableHeader));
+				  nombreJour.setBorderColor(BaseColor.BLACK);
+				  nombreJour.setPaddingLeft(0);
+				  nombreJour.setHorizontalAlignment(Element.ALIGN_CENTER);
+				  nombreJour.setVerticalAlignment(Element.ALIGN_CENTER);
+				  nombreJour.setBackgroundColor(BaseColor.DARK_GRAY);
+				  nombreJour.setExtraParagraphSpace(10f);
+				  headerTable.addCell(nombreJour);
+				  PdfPCell nombreMois = new PdfPCell(new Paragraph("NombreMois" , tableHeader));
+				  nombreMois.setBorderColor(BaseColor.BLACK);
+				  nombreMois.setPaddingLeft(0);
+				  nombreMois.setHorizontalAlignment(Element.ALIGN_CENTER);
+				  nombreMois.setVerticalAlignment(Element.ALIGN_CENTER);
+				  nombreMois.setBackgroundColor(BaseColor.DARK_GRAY);
+				  nombreMois.setExtraParagraphSpace(10f);
+				  headerTable.addCell(nombreMois);
+				  PdfPCell nomPersonnel = new PdfPCell(new Paragraph("NomPersonnel" , tableHeader));
+				  nomPersonnel.setBorderColor(BaseColor.BLACK);
+				  nomPersonnel.setPaddingLeft(0);
+				  nomPersonnel.setHorizontalAlignment(Element.ALIGN_CENTER);
+				  nomPersonnel.setVerticalAlignment(Element.ALIGN_CENTER);
+				  nomPersonnel.setBackgroundColor(BaseColor.DARK_GRAY);
+				  nomPersonnel.setExtraParagraphSpace(10f);
+				  headerTable.addCell(nomPersonnel);
+				  document.add(headerTable);
+				  PdfPTable headerTable2 = new PdfPTable(7);
+				  for(Conge c : o)
+				  {
+					 
+					  PdfPCell nameval = new PdfPCell(new Paragraph(c.getId().toString(), tableHeader));
+					  nameval.setBorderColor(BaseColor.BLACK);
+					  nameval.setPaddingLeft(2);
+					  nameval.setHorizontalAlignment(Element.ALIGN_CENTER);
+					  nameval.setVerticalAlignment(Element.ALIGN_CENTER);
+					  nameval.setBackgroundColor(BaseColor.WHITE);
+					  nameval.setExtraParagraphSpace(5f);
+				 	   headerTable2.addCell(nameval);
+				 	  PdfPCell typeCongeVal = new PdfPCell(new Paragraph(c.getTypedeconge().toString(), tableHeader));
+				 	 typeCongeVal.setBorderColor(BaseColor.BLACK);
+				 	typeCongeVal.setPaddingLeft(0);
+				 	typeCongeVal.setHorizontalAlignment(Element.ALIGN_CENTER);
+				 	typeCongeVal.setVerticalAlignment(Element.ALIGN_CENTER);
+				 	typeCongeVal.setBackgroundColor(BaseColor.WHITE);
+				 	typeCongeVal.setExtraParagraphSpace(5f);
+				 	   headerTable2.addCell(typeCongeVal);
+				 	  PdfPCell dateDebutval = new PdfPCell(new Paragraph(c.getDatedebut().toString(), tableHeader));
+				 	 dateDebutval.setBorderColor(BaseColor.BLACK);
+				 	dateDebutval.setPaddingLeft(0);
+				 	dateDebutval.setHorizontalAlignment(Element.ALIGN_CENTER);
+				 	dateDebutval.setVerticalAlignment(Element.ALIGN_CENTER);
+				 	dateDebutval.setBackgroundColor(BaseColor.WHITE);
+				 	dateDebutval.setExtraParagraphSpace(5f);
+					 	   headerTable2.addCell(dateDebutval);
+					 	  PdfPCell dateFinval = new PdfPCell(new Paragraph(c.getDatefin().toString(), tableHeader));
+					 	 dateFinval.setBorderColor(BaseColor.BLACK);
+					 	dateFinval.setPaddingLeft(0);
+					 	dateFinval.setHorizontalAlignment(Element.ALIGN_CENTER);
+					 	dateFinval.setVerticalAlignment(Element.ALIGN_CENTER);
+					 	dateFinval.setBackgroundColor(BaseColor.WHITE);
+					 	dateFinval.setExtraParagraphSpace(5f);
+							 	   headerTable2.addCell(dateFinval);
+							 	  PdfPCell nombreJourVal= new PdfPCell(new Paragraph(String.valueOf(c.getNumDeJour()) , tableHeader));
+							 	 nombreJourVal.setBorderColor(BaseColor.BLACK);
+							 	nombreJourVal.setPaddingLeft(0);
+							 	nombreJourVal.setHorizontalAlignment(Element.ALIGN_CENTER);
+							 	nombreJourVal.setVerticalAlignment(Element.ALIGN_CENTER);
+							 	nombreJourVal.setBackgroundColor(BaseColor.WHITE);
+							 	nombreJourVal.setExtraParagraphSpace(10f);
+								  headerTable2.addCell(nombreJourVal);
+								  PdfPCell nombreMoisVal = new PdfPCell(new Paragraph(String.valueOf(c.getNumDeMois()) , tableHeader));
+								  nombreMoisVal.setBorderColor(BaseColor.BLACK);
+								  nombreMoisVal.setPaddingLeft(0);
+								  nombreMoisVal.setHorizontalAlignment(Element.ALIGN_CENTER);
+								  nombreMoisVal.setVerticalAlignment(Element.ALIGN_CENTER);
+								  nombreMoisVal.setBackgroundColor(BaseColor.WHITE);
+								  nombreMoisVal.setExtraParagraphSpace(10f);
+								  headerTable2.addCell(nombreMoisVal);
+								  PdfPCell nomPersonnelVal = new PdfPCell(new Paragraph(c.getP().getNom()+" "+c.getP().getPrenom(), tableHeader));
+								  nomPersonnelVal.setBorderColor(BaseColor.BLACK);
+								  nomPersonnelVal.setPaddingLeft(0);
+								  nomPersonnelVal.setHorizontalAlignment(Element.ALIGN_CENTER);
+								  nomPersonnelVal.setVerticalAlignment(Element.ALIGN_CENTER);
+								  nomPersonnelVal.setBackgroundColor(BaseColor.WHITE);
+								  nomPersonnelVal.setExtraParagraphSpace(10f);
+								  headerTable2.addCell(nomPersonnelVal);
+				  }
+			         document.add(headerTable2);
+			 document.close();
+		}
+	 catch (DocumentException ex) {
+
+		Logger.getLogger(generatePdf.class.getName()).log(Level.SEVERE, null, ex);
+	}
+
+		return new ByteArrayInputStream(out.toByteArray());
+	}
 	
 	//creation de forme de  pdf par id d'affectation
 	public static ByteArrayInputStream Report(OrdreAffectationP o) throws MalformedURLException, IOException {

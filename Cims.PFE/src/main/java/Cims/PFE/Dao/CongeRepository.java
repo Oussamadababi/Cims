@@ -33,4 +33,8 @@ public interface CongeRepository extends JpaRepository<Conge, Long> {
 	List<Conge> congeAccepterParIdpersonnel(long idPersonnel);
 	@Query(value = "SELECT * from conge c join personnel p on c.personnel_id=p.id_personnel join appel_de_jour_personnels ap on ap.personnels_id_personnel=p.id_personnel where p.id_personnel=?1 and ?2 BETWEEN c.datedebut and c.datefin  ", nativeQuery = true)
 	List<Conge> congeparPersonnelParDate(long idPersonnel,Date date);
+	//SELECT *FROM public.conge where etat='Accepté';
+	@Query(value = "SELECT *FROM public.conge where etat=?1 ", nativeQuery = true)
+	List<Conge> congeparEtat(String etat);
+	
 }

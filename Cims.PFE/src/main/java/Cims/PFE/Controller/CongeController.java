@@ -36,7 +36,11 @@ public class CongeController {
 
 	@GetMapping(value = "/listconge")
 	public List<Conge> listGrades() {
-		return congeService.listAll();
+		return congeService.listAllEnAttente();
+	}
+	@GetMapping(value = "/listcongeAccepte")
+	public List<Conge> listCongeAccepte() {
+		return congeService.listAllAccepte();
 	}
 	@GetMapping(value = "/listcongepardate/{idPersonnel}/{date}")
 	public List<Conge> listGongepardate(@PathVariable(name="idPersonnel") Long idPersonnel,@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {

@@ -42,10 +42,10 @@ public RecuperationSoldeRepos save(RecuperationSoldeRepos Ac){
 		P=personnelService.getById(id);
 		c.setP(P);
 		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
-		c.setEtat("Accepter");
+		c.setEtat("Accepté");
 		c.setSoldeRecuperer(0);
 		c.setTitreAnnee(String.valueOf(LocalDate.now().getYear()-2));
-		c.setSoldeRecuperer(c.getP().getSoldeRepos());
+		c.setSoldeRecuperer(c.getP().getSoldeReposN_2());
 		P=personnelService.getById(c.getP().getId_personnel());
 		P.setSoldeRepos(0);
 		personnelService.save(P);

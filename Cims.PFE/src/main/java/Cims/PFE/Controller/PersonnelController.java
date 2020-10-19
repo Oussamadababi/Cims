@@ -188,6 +188,10 @@ public class PersonnelController {
 	public Personnel getByIdcompte(@PathVariable(name="idCompte")Long idCompte) {
 		return personnelService.getByIdcompte(idCompte);
 	}
-	
+	@PutMapping("/transfererSoldreR")
+	public ResponseEntity<MessageResponse> TransfererLesSR(){
+		personnelService.TransferSoldeRepos();
+		return ResponseEntity.ok(new MessageResponse("Solde transférer"));
+	}
 	
 	}

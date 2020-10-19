@@ -620,4 +620,8 @@ public class AppelJourPersonnelService {
 		
 		
 	}
+	public void JustifierAppelDejou(Long id)
+	{
+		appelDeJourPersonnelRepository.JustifierlAbsence("justifié", id);
+	}
 }

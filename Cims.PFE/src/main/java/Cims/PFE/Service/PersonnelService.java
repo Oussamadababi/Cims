@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import Cims.PFE.Dao.AppelDeJourRepository;
@@ -116,16 +117,16 @@ public class PersonnelService {
 	}
 	
 	/*Ajouter au solde repos chaque 6 jrs 0.5*/
-//	@Scheduled(cron = "1 0 0 1 * ?")
+	@Scheduled(cron = "0 0 7 0 * ?")
 //	@Scheduled(fixedRate = 5000L) 518 400
 	public void updateAutoSoldeRepos()
 	{
 		List<Personnel> Listepersonnel = personnelRepository.findAll();
 		for(Personnel Personnel1 : Listepersonnel)
 		{
-			int Nbjrstrav = Nbjourtrvail(Personnel1.getId_personnel());
-			double soldeRepos1 =(Nbjrstrav/6)*0.5;
-			Personnel1.setSoldeRepos(soldeRepos1);
+			//int Nbjrstrav = Nbjourtrvail(Personnel1.getId_personnel());
+		//	double soldeRepos1 =(Nbjrstrav/6)*0.5;
+			Personnel1.setSoldeRepos(Personnel1.getSoldeRepos()+2.5);
 			personnelRepository.save(Personnel1);
 			
 			

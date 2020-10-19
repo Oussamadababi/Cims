@@ -60,4 +60,10 @@ public class AppelJourPersonnelController {
 		appelJourPersonnelService.envoyermail();
 		return ResponseEntity.ok(new MessageResponse("Mail envoyé "));
 	}
+	@PutMapping(value = "/justifierAbsence/{id}")
+	public ResponseEntity<MessageResponse> JustifierAbsence(@PathVariable("id")long id) {
+		
+		appelJourPersonnelService.JustifierAppelDejou(id);
+		return ResponseEntity.ok(new MessageResponse("Absence justifié "));
+	}
 }

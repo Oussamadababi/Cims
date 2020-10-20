@@ -33,10 +33,10 @@ public interface AppelDeJourRepository extends JpaRepository<AppelDeJour, Date> 
 	@Query(value = "SELECT COUNT(*)FROM appel_de_jour_personnels c where personnels_id_personnel=?1 and EXTRACT(YEAR FROM NOW())-EXTRACT(YEAR FROM c.appel_de_jour_datedujour)<=2", nativeQuery = true)
 	public  int NbAbscenceparId(Long id);
 	
-	@Query(value = "SELECT NEW Cims.PFE.Entities.Absence (p.nom,p.prenom,a.datedujour) FROM AppelJourPersonnel  ap join ap.personnels p join ap.appelDeJour a where  ap.etat='non justifié' order by  a.datedujour")
+	@Query(value = "SELECT NEW Cims.PFE.Entities.Absence (ap.id,p.nom,p.prenom,a.datedujour,ap.mail) FROM AppelJourPersonnel  ap join ap.personnels p join ap.appelDeJour a where  ap.etat='non justifié' order by  a.datedujour")
 	List<Absence> listAbsenceSansJusftication();
 	
-	@Query(value = "SELECT NEW Cims.PFE.Entities.Absence (p.nom,p.prenom,a.datedujour) FROM AppelJourPersonnel  ap join ap.personnels p join ap.appelDeJour a where  ap.etat='non justifié' and ap.mail='false' order by  a.datedujour")
+	@Query(value = "SELECT NEW Cims.PFE.Entities.Absence (p.nom,p.prenom,a.datedujour) FROM AppelJourPersonnel  ap join ap.personnels p join ap.appelDeJour a where  ap.etat='non justifié' and ap.mail='non-reçu' order by  a.datedujour")
 	List<Absence> listAbsenceSansJusfticationEtNonMailing();
 	
 	@Query(value = "SELECT a.id FROM  appel_de_jour_personnels a join personnel p on a.personnels_id_personnel=p.id_personnel where p.nom=?1 and p.prenom=?2 and a.appel_de_jour_datedujour=?3", nativeQuery = true)

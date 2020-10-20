@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -58,7 +59,7 @@ public class AppelJourPersonnelService {
 		if ((a == null)) {
 			if ((conges.isEmpty()) || (missions.isEmpty())) {
 				ap.setEtat("non justifié");
-				ap.setMail("false");
+				ap.setMail("non-reçu");
 //				SimpleMailMessage mail = new SimpleMailMessage();
 //				StringBuilder buf = new StringBuilder();
 //				buf.append("\"<html>\n" + "  <head>\n" + "    <meta name=\"viewport\" content=\"width=device-width\" />\n"
@@ -230,13 +231,13 @@ public class AppelJourPersonnelService {
 			ap.setAppelDeJour(newAppel);
 			ap.setPersonnels(p);
 			ap.setEtat("non justifié");
-			ap.setMail("false");
+			ap.setMail("non-reçu");
 			personnelAbsentRepository.save(ap);
 
 		} else {
 			if (conges.isEmpty() || (missions.isEmpty())) {
 				ap.setEtat("non justifié");
-				ap.setMail("false");
+				ap.setMail("non-reçu");
 //				SimpleMailMessage mail = new SimpleMailMessage();
 //				StringBuilder buf = new StringBuilder();
 //				buf.append("\"<html>\n" + "  <head>\n" + "    <meta name=\"viewport\" content=\"width=device-width\" />\n"
@@ -448,7 +449,7 @@ public class AppelJourPersonnelService {
 			BigInteger ida =appelDeJourRepository.ListeIdAbsenceParNomPrenomDate(a.getNom(),a.getPrenom(),a.getDate());
 			AppelJourPersonnel adj = new AppelJourPersonnel();
 			adj =appelDeJourPersonnelRepository.getOne(ida.longValue());
-			adj.setMail("true");
+			adj.setMail("Reçu");
 			appelDeJourPersonnelRepository.save(adj);
 			
 			SimpleMailMessage mail = new SimpleMailMessage();
@@ -620,6 +621,7 @@ public class AppelJourPersonnelService {
 		
 		
 	}
+	@Transactional
 	public void JustifierAppelDejou(Long id)
 	{
 		appelDeJourPersonnelRepository.JustifierlAbsence("justifié", id);

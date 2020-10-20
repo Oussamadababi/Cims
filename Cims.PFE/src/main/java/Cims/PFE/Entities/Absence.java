@@ -66,6 +66,14 @@ public class Absence {
 	public void setId(long id) {
 		this.id = id;
 	}
+	public Absence(long id,String nom, String prenom, Date date,String etat) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.date = date;
+		this.etat=etat;
+	}
 	public Absence(String nom, String prenom, Date date) {
 		super();
 		this.nom = nom;

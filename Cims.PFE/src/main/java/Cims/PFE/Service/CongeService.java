@@ -75,8 +75,8 @@ public class CongeService {
 		c.setEtat("En_attente");
 		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
 		// soustracter le conge de la solde repos n-2
-		if (c.getTypedeconge() == Type_conge.conge_repos) {
-
+		if ((c.getTypedeconge() == Type_conge.conge_repos) | (c.getTypedeconge() == Type_conge.conge_compensation)) {
+		
 			calendar.add(Calendar.DATE, c.getNumDeJour());
 			Date currentDatePlusOne = calendar.getTime();
 			// Converting the Date to LocalDate
@@ -97,8 +97,9 @@ public class CongeService {
 			}
 
 			else
-				c.setEtat("Pas de solde");
-			return congeRepository.save(c);
+			
+				return null ;
+		
 		} else if (c.getTypedeconge() == Type_conge.conge_maladie_longue_duree
 				| c.getTypedeconge() == Type_conge.conge_post_natal | c.getTypedeconge() == Type_conge.conge_maternite
 				| c.getTypedeconge() == Type_conge.conge_sans_solde) {
@@ -139,8 +140,8 @@ public class CongeService {
 		c.setEtat("Accepté");
 		c.setDatedemande(java.sql.Date.valueOf(LocalDate.now()));
 		// soustracter le conge de la solde repos n-2
-		if (c.getTypedeconge() == Type_conge.conge_repos) {
-
+		if ((c.getTypedeconge() == Type_conge.conge_repos) | (c.getTypedeconge() == Type_conge.conge_compensation)) {
+			
 			calendar.add(Calendar.DATE, c.getNumDeJour());
 			Date currentDatePlusOne = calendar.getTime();
 			// Converting the Date to LocalDate
@@ -161,8 +162,8 @@ public class CongeService {
 			}
 
 			else
-				c.setEtat("Pas de solde");
-			return congeRepository.save(c);
+				
+			return null;
 		} else if (c.getTypedeconge() == Type_conge.conge_maladie_longue_duree
 				| c.getTypedeconge() == Type_conge.conge_post_natal | c.getTypedeconge() == Type_conge.conge_maternite
 				| c.getTypedeconge() == Type_conge.conge_sans_solde) {

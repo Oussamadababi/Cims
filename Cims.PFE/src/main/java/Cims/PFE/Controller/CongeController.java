@@ -54,10 +54,15 @@ public class CongeController {
 		return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("demande ajouter"));
 	}
 	@PostMapping(value = "/ajouterConge/{personnel_id}")
-	public ResponseEntity<MessageResponse>ajouterConge(@RequestBody Conge c,
+	public Conge ajouterConge(@RequestBody Conge c,
 			@PathVariable("personnel_id") long id) {
-		congeService.ajouterConge(c, id);
-		return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse("demande ajouter"));
+		Conge cc = new Conge ();	
+		cc = congeService.ajouterConge(c, id);
+		if (cc == null)
+		{
+			return cc ;
+		}
+		else return cc;
 	}
 	
 	@GetMapping(value = "/listcongeparMatricule/{matricule}")
